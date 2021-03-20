@@ -1,8 +1,22 @@
 //  import all 3rd party libraries and customize them.
+@import './config.scss';
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
   font-family: 'Balsamiq Sans', cursive;
+}
+
+:root {
+  font-size: 24px;
+  @include lg {
+    font-size: 20px;
+  }
+  @include md {
+    font-size: 16px;
+  }
+  @include sm {
+    font-size: 14px;
+  }
 }
