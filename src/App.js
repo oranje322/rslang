@@ -1,12 +1,15 @@
 import React from 'react';
 import './styles/app.global.scss'; // global styles
-import classes from './App.module.scss'; // App styles
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Main from './containers/Main/Main';
 
 const App = () => {
 	return (
-		<div>
-			<p className={classes.text}>Hello</p>
-		</div>
+		<BrowserRouter>
+			<Switch>
+				<Route path="/" component={Main} />
+			</Switch>
+		</BrowserRouter>
 	);
 };
 

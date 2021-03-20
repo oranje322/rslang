@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "webpack serve --mode development",
 		"build": "webpack --mode production",
-		"client": "webpack serve --mode development"
+		"start": "npm run dev"
 	},
 	"author": "Kristina Andreeva",
 	"license": "ISC",

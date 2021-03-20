@@ -5,18 +5,18 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-  font-family: 'Balsamiq Sans', cursive;
+	font-family: $font;
 }
 
 :root {
-  font-size: 24px;
-  @include lg {
-    font-size: 20px;
-  }
-  @include md {
-    font-size: 16px;
-  }
-  @include sm {
-    font-size: 14px;
-  }
+	font-size: 24px;
+	@include lg {
+		font-size: 20px;
+	}
+	@include md {
+		font-size: 16px;
+	}
+	@include sm {
+		font-size: 14px;
+	}
 }

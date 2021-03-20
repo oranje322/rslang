@@ -1,0 +1,115 @@
+@import '../../styles/config.scss';
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	font-size: 1rem;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.close {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.formContainer {
+	position: relative;
+	width: 70%;
+	max-width: 400px;
+	padding: 1.5rem 2rem;
+	text-align: center;
+	background-color: white;
+	border-radius: 1rem;
+	box-shadow: 0.2rem 0.2rem 2rem rgba(0, 0, 0, 0.5);
+
+	.form div {
+		margin-bottom: 1rem;
+		width: 100%;
+		font-size: 1em;
+	}
+
+	h2 {
+		margin-bottom: 2em;
+		font-size: 1em;
+	}
+
+	input {
+		font-size: 0.8em;
+		&::placeholder {
+			font-family: $font;
+		}
+	}
+
+	.errorText {
+		position: absolute;
+		width: 77%;
+		font-size: 0.6em;
+		text-align: left;
+		color: rgb(243, 82, 61);
+		white-space: break-spaces;
+	}
+
+	p {
+		font-size: 0.6em;
+	}
+
+	.submitBtn {
+		margin-top: 4rem;
+		margin-bottom: 1rem;
+		font-size: 0.65em;
+	}
+
+	.uploadBtn {
+		margin: 0 auto;
+		text-align: left;
+		img {
+			position: absolute;
+			left: auto;
+			right: 2rem;
+			border-radius: 0.1rem;
+			transition: 0.3s width ease-in-out;
+
+			&:hover {
+				width: 100px;
+			}
+		}
+
+		span {
+			font-size: 0.8em;
+		}
+	}
+
+	.changeAuthMethodBtn {
+		cursor: pointer;
+		color: rgba(0, 0, 0, 0.8);
+	}
+
+	.changeAuthMethodBtn:hover {
+		text-decoration: underline;
+	}
+}
+
+.closeBtn {
+	position: absolute;
+	left: auto;
+	right: 0.5rem;
+	top: 0rem;
+	transition: transform 0.1s ease-in-out;
+	cursor: pointer;
+
+	&::before {
+		content: 'x';
+		font-size: 1.8em;
+		color: rgba(0, 0, 0, 0.8);
+	}
+	&:hover {
+		transform: scale(1.2);
+	}
+}
