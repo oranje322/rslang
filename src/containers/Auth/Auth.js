@@ -1,27 +1,72 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import classes from './Auth.module.scss';
 import { Button, Input } from '@material-ui/core';
 import defaultImg from '@assets/Avatar_default.png';
 import validation from './validation';
+import { signin, signup } from '../../api/api';
 
 const Auth = props => {
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 	const [isSignUp, setIsSignUp] = useState(false);
-	const [formData, setFormData] = useState({
-		email: '',
-		password: '',
-		name: '',
-		photo: '',
-	});
+	const [formData, setFormData] = useState({});
 	const [errors, setErrors] = useState({});
+
+	useEffect(() => {
+		if (isSignUp) {
+			setFormData({
+				email: '',
+				password: '',
+				name: '',
+				photo: '',
+			});
+		} else {
+			setFormData({
+				email: '',
+				password: '',
+			});
+		}
+		setErrors([]);
+		setIsFormSubmitted(false);
+	}, [isSignUp]);
 
 	const onSubmitHandler = async event => {
 		event.preventDefault();
 		setIsFormSubmitted(true);
-		console.log(formData);
 
-		setErrors({ ...errors, name: validation('name', formData.name) });
-		setErrors({ ...errors, password: validation('password', formData.password) });
+		if (
+			validation('name', formData.name) ||
+			validation('password', formData.password) ||
+			validation('email', formData.email)
+		) {
+			setErrors({
+				...errors,
+				name: validation('name', formData.name),
+				email: validation('email', formData.email),
+				password: validation('password', formData.password),
+			});
+			return;
+		}
+
+		try {
+			if (isSignUp) {
+				const data = await signup(formData);
+				console.log(data);
+				setIsSignUp(false);
+			} else {
+				const data = await signin(formData);
+				console.log(data);
+				// localStorage.setItem('token', JSON.stringify(res.data.token)); // ?
+			}
+			setErrors({});
+		} catch (err) {
+			if (err.response?.data?.error) {
+				setErrors({ ...errors, server: err.response?.data?.error?.errors.map(err => err.message) });
+			} else if (err.response?.data) {
+				setErrors({ ...errors, server: err.response?.data });
+			} else {
+				setErrors({ ...errors, server: err.message });
+			}
+		}
 	};
 
 	const onChangeHandler = event => {
@@ -37,7 +82,6 @@ const Auth = props => {
 
 		if (file) {
 			const photoError = validation('photo', file);
-			console.log(photoError);
 			setErrors({ ...errors, photo: photoError });
 			if (!photoError) {
 				const reader = new FileReader();
@@ -55,18 +99,16 @@ const Auth = props => {
 
 	const changeAuthMethodHandler = () => {
 		setIsSignUp(!isSignUp);
-		setErrors([]);
-		setIsFormSubmitted(false);
 	};
 
 	return (
 		<Fragment>
 			<h2 className={classes.title}>{isSignUp ? 'Зарегистрироваться' : 'Войти'}</h2>
 			<form className={classes.form} onSubmit={onSubmitHandler} noValidate>
+				<Input type="email" name="email" placeholder="Почта" value={formData.email} onChange={onChangeHandler} />
 				{isSignUp && (
 					<Input type="text" name="name" placeholder="Ваше имя" value={formData.name} onChange={onChangeHandler} />
 				)}
-				<Input type="email" name="email" placeholder="Почта" value={formData.email} onChange={onChangeHandler} />
 				<Input
 					type="password"
 					name="password"

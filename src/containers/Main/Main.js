@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
 import Auth from '../Auth/Auth';
 import classes from './Main.module.scss';
 import Modal from '../../components/Modal/Modal';
