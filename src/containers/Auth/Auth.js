@@ -8,7 +8,7 @@ import { signin, signup } from '../../api/api';
 const Auth = props => {
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 	const [isSignUp, setIsSignUp] = useState(false);
-	const [formData, setFormData] = useState({});
+	const [formData, setFormData] = useState({ email: '', password: '', name: '', photo: '' });
 	const [errors, setErrors] = useState({});
 
 	useEffect(() => {

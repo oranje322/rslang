@@ -3,6 +3,8 @@ export default function validation(name, value) {
 	let error;
 	if (name === 'name' && value.trim().length < 3) {
 		return 'Имя должно содержать не менее 3 символов';
+	} else if (name === 'email' && !value.match(/(?=.*[a-z])(?=.*@)(?=.*\.)[a-z@\.]+/)) {
+		return 'Email введен некорректно';
 	} else if (name === 'password' && value.length < 8) {
 		return 'Пароль должен содержать не менее 8 символов';
 	} else if (
