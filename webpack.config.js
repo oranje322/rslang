@@ -11,6 +11,7 @@ module.exports = {
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'public'),
+		publicPath: '/',
 	},
 	resolve: {
 		extensions: ['.js', '.json'],
@@ -33,6 +34,7 @@ module.exports = {
 	devServer: {
 		port: 8080,
 		open: false,
+		historyApiFallback: true,
 	},
 	module: {
 		rules: [
@@ -49,7 +51,7 @@ module.exports = {
 							},
 						},
 					},
-          'sass-loader'
+					'sass-loader',
 				],
 			},
 			{

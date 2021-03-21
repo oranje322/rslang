@@ -1,0 +1,70 @@
+@import '../../styles/config.scss';
+
+.title {
+	margin-bottom: 2em;
+	font-size: 1em;
+}
+
+.form {
+	div {
+		margin-bottom: 1rem;
+		width: 100%;
+		font-size: 1em;
+	}
+
+	input {
+		font-size: 0.8em;
+		&::placeholder {
+			font-family: $font;
+		}
+	}
+
+	.errorText {
+		position: absolute;
+		width: 77%;
+		font-size: 0.6em;
+		text-align: left;
+		color: rgb(243, 82, 61);
+		white-space: break-spaces;
+	}
+
+	.submitBtn {
+		margin-top: 4rem;
+		margin-bottom: 1rem;
+		font-size: 0.65em;
+	}
+
+	.uploadBtn {
+		margin: 0 auto 0.5em;
+		text-align: left;
+		img {
+			position: absolute;
+			left: auto;
+			right: 2rem;
+			border-radius: 0.1rem;
+			transition: 0.3s width ease-in-out;
+			z-index: 5;
+
+			&:hover {
+				width: 100px;
+			}
+		}
+
+		span {
+			font-size: 0.8em;
+		}
+	}
+}
+
+p {
+	font-size: 0.6em;
+}
+
+.changeAuthMethodBtn {
+	cursor: pointer;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+.changeAuthMethodBtn:hover {
+	text-decoration: underline;
+}
