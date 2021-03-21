@@ -50,11 +50,9 @@ const Auth = props => {
 		try {
 			if (isSignUp) {
 				const data = await signup(formData);
-				console.log(data);
 				setIsSignUp(false);
 			} else {
 				const data = await signin(formData);
-				console.log(data);
 				// localStorage.setItem('token', JSON.stringify(res.data.token)); // ?
 			}
 			setErrors({});
@@ -78,7 +76,6 @@ const Auth = props => {
 
 	const onPhotoLoadHandler = event => {
 		const file = event.target.files[0];
-		console.log(file);
 
 		if (file) {
 			const photoError = validation('photo', file);

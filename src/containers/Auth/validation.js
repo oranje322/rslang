@@ -2,7 +2,6 @@ export default function validation(name, value) {
 	if (value === undefined) return;
 	let error;
 	if (name === 'name' && value.trim().length < 3) {
-		console.log(name, value.length);
 		return 'Имя должно содержать не менее 3 символов';
 	} else if (name === 'password' && value.length < 8) {
 		return 'Пароль должен содержать не менее 8 символов';
