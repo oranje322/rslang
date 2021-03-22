@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Auth from '../Auth/Auth';
 import classes from './Main.module.scss';
 import Modal from '../../components/Modal/Modal';
+import { AppBar, Container,  } from '@material-ui/core';
+
 
 const Main = () => {
 	const [isAuthOpen, setIsAuthOpen] = useState(false);
