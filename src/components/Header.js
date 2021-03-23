@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Auth from '../containers/Auth/Auth';
-import Modal from './Modal/Modal';
+// import Modal from './Modal/Modal';
 import logo from '../assets/img/logo.png';
-import { AppBar, Button, Container, Toolbar, Box, IconButton } from '@material-ui/core';
+import { AppBar, Button, Container, Toolbar, Box, IconButton, Dialog, DialogContent } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const Header = () => {
@@ -30,9 +30,14 @@ const Header = () => {
                 <Button variant="contained" color="inherit" onClick={onOpenAuthHandler}>Войти</Button>
             </Box>
             </Toolbar>
-            <Modal isModalShown={isAuthOpen} close={onCloseAuthHandler}>
+            <Dialog p={2} open={isAuthOpen} onClose={onCloseAuthHandler} aria-labelledby="responsive-dialog-title" >
+                <DialogContent>
+                    <Auth />
+                </DialogContent>                
+            </Dialog>
+            {/* <Modal isModalShown={isAuthOpen} close={onCloseAuthHandler}>
                 <Auth />
-            </Modal>				
+            </Modal>				 */}
         </Container>
     </AppBar>
     )
