@@ -14,7 +14,7 @@ const Main = () => {
 		<>
 		<Header />
 		<Container maxWidth='lg'>
-			<Box pt={10} display="flex" justifyContent="center">
+			<Box  pt={5} display="flex" justifyContent="center">
 				<img src={emoji} alt='Emoji' />
 			</Box>
 			<Box pt={3} display="flex" justifyContent="center">

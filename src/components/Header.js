@@ -19,7 +19,7 @@ const Header = () => {
 	};
 
     return (
-        <AppBar style={{boxShadow: "none"}} color='inherit' position='fixed'>
+    <AppBar style={{boxShadow: "none"}} color='inherit' position='static'>
         <Container maxWidth='lg'>
             <Toolbar>
             <Box flexGrow={1} ml={1}>

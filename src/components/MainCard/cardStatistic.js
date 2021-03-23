@@ -6,8 +6,8 @@ import classes from './cardStatistic.scss';
 const CardStatistic = () => {
     return (
         <div className={classes.cardBox}>
-            <h2>Готовые наборы</h2>
-            <p>Выбирайте тему и уровень сложности</p>
+            <h2>Статистика</h2>
+            <p>визуализируй свой прогресс радуйся успеху</p>
             <div className={classes.box}>                
                 <div className={classes.buttonBox}>                    
                     <button>Подробнее</button>
