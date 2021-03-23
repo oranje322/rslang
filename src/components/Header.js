@@ -7,8 +7,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 const Header = () => {
     const [isAuthOpen, setIsAuthOpen] = useState(false);
-	const [isMenuOpen, setisMenuOpen] = useState(false);
-	const [isLogoOpen, setisLogoOpen] = useState(true);
+	const [isIconMenuVisible, setIsIconMenuVisible] = useState(false);
+	const [isLogoVisible, seIsLogoVisible] = useState(true);
 
 	const onCloseAuthHandler = () => {
 		setIsAuthOpen(false);
@@ -19,12 +19,12 @@ const Header = () => {
 	};
 
     return (
-        <AppBar color='inherit' position='fixed'>
+        <AppBar style={{boxShadow: "none"}} color='inherit' position='fixed'>
         <Container maxWidth='lg'>
             <Toolbar>
             <Box flexGrow={1} ml={1}>
-                {isLogoOpen && <img src={logo} alt='logo' />}
-                {isMenuOpen && (<IconButton><MenuIcon /></IconButton>)}
+                {isLogoVisible && <img src={logo} alt='logo' />}
+                {isIconMenuVisible && (<IconButton><MenuIcon /></IconButton>)}
             </Box>				
             <Box mr={1}>
                 <Button variant="contained" color="inherit" onClick={onOpenAuthHandler}>Войти</Button>

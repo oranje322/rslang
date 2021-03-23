@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './card.scss';
+import classes from './cardGame.scss';
 
 const CardGame = () => {
     function clickGame() {

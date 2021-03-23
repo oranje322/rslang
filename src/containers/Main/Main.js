@@ -1,33 +1,23 @@
 import React, { isValidElement, useState } from 'react';
 import classes from './Main.module.scss';
 import emoji from '../../assets/img/emoji.png';
-import levelImg from '../../assets/img/levelImg.png';
-import {  Button, Container, Box, Typography, 
-	Card, CardActions, CardContent, CardMedia, Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Container, Box, Grid } from '@material-ui/core';
 import Header from '../../components/Header';
-import CardGame from '../../components/Modal/MainCard/cardGame';
-import CardOne from '../../components/Modal/MainCard/cardOne';
-import CardStatistic from '../../components/Modal/MainCard/cardStatistic';
+import CardGame from '../../components/MainCard/cardGame';
+import CardOne from '../../components/MainCard/cardOne';
+import CardStatistic from '../../components/MainCard/cardStatistic';
+import Footer from '../../components/Footer';
 
-const useStyles = makeStyles({
-	root: {
-	  maxWidth: 300,
-	  margin: 10
-	}
-  });
 
-const Main = () => {
-	const classes = useStyles();
-	
+const Main = () => {	
 	return (
 		<>
 		<Header />
 		<Container maxWidth='lg'>
-			<Box pt={15} display="flex" justifyContent="center">
+			<Box pt={10} display="flex" justifyContent="center">
 				<img src={emoji} alt='Emoji' />
 			</Box>
-			<Box pt={5} display="flex" justifyContent="center">
+			<Box pt={3} display="flex" justifyContent="center">
 				<h1>Узнавайте и тренируйте новые слова с RSlang</h1>
 			</Box>
 		</Container>
@@ -38,6 +28,7 @@ const Main = () => {
 				<CardStatistic />			
 			</Grid>			
 		</Container>
+		<Footer />
 		</>
 	);
 };
