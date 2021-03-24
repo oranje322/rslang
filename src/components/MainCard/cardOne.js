@@ -1,20 +1,21 @@
 import React from 'react';
 import levelImg from '../../assets/img/levelImg.png';
-import classes from './cardOne.scss';
+import classes from './cardMain.scss';
 
 
 const CardOne = () => {
+    let { cardBox, violet, buttonBox } = classes;
     return (
-        <div className={classes.cardBox}>
+        <div className={`${violet} ${cardBox}`}>
             <h2>Готовые наборы</h2>
-            <p>Выбирайте тему и уровень сложности</p>
+            <p> выбирайте тему и уровень сложности</p>
             <div className={classes.box}>
-                <img src={levelImg} alt='startImg'/>
-                <div className={classes.buttonBox}>                    
+                <img src={levelImg} alt='startImg' />
+                <div className={buttonBox}>
                     <button>Начать</button>
                 </div>
             </div>
-                
+
         </div>
     )
 }

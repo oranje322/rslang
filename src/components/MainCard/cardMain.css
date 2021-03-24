@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700;900&display=swap");
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.caral {
+  background-color: #F58978;
+  -webkit-box-shadow: 4px 4px 20px 15px rgba(243, 195, 188, 0.952);
+          box-shadow: 4px 4px 20px 15px rgba(243, 195, 188, 0.952);
+}
+
+.violet {
+  background-color: #9676E3;
+  -webkit-box-shadow: 4px 4px 20px 15px #c9b9f0;
+          box-shadow: 4px 4px 20px 15px #c9b9f0;
+}
+
+.grey {
+  background-color: #626D79;
+  -webkit-box-shadow: 4px 4px 20px 15px #8e98a3;
+          box-shadow: 4px 4px 20px 15px #8e98a3;
+}
+
+.cardBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 320px;
+  height: 400px;
+  border-radius: 8px;
+  padding: 43px 20px 0;
+  margin: 20px;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+.cardBox h2 {
+  color: white;
+  font-size: 31px;
+}
+
+.cardBox p {
+  color: blanchedalmond;
+  font-size: 33px;
+}
+
+.cardBox .box {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.cardBox .buttonBox {
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.cardBox .buttonBox button {
+  padding: 10px 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  width: 120px;
+  -webkit-box-shadow: 0 7px 9px rgba(47, 46, 46, 0.3);
+          box-shadow: 0 7px 9px rgba(47, 46, 46, 0.3);
+}
+
+.cardBox .buttonBox button:hover {
+  -webkit-box-shadow: 0px 2px 9px rgba(47, 46, 46, 0.3);
+          box-shadow: 0px 2px 9px rgba(47, 46, 46, 0.3);
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
+}
+/*# sourceMappingURL=cardMain.css.map */

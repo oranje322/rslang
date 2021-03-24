@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "config.scss",
+        "config/_colors.scss",
+        "config/_variables.scss",
+        "config/_functions.scss",
+        "config/_breakpoints.scss",
+        "config/_placeholders.scss",
+        "config/_mixins.scss"
+    ],
+    "names": [],
+    "file": "config.css"
+}

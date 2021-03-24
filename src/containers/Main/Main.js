@@ -8,27 +8,26 @@ import CardOne from '../../components/MainCard/cardOne';
 import CardStatistic from '../../components/MainCard/cardStatistic';
 import Footer from '../../components/Footer';
 
-
-const Main = () => {	
+const Main = () => {
 	return (
 		<>
-		<Header />
-		<Container maxWidth='lg'>
-			<Box  pt={5} display="flex" justifyContent="center">
-				<img src={emoji} alt='Emoji' />
-			</Box>
-			<Box pt={3} display="flex" justifyContent="center">
-				<h1>Узнавайте и тренируйте новые слова с RSlang</h1>
-			</Box>
-		</Container>
-		<Container maxWidth='lg'>
-			<Grid container spacinng={4} justify="center"> 
-				<CardOne />
-				<CardGame />
-				<CardStatistic />			
-			</Grid>			
-		</Container>
-		<Footer />
+			<Header />
+			<Container maxWidth='lg'>
+				<Box padding="0" display="flex" justifyContent="center">
+					<img src={emoji} alt='Emoji' />
+				</Box>
+				<Box pt={3} display="flex" justifyContent="center">
+					<h1>Узнавайте и тренируйте новые слова с RSlang</h1>
+				</Box>
+			</Container>
+			<Container maxWidth='lg'>
+				<Grid container spacinng={4} justify="center">
+					<CardOne />
+					<CardGame />
+					<CardStatistic />
+				</Grid>
+			</Container>
+			<Footer />
 		</>
 	);
 };
