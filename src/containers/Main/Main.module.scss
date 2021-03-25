@@ -1,0 +1,70 @@
+.container {
+	max-width: 60rem;
+	margin: 2rem auto 0 auto;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	.logoImg {
+
+	}
+
+	.loginBtn {
+		padding: 0.5rem 0.8rem;
+		border: 1px solid #242D34;
+		outline: none;
+		border-radius: 10px;
+		background: transparent;
+		cursor: pointer;
+		font-weight: bold;
+	}
+}
+
+.main {
+	margin-top: 0.8rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	.owl {
+		max-width: 5rem;
+	}
+	.title {
+		margin-top: 1rem;
+		font-weight: 700;
+		font-size: 2rem;
+	}
+	.cardsBlock {
+		margin-top: 1rem;
+		display: flex;
+		justify-content: center;
+	}
+}
+
+.footer {
+	margin-top: 3rem;
+	display: flex;
+	justify-content: space-between;
+	.git {
+		font-size: 0.9rem;
+		a {
+			text-decoration: none;
+			color: black;
+		}
+	}
+
+	.course {
+		.link {
+			display: flex;
+			text-decoration: none;
+			color: black;
+			.img {
+				width: 50px;
+				margin-right: 0.5rem;
+			}
+
+		}
+	}
+}
