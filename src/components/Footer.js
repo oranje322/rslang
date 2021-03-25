@@ -14,24 +14,24 @@ const Footer = () => {
     const classes = useStyles();
 
     return (
-        <footer >
-            <Container maxWidth="lg">
+        <footer style={{ paddingTop: "100px" }}>
+            <Container maxWidth="lg" padding="30px">
                 <Grid container
                     direction="row"
                     justify="space-between"
                     alignItems="center">
                     <Box display="flex" justifyContent="flex-start">
-                            <IconButton color="inherit" href="https://github.com/oranje322"><GitHubIcon /></IconButton>
-                            <IconButton color="inherit" href="https://github.com/kristinand"><GitHubIcon /></IconButton>
-                            <IconButton color="inherit" href="https://github.com/ya-stefaniya"><GitHubIcon /></IconButton>
-                            <IconButton color="inherit" href="https://github.com/zaruba2004"><GitHubIcon /></IconButton>
+                        <IconButton color="inherit" href="https://github.com/oranje322"><GitHubIcon /></IconButton>
+                        <IconButton color="inherit" href="https://github.com/kristinand"><GitHubIcon /></IconButton>
+                        <IconButton color="inherit" href="https://github.com/ya-stefaniya"><GitHubIcon /></IconButton>
+                        <IconButton color="inherit" href="https://github.com/zaruba2004"><GitHubIcon /></IconButton>
                     </Box>
-                    <Box display="flex" justifyContent="flex-end">                        
+                    <Box display="flex" justifyContent="flex-end">
                         <IconButton color="inherit" href="https://rs.school/js/">
                             <Card className={classes.root}>
-                                <CardMedia component="img" 
-                                image='https://rs.school/images/rs_school_js.svg'
-                                title="RSschol"/>
+                                <CardMedia component="img"
+                                    image='https://rs.school/images/rs_school_js.svg'
+                                    title="RSschol" />
                             </Card>
                         </IconButton>
                         <Typography variant="body1">2021</Typography>

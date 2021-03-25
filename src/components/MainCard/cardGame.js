@@ -1,17 +1,24 @@
 import React from 'react';
-import classes from './cardGame.scss';
+import classes from './cardMain.scss';
+import gameImg from '../../assets/img/sega.png';
 
 const CardGame = () => {
     function clickGame() {
-        
+
     }
-    return (        
-        <div className={classes.cardBox}>
+
+    let { cardBox, caral, buttonBox, imgGame } = classes;
+
+    return (
+        <div className={`${caral} ${cardBox}`} >
             <h2>Мини игры</h2>
             <p>геймификация для активного запоминания</p>
-            <div className={classes.buttonBox}>
-                <button onClick={clickGame}>Посмотреть</button>
-            </div>            
+            <div className={classes.box}>
+                <img src={gameImg} className={imgGame} alt='sega' />
+                <div className={buttonBox}>
+                    <button>Посмотреть</button>
+                </div>
+            </div>
         </div>
     )
 }

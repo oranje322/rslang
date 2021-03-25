@@ -1,0 +1,82 @@
+.title {
+  margin-bottom: 2em;
+  font-size: 1em;
+}
+
+.form div {
+  margin-bottom: 1rem;
+  width: 100%;
+  font-size: 1em;
+}
+
+.form input {
+  font-size: 0.8em;
+}
+
+.form input::-webkit-input-placeholder {
+  font-family: "Balsamiq Sans", cursive;
+}
+
+.form input:-ms-input-placeholder {
+  font-family: "Balsamiq Sans", cursive;
+}
+
+.form input::-ms-input-placeholder {
+  font-family: "Balsamiq Sans", cursive;
+}
+
+.form input::placeholder {
+  font-family: "Balsamiq Sans", cursive;
+}
+
+.form .errorText {
+  position: absolute;
+  width: 77%;
+  font-size: 0.6em;
+  text-align: left;
+  color: #f3523d;
+  white-space: break-spaces;
+}
+
+.form .submitBtn {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  font-size: 0.65em;
+}
+
+.form .uploadBtn {
+  margin: 0 auto 0.5em;
+  text-align: left;
+}
+
+.form .uploadBtn img {
+  position: absolute;
+  left: auto;
+  right: 2rem;
+  border-radius: 0.1rem;
+  -webkit-transition: 0.3s width ease-in-out;
+  transition: 0.3s width ease-in-out;
+  z-index: 5;
+}
+
+.form .uploadBtn img:hover {
+  width: 100px;
+}
+
+.form .uploadBtn span {
+  font-size: 0.8em;
+}
+
+p {
+  font-size: 0.6em;
+}
+
+.changeAuthMethodBtn {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.changeAuthMethodBtn:hover {
+  text-decoration: underline;
+}
+/*# sourceMappingURL=Auth.module.css.map */
