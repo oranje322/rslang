@@ -3,13 +3,17 @@ import classes from './Auth.module.scss';
 import { Button, Input } from '@material-ui/core';
 import defaultImg from '@assets/Avatar_default.png';
 import validation from './validation';
-import { signin, signup } from '../../api/api';
+import { useDispatch } from 'react-redux';
+import { loginAC } from '../../redux/actions/authActions';
+import { signIn, signUp } from '../../api/api';
 
 const Auth = props => {
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 	const [isSignUp, setIsSignUp] = useState(false);
 	const [formData, setFormData] = useState({ email: '', password: '', name: '', photo: '' });
 	const [errors, setErrors] = useState({});
+
+	const dispatch = useDispatch()
 
 	useEffect(() => {
 		if (isSignUp) {
@@ -49,11 +53,11 @@ const Auth = props => {
 
 		try {
 			if (isSignUp) {
-				const data = await signup(formData);
+				const data = await signUp(formData);
 				setIsSignUp(false);
 			} else {
-				const data = await signin(formData);
-				// localStorage.setItem('token', JSON.stringify(res.data.token)); // ?
+				const data = await signIn(formData);
+				dispatch(loginAC(data))
 			}
 			setErrors({});
 		} catch (err) {

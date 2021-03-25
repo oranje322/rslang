@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Auth from '../Auth/Auth';
-import classes from './Main.module.scss';
 import Modal from '../../components/Modal/Modal';
+import { getNewToken } from '../../api/api';
 
 const Main = () => {
 	const [isAuthOpen, setIsAuthOpen] = useState(false);
@@ -17,8 +17,9 @@ const Main = () => {
 	return (
 		<div>
 			<button onClick={onOpenAuthHandler}>auth</button>
+			<button onClick={() => getNewToken()}>refresh</button>
 			<Modal isModalShown={isAuthOpen} close={onCloseAuthHandler}>
-				<Auth />
+				<Auth/>
 			</Modal>
 		</div>
 	);

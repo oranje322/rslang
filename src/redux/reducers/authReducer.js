@@ -12,7 +12,11 @@ export const authReducer = (state = initialState, action) => {
 		case LOGIN:
 			return {
 				...state,
-				user: action.payload,
+				user: {
+					name: action.payload.name,
+					photo: action.payload.photo,
+					userId: action.payload.userId
+				},
 				isAuth: true
 			};
 		case LOGOUT:
