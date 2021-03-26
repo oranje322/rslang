@@ -1,0 +1,28 @@
+.header {
+	display: flex;
+	padding: 1.2rem;
+	background: #fff;
+	box-shadow: 1px 5px 20px rgba(0, 0, 0, 0.15);
+	justify-content: space-between;
+	align-items: center;
+	.title {
+		margin-left: 10rem;
+		font-size: 1.5rem;
+		font-weight: 400;
+		color: #483D8B;
+	}
+
+	.user {
+		display: flex;
+		align-items: center;
+		margin-right: 10rem;
+		.avatar {
+			width: 1.5rem;
+			border-radius: 50%;
+		}
+		.username {
+			font-size: 1rem;
+			margin-left: 0.5rem;
+		}
+	}
+}
