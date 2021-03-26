@@ -150,14 +150,14 @@ const Auth = props => {
 			</form>
 
 			{isSignUp ? (
-				<p>
+				<p className={classes.text}>
 					Уже есть аккаунт?{' '}
 					<span className={classes.changeAuthMethodBtn} onClick={changeAuthMethodHandler}>
 						Войти
 					</span>
 				</p>
 			) : (
-				<p>
+				<p className={classes.text}>
 					Еще нет аккаунта?{' '}
 					<span className={classes.changeAuthMethodBtn} onClick={changeAuthMethodHandler}>
 						Зарегистрироваться
