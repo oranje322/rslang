@@ -10,29 +10,29 @@ import { Link } from 'react-router-dom';
 const Menu = () => {
 	return (
 		<div className={styles.menu}>
-			<Link to={'/book'}>
+			<Link to={'/book'} activeclassname={styles.item_active}>
 				<div className={styles.item}>
-					<img className={styles} src={book} alt="book"/>
+					<img className={styles} src={book} alt="book" />
 				</div>
 			</Link>
 			<Link to={'/learn'}>
 				<div className={styles.item}>
-					<img src={list} alt="list"/>
+					<img src={list} alt="list" />
 				</div>
 			</Link>
 			<Link to={'/games'}>
 				<div className={styles.item}>
-					<img src={game} alt="game"/>
+					<img src={game} alt="game" />
 				</div>
 			</Link>
 			<Link to={'/stats'}>
 				<div className={styles.item}>
-					<img src={stat} alt="stat"/>
+					<img src={stat} alt="stat" />
 				</div>
 			</Link>
 			<Link to={'/settings'}>
 				<div className={styles.item}>
-					<img src={settings} alt="settings"/>
+					<img src={settings} alt="settings" />
 				</div>
 			</Link>
 		</div>

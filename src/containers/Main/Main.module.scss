@@ -1,7 +1,7 @@
 @import '../../styles/config.scss';
 
 .container {
-	max-width: 60rem;
+	max-width: 85rem;
 	margin: 2rem auto 0 auto;
 }
 
@@ -12,7 +12,7 @@
 	align-items: center;
 
 	.loginBtn {
-		padding: 0.5rem 0.8rem;
+		padding: 1rem 1.2rem;
 		border: 1px solid #242D34;
 		outline: none;
 		border-radius: 10px;
@@ -28,15 +28,15 @@
 	flex-direction: column;
 	align-items: center;
 	.owl {
-		max-width: 3rem;
+		max-width: 4rem;
 	}
 	.title {
 		margin-top: 1rem;
 		font-weight: 700;
-		font-size: 2rem;
+		font-size: 3rem;
 	}
 	.cardsBlock {
-		margin-top: 1rem;
+		margin-top: 2rem;
 		display: flex;
 		justify-content: center;
 	}

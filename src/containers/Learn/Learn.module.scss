@@ -1,20 +1,17 @@
 @import '../../styles/config.scss';
 
-body {
-    position: relative;
-}
+
 .learnBox {
     padding-top: 3rem;
-    background-color: #E5E5E5; 
-    min-height: 100vh;
+    background-color: $back-light; 
     text-align: center;
     padding-left: 2.5rem;
-    
+    height: calc(100vh - 80px);
     h2 {
-        @include fonts(Montserrat, 1.6rem, 500);
+        @include fonts(Montserrat, 2.6rem, 500);
         padding: 0 1rem;
         font-style: normal;
-        line-height: 2rem;
+        line-height: 3rem;
         letter-spacing: 0em;
         text-align: center;
 
@@ -27,19 +24,19 @@ body {
         margin: 2rem;
 
         .learnCard {
-            width: 14.5rem;
-            margin: 1rem;
+            margin: 1rem 3rem;
             padding-top: 4rem;
-            height: 11.4rem;
+            flex-basis: 26%;
+            height: 20rem;
             background-color: white;
-            border-radius: 0.75rem;
+            border-radius: 1rem;
             box-shadow: 5px 5px 14px 3px rgba(207, 205, 205, 0.25);
             z-index: 1;            
             h3 {
-                min-height: 3rem;
+                min-height: 6rem;
             }
             button {
-                @include button(white, $dark-violet, 2.1rem, 5.6rem )
+                @include button(white, $dark-violet, 4.1rem, 11.6rem )
             }   
         }
         :last-child {

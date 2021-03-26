@@ -32,13 +32,13 @@ const Main = () => {
 					<CardStatistic />
 				</div>
 			</main>
-			<Footer />
 		</div>
 		{
 			isAuthOpen && <Modal isModalShown={isAuthOpen} close={onClickEnter}>
 				<Auth />
 			</Modal>
 		}
+		<Footer />
 	</>
 
 	);
