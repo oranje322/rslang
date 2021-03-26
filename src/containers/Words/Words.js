@@ -7,7 +7,7 @@ import { Button } from '@material-ui/core';
 const Dictionary = () => {
   const [words, setWords] = useState();
   const [page, setPage] = useState(0);
-  const group = window.location.pathname.replace('/words/', '');
+  const group = Number(window.location.pathname.replace('/words/', '')) -1;
 
 	useEffect(async () => {
     loadWords(group, page);
@@ -30,7 +30,7 @@ const Dictionary = () => {
 
     setWords([...words.slice(0, difficultWordIndex), difficultWord, ...words.slice(difficultWordIndex + 1)])
 
-    //updateUserWord()
+    updateUserWord("6057140e200af90015fe6da0", wordId)
   }
 
 	return (
