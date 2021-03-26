@@ -1,10 +1,4 @@
-$caral: #F58978;
-$light-caral: rgba(243, 195, 188, 0.952);
-$grey: #626D79;
-$light-grey:#8e98a3;
-$violet: #9676E3;
-$light-violet:#c9b9f0;
-$light-text:blanchedalmond;
+@import '../../styles/config.scss';
 
 @mixin color($color, $shadow) {
     background-color:$color;

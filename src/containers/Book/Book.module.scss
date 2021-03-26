@@ -1,3 +1,44 @@
-.book {
+@import '../../styles/config.scss';
 
+body {
+    position: relative;
+}
+.bookBox {
+    padding-top: 3rem;
+    background-color: #E5E5E5; 
+    min-height: 100vh;
+    text-align: center;
+    padding-left: 2.5rem;
+    
+    h2 {
+        @include fonts(Montserrat, 39px, 500);
+        padding: 0 1rem;
+        font-style: normal;
+        line-height: 48px;
+        letter-spacing: 0em;
+        text-align: center;
+
+    }
+
+    .bookModules {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 8rem);
+        margin: 2rem;
+        margin-left: 7rem;
+
+        .bookModule {
+            width: 11rem;
+            height: 6.5rem;
+            @include display(column, space-around, center);
+            background-color: white;
+            border-radius: 18px;
+            box-shadow: 5px 5px 14px 3px rgba(207, 205, 205, 0.25);
+            z-index: 1; 
+
+            button {
+                @include button(white, $dark-violet, 2.1rem, 5.4rem )
+            }   
+        }
+    }    
 }

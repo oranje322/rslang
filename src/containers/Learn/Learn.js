@@ -8,11 +8,11 @@ import FooterBackground from '../../components/FooterBackground/FooterBackground
 const Learn = () => {
 	return (
 		<div>
-			<Header title={'Изучение'}/>
-			<Menu/>
-			<div  className={style.learnBox}>
-				<h2>Здесь Вы можете выбрать категорию слов для изучения и просмотреть слова, котовые Вы решили удалить.</h2>
-				<div className={style.lernMain}>
+			<Header title={'Изучение'} />
+			<Menu />
+			<div className={style.learnBox}>
+				<h2>Здесь Вы можете выбрать категорию слов для изучения и просмотреть слова, которые Вы решили удалить.</h2>
+				<div className={style.learnMain}>
 					<div className={style.learnCard}>
 						<h3>Активные слова</h3>
 						<button>Проверить</button>
