@@ -11,12 +11,18 @@
 :root {
 	font-size: 24px;
 	@include lg {
-		font-size: 20px;
+		font-size: 19px;
 	}
 	@include md {
-		font-size: 16px;
+		font-size: 15px;
 	}
 	@include sm {
 		font-size: 14px;
 	}
+}
+html,
+body {
+	height: 100%;
+	position: relative;
+	overflow: hidden;
 }

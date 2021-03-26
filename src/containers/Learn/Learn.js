@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
 import style from './Learn.module.scss';
 import FooterBackground from '../../components/FooterBackground/FooterBackground';
+import Footer from '../../components/Footer/Footer';
 
 const Learn = () => {
 	return (
@@ -28,6 +29,7 @@ const Learn = () => {
 				</div>
 			</div>
 			<FooterBackground />
+			<Footer />
 		</div>
 	);
 };

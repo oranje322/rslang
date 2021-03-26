@@ -1,17 +1,28 @@
 .header {
 	display: flex;
-	padding: 1.2rem;
+	padding: 0.5rem;
 	background: #fff;
 	box-shadow: 1px 5px 20px rgba(0, 0, 0, 0.15);
 	justify-content: space-between;
 	align-items: center;
-	.title {
-		margin-left: 7rem;
+
+	.wrapper{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-left: 2rem;
+		
+		.title {
+		margin-left: 1rem;
 		font-size: 1.5rem;
 		font-weight: 600;
 		color: #483D8B;
+		}
+		.logo{
+			max-width: 2.5rem;
+			max-height: 2.5rem;
+		}
 	}
-
 	.user {
 		display: flex;
 		align-items: center;

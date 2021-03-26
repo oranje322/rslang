@@ -6,7 +6,7 @@
 }
 
 .header {
-  margin: 0 1rem;
+	margin: 0 1rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -23,12 +23,12 @@
 }
 
 .main {
-	margin: 0.8rem 1rem 0;
+	margin: 0 1rem 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	.owl {
-		max-width: 5rem;
+		max-width: 3rem;
 	}
 	.title {
 		margin-top: 1rem;
@@ -41,35 +41,8 @@
 		justify-content: center;
 	}
 }
-
 @include lg {
   .cardsBlock {
     flex-wrap: wrap;
   }
-}
-
-.footer {
-	margin: 3rem 1rem 0;
-	display: flex;
-	justify-content: space-between;
-	.git {
-		font-size: 0.9rem;
-		a {
-			text-decoration: none;
-			color: black;
-		}
-	}
-
-	.course {
-		.link {
-			display: flex;
-			text-decoration: none;
-			color: black;
-			.img {
-				width: 50px;
-				margin-right: 0.5rem;
-			}
-
-		}
-	}
 }
