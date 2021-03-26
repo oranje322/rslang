@@ -2,4 +2,4 @@ node_modules
 ./config
 *.css.map
 *.css
-.DS_store
+.DS_Store

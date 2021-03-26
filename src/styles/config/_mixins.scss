@@ -1,20 +1,54 @@
 @mixin sm {
   @media (max-width: #{$screen-sm}) {
       @content;
+      font-size: 8px;
   }
 }
 @mixin md {
   @media (max-width: #{$screen-md}) {
       @content;
+      font-size: 10px;
   }
 }
 @mixin lg {
   @media (max-width: #{$screen-lg}) {
       @content;
+      font-size: 12px;
   }
 }
 @mixin xl {
   @media (max-width: #{$screen-xl}) {
       @content;
+      :root{
+        font-size: 14px;
+      }
   }
+}
+@mixin fonts($family, $size, $weight){
+  font-family: $family;
+  font-size: $size;
+  font-weight: $weight;
+}
+@mixin display($direction, $justify, $align ){
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+@mixin button($color, $background, $height, $width ){
+        @include fonts(Montserrat, 17px, 700);
+        margin-top: 1rem;
+        background: $background;
+        height: $height;
+        width: $width;
+        border-radius: 10px; 
+        color: $color;
+        border: none;
+        font-size: 0.85rem;
+        font-style: normal;
+        &:hover {
+            background: rgba(245, 137, 120, 0.43);
+            color: black;
+            cursor: pointer;
+        }
 }
