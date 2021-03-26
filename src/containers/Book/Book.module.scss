@@ -10,16 +10,14 @@ body {
     text-align: center;
     padding-left: 2.5rem;
     
-    h2 {
-        @include fonts(Montserrat, 39px, 500);
+    h3 {
+        @include fonts(Montserrat, 30px, 400);
         padding: 0 1rem;
         font-style: normal;
-        line-height: 48px;
-        letter-spacing: 0em;
+        line-height: 40px;
         text-align: center;
 
     }
-
     .bookModules {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -30,7 +28,7 @@ body {
         .bookModule {
             width: 11rem;
             height: 6.5rem;
-            @include display(column, space-around, center);
+            @include display(column, center, center);
             background-color: white;
             border-radius: 18px;
             box-shadow: 5px 5px 14px 3px rgba(207, 205, 205, 0.25);

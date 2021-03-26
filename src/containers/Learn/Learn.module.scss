@@ -11,10 +11,10 @@ body {
     padding-left: 2.5rem;
     
     h2 {
-        @include fonts(Montserrat, 39px, 500);
+        @include fonts(Montserrat, 1.6rem, 500);
         padding: 0 1rem;
         font-style: normal;
-        line-height: 48px;
+        line-height: 2rem;
         letter-spacing: 0em;
         text-align: center;
 
@@ -27,19 +27,19 @@ body {
         margin: 2rem;
 
         .learnCard {
-            width: 350px;
+            width: 14.5rem;
             margin: 1rem;
             padding-top: 4rem;
-            height: 274px;
+            height: 11.4rem;
             background-color: white;
-            border-radius: 18px;
+            border-radius: 0.75rem;
             box-shadow: 5px 5px 14px 3px rgba(207, 205, 205, 0.25);
             z-index: 1;            
             h3 {
                 min-height: 3rem;
             }
             button {
-                @include button(white, $dark-violet, 54px, 130px )
+                @include button(white, $dark-violet, 2.1rem, 5.6rem )
             }   
         }
         :last-child {

@@ -1,27 +1,21 @@
 @mixin sm {
   @media (max-width: #{$screen-sm}) {
       @content;
-      font-size: 8px;
   }
 }
 @mixin md {
   @media (max-width: #{$screen-md}) {
       @content;
-      font-size: 10px;
   }
 }
 @mixin lg {
   @media (max-width: #{$screen-lg}) {
       @content;
-      font-size: 12px;
   }
 }
 @mixin xl {
   @media (max-width: #{$screen-xl}) {
       @content;
-      :root{
-        font-size: 14px;
-      }
   }
 }
 @mixin fonts($family, $size, $weight){
