@@ -6,6 +6,7 @@ import validation from './validation';
 import { useDispatch } from 'react-redux';
 import { loginAC } from '../../redux/actions/authActions';
 import { signIn, signUp } from '../../api/api';
+import { useHistory } from 'react-router';
 
 const Auth = props => {
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -13,6 +14,7 @@ const Auth = props => {
 	const [formData, setFormData] = useState({ email: '', password: '', name: '', photo: '' });
 	const [errors, setErrors] = useState({});
 
+	const history = useHistory()
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -58,6 +60,7 @@ const Auth = props => {
 			} else {
 				const data = await signIn(formData);
 				dispatch(loginAC(data))
+				history.push('/book')
 			}
 			setErrors({});
 		} catch (err) {
