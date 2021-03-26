@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Header.module.scss'
-import avatar from '@assets/Avatar_default.png';
+import avatar from '@assets/img/Avatar_default.png';
 import { useSelector } from 'react-redux';
 
 const Header = ({title}) => {

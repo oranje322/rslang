@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import classes from './Auth.module.scss';
 import { Button, Input } from '@material-ui/core';
-import defaultImg from '@assets/Avatar_default.png';
+import defaultImg from '@assets/img/Avatar_default.png';
 import validation from './validation';
 import { useDispatch } from 'react-redux';
 import { loginAC } from '../../redux/actions/authActions';

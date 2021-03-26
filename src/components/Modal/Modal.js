@@ -11,12 +11,7 @@ class Modal extends Component {
 		return (
 			<div className={classes.wrapper}>
 				<Backdrop isModalShown={this.props.isModalShown} clicked={this.props.close} />
-				<div
-					className={classes.Modal}
-					style={{
-						opacity: this.props.isModalShown ? '1' : '0',
-						transform: this.props.isModalShown ? 'translateY(0)' : 'translateY(-100vh)',
-					}}>
+				<div className={classes.Modal}>
 					<span className={classes.closeBtn} onClick={this.props.close}></span>
 					{this.props.children}
 				</div>

@@ -1,16 +1,15 @@
+@import '../../styles/config.scss';
+
 .container {
 	max-width: 60rem;
 	margin: 2rem auto 0 auto;
 }
 
 .header {
+  margin: 0 1rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-
-	.logoImg {
-
-	}
 
 	.loginBtn {
 		padding: 0.5rem 0.8rem;
@@ -24,7 +23,7 @@
 }
 
 .main {
-	margin-top: 0.8rem;
+	margin: 0.8rem 1rem 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -43,8 +42,14 @@
 	}
 }
 
+@include lg {
+  .cardsBlock {
+    flex-wrap: wrap;
+  }
+}
+
 .footer {
-	margin-top: 3rem;
+	margin: 3rem 1rem 0;
 	display: flex;
 	justify-content: space-between;
 	.git {
