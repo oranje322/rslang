@@ -14,15 +14,13 @@
     box-shadow: 1px 2px 5px 3px #594e4e40;
 	}
 	.item {
-		margin: 0.5rem 0;
-		width: 4rem;
+		margin: 0.5rem;
 		&_active{
 		border-radius: 50%;
     	background: rgba(245, 137, 120, 0.43);
 		}
 		img{
 		width: 3rem;
-		margin-top: 1rem;
 		}
 	}
 
