@@ -25,4 +25,17 @@ export async function getNewToken() {
 	localStorage.setItem('userData', JSON.stringify({...data, ...res.data}))
 }
 
+export async function getWords(group = 0, page = 0) {
+  const res = await instance.get(`/words?group=${group}&page=${page}`);
+  return res.data;
+}
 
+export async function getUserWords(userId) {
+  const res = await instance.get(`/users/${userId}/words`);
+  return res.data;
+}
+
+export async function updateUserWord(userId, wordId, data) {
+  const res = await instance.post(`/users/${userId}/words${wordId}`, data);
+  return res.data;
+}
