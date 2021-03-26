@@ -1,0 +1,71 @@
+body {
+    position: relative;
+}
+.learnBox {
+    padding-top: 3rem;
+    background-color: #E5E5E5; 
+    min-height: 100vh;
+    text-align: center;
+    padding-left: 2.5rem;
+    
+    h2 {
+        font-family: Montserrat;
+        font-size: 39px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 48px;
+        letter-spacing: 0em;
+        text-align: center;
+
+    }
+
+    .lernMain {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 2rem;
+
+        .learnCard {
+            width: 350px;
+            margin: 1rem;
+            padding-top: 4rem;
+            height: 274px;
+            background-color: white;
+            border-radius: 18px;
+            box-shadow: 5px 5px 14px 3px rgba(207, 205, 205, 0.25);
+            z-index: 1;            
+            h3 {
+                min-height: 3rem;
+            }
+            button {
+                margin-top: 1rem;
+                background: rgba(104, 70, 186, 1);
+                height: 54px;
+                width: 132px;
+                border-radius: 10px; 
+                color: white;
+                border: none;
+                font-family: Montserrat;
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 700;
+                &:hover {
+                    background: rgba(245, 137, 120, 0.43);
+                    color: black;
+                    cursor: pointer;
+                }
+            }           
+        }
+        :last-child {
+            background-color: grey;
+            color: white;
+            button {
+                background: white;
+                color: black;
+                &:hover {
+                    color: white;
+                } 
+            }
+        }        
+    }    
+}
