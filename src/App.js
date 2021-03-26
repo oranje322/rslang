@@ -9,6 +9,7 @@ import Learn from './containers/Learn/Learn';
 import Games from './containers/Games/Games';
 import Stats from './containers/Stats/Stats';
 import Settings from './containers/Settings/Settings';
+import Words from './containers/Words/Words';
 
 const App = () => {
 	return (
@@ -16,22 +17,26 @@ const App = () => {
 			<BrowserRouter>
 				<Switch>
 					<Route path={'/book'}>
-						<Book/>
+						<Book />
 					</Route>
 					<Route path={'/learn'}>
-						<Learn/>
+						<Learn />
 					</Route>
 					<Route path={'/games'}>
-						<Games/>
+						<Games />
 					</Route>
 					<Route path={'/stats'}>
-						<Stats/>
+						<Stats />
 					</Route>
 					<Route path={'/settings'}>
-						<Settings/>
+						<Settings />
 					</Route>
-					<Route path="/" component={Main}/>
+					<Route path={'/words'}>
+						<Words />
+					</Route>
+					<Route path="/" component={Main} />
 				</Switch>
+				{/* <Menu /> почему не так? */}
 			</BrowserRouter>
 		</Provider>
 	);
