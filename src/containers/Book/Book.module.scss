@@ -1,3 +1,45 @@
-.book {
+@import '../../styles/config.scss';
 
+
+.bookBox {
+    padding-top: 3rem;
+    background-color:$back-light; 
+    height: calc(100vh - 80px);
+    text-align: center;
+    h3 {
+        @include fonts(Montserrat, 2rem, 400);
+        padding: 0 1rem;
+        font-style: normal;
+        line-height: 40px;
+        text-align: center;
+
+    }
+    .bookModules {
+        margin: 2rem;
+        height: 70%;
+        &_wrapper{
+            margin: 0 10rem;
+            @include display(row, space-around, center);
+            flex-wrap: wrap;
+            height: 100%;
+        }
+        .bookModule {
+            flex-basis: 26%;
+            height: 12.5rem;
+            @include display(column, center, center);
+            background-color: white;
+            border-radius: 18px;
+            box-shadow: 5px 5px 14px 3px rgba(207, 205, 205, 0.25);
+            z-index: 1; 
+            button {
+                @include button(white, $dark-violet, 3.1rem, 7.4rem )
+            }   
+        }
+    }    
+}
+
+
+.link {
+  text-decoration: none;
+  color: inherit;
 }

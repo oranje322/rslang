@@ -7,7 +7,17 @@ const initialState = {
 	isAuth: false
 };
 
-export const authReducer = (state = initialState, action) => {
+const temp = JSON.parse(localStorage.getItem('userData'));
+const previousState = temp ? {
+	user: {
+		name: temp.name,
+		photo: temp.photo,
+		userId: temp.userId
+	},
+	isAuth: true
+} : initialState;
+
+export const authReducer = (state = previousState, action) => {
 	switch (action.type) {
 		case LOGIN:
 			return {

@@ -19,6 +19,7 @@ module.exports = {
 			'@assets': path.resolve(__dirname, 'src/assets'),
 		},
 	},
+  devtool: 'eval-cheap-source-map',
 	plugins: [
 		new HTMLWebpackPlugin({
 			template: 'index.html',
