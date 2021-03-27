@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classes from './Words.module.scss';
 import WordCard from '../../components/WordCard/WordCard';
-import { createUserWord, deleteUserWord, getWords } from '../../api/api';
+import { createUserWord, getWords } from '../../api/api';
 import { Button } from '@material-ui/core';
 
 const Dictionary = () => {
