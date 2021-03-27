@@ -1,18 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import Menu from '../../components/Menu/Menu';
 import styles from './Book.module.scss';
 
 import FooterBackground from '../../components/FooterBackground/FooterBackground';
 
+console.log(window.location.pathname);
 const Book = () => {
 	return (
 		<>
 			<Header title={'Учебник'} />
 			<div className={styles.bookBox}>
-				<Menu />
 				<h2>Выбирайте раздел и начинайте учиться!</h2>
 				<div className={styles.bookModules}>
 					<div className={styles.bookModules_wrapper}>
@@ -28,7 +26,6 @@ const Book = () => {
 					</div>
 				</div>
 				<FooterBackground />
-				<Footer />
 			</div>
 		</>
 	)

@@ -8,6 +8,7 @@ import settings from '@assets/img/settings.png';
 import { NavLink } from 'react-router-dom';
 
 const Menu = () => {
+
 	return (
 		<div className={styles.menu}>
 			<NavLink to={'/book'} exact activeClassName={styles.item_active}>

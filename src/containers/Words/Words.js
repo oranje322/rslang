@@ -18,7 +18,7 @@ const Dictionary = () => {
 		const words = await getWords(group, page);
 		setWords(words);
 		setPage(prevPage => prevPage + 1);
-		window.scroll(0, 0);
+		// window.scroll(0, 0);
 	};
 
 	const setDifficultWord = (wordId) => {
@@ -37,11 +37,11 @@ const Dictionary = () => {
 		<div className={classes.words}>
 			{words && words.map(wordElem => (
 				<div id="wordContainer" className={classes.wordContainer} key={wordElem.id}>
-					<WordCard word={wordElem}/>
+					<WordCard word={wordElem} />
 					<div className={classes.btnContainer}>
 						<Button variant="outlined">Удалить</Button>
 						<Button variant={wordElem.difficult ? 'contained' : 'outlined'} color="secondary"
-						        onClick={() => setDifficultWord(wordElem.id)}>Сложно</Button>
+							onClick={() => setDifficultWord(wordElem.id)}>Сложно</Button>
 					</div>
 				</div>
 			))}

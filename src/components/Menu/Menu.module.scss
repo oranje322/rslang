@@ -1,20 +1,26 @@
-.menu {
-	width: 4.5rem;
-    background: #EDF0F6;
-    padding: 1rem 1rem;
+@mixin menu {
+    width: 4.5rem;
+    height: 100%;
+    padding: 5rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     position: fixed;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     z-index: 2;
-    box-shadow: 1px 2px 5px 3px #594e4e40;
+    box-shadow: 1px 7px 5px 3px #594e4e40;
+}
+.menu {
+    @include menu;
+        &_main{
+            margin-top: 4.6rem;
+            @include menu;
+        }
 	}
 	.item {
-		margin: 0.5rem;
 		&_active{
 		border-radius: 50%;
     	background: rgba(245, 137, 120, 0.43);
