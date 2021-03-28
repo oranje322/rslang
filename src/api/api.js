@@ -68,9 +68,9 @@ export async function getUserWords() {
 	return res.data;
 }
 
-export async function createUserWord(wordId) {
+export async function createUserWord(wordId, mode) {
 	const body = {
-		difficulty: 'hard'
+		difficulty: mode
 	};
 	const { token, userId } = JSON.parse(localStorage.getItem('userData'));
 	const res = await instance.post(`/users/${userId}/words/${wordId}`, body, {
@@ -114,3 +114,17 @@ export async function deleteUserWord(wordId) {
 	});
 	return res.data;
 }
+
+//Users/AggregatedWords
+export async function getAllAggregatedWords(group = 0, page = 0, wordsPerPage = 20, filter) {
+	const encodedFilter = encodeURIComponent(filter)
+	const { token, userId } = JSON.parse(localStorage.getItem('userData'));
+	const res = await instance.get(`/users/${userId}/aggregatedWords?group=${group}&page=${page}&wordsPerPage=${wordsPerPage}&filter=${encodedFilter}`, {
+		headers: {
+			Authorization: `Bearer ${token}`
+		}
+	});
+	return res.data
+}
+
+
