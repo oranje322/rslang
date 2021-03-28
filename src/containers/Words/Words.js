@@ -40,7 +40,7 @@ const Dictionary = () => {
 		// const difficultWordIndex = words.findIndex(word => word.id === wordId);
 		// console.log(difficultWordIndex);
 
-		if(isAuth) {
+		if (isAuth) {
 			createUserWord(wordId, difficult).then(res => console.log(res));
 		}
 
@@ -55,12 +55,12 @@ const Dictionary = () => {
 		<div className={classes.words}>
 			{words && words.map((wordElem, index) => (
 				<div id="wordContainer" className={classes.wordContainer} key={wordElem.id}>
-					<WordCard word={wordElem}/>
+					<WordCard word={wordElem} />
 					<div className={classes.btnContainer}>
 						<Button variant="outlined"
-						        onClick={() => setDifficultWord(wordElem.id, index, 'easy', wordElem)}>Удалить</Button>
+							onClick={() => setDifficultWord(wordElem.id, index, 'easy', wordElem)}>Удалить</Button>
 						<Button variant={wordElem?.userWord?.difficulty === 'hard' ? 'contained' : 'outlined'} color="secondary"
-						        onClick={() => setDifficultWord(wordElem.id, 'hard')}>Сложно</Button>
+							onClick={() => setDifficultWord(wordElem.id, 'hard')}>Сложно</Button>
 					</div>
 				</div>
 			))}

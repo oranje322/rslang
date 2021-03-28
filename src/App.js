@@ -10,6 +10,8 @@ import Games from './containers/Games/Games';
 import Stats from './containers/Stats/Stats';
 import Settings from './containers/Settings/Settings';
 import Words from './containers/Words/Words';
+import Menu from './components/Menu/Menu';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
 	return (
@@ -34,9 +36,10 @@ const App = () => {
 					<Route path={'/words'}>
 						<Words />
 					</Route>
-					<Route path="/" component={Main} />
+					<Route exact path="/" component={Main} />
 				</Switch>
-				{/* <Menu /> почему не так? */}
+				<Menu />
+				{window.location.pathname !== '/game' ? <Footer /> : null}
 			</BrowserRouter>
 		</Provider>
 	);

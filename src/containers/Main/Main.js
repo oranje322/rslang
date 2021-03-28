@@ -7,7 +7,6 @@ import owl from '@assets/img/sova.png';
 import styles from './Main.module.scss';
 import Modal from '../../components/Modal/Modal';
 import Auth from '../Auth/Auth';
-import Footer from '../../components/Footer/Footer';
 
 const Main = () => {
 
@@ -16,6 +15,8 @@ const Main = () => {
 	const onClickEnter = () => {
 		setIsAuthModal(prev => !prev)
 	}
+
+
 
 	return (<>
 		<div className={styles.container}>
@@ -38,7 +39,6 @@ const Main = () => {
 				<Auth />
 			</Modal>
 		}
-		<Footer />
 	</>
 
 	);
