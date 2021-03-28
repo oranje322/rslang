@@ -12,26 +12,26 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-
-        .itemGame {            
+        .gameNavLink {
+            text-decoration: none;
+        }
+        .itemGame {  
+            padding: 2rem;          
             width: 20rem;
             height: 20rem;
             background-color: white;
             border-radius: 1rem;
-            margin: 2rem;
-            text-align: center;
-            h2 {
-                text-decoration: none;
-            }
-            
+            margin: 1rem;
+            text-align: center; 
+            img {
+                width: 65%;
+                height: 65%;
+            }           
         }
     } 
     .footerBackground {
         position: absolute;
            bottom: 0;
-       img {
-           width: 100%;
-       }
    } 
 }
 
