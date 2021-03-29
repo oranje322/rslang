@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import classes from './Words.module.scss';
 import WordCard from '../../components/WordCard/WordCard';
-import { createUserWord, getAllAggregatedWords, getWords } from '../../api/api';
+import { createUserWord, getAllAggregatedWords, getWords, deleteUserWord, updateUserWord } from '../../api/api';
 import { Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Header from '../../components/Header/Header';
 
 const Words = () => {
 	const history = useHistory();
@@ -33,10 +34,17 @@ const Words = () => {
 		}
 	};
 
-	const setDifficultWord = (wordId, difficult) => {
-		if (isAuth) {
-			createUserWord(wordId, difficult).then(res => console.log(res));
+	const setDifficultWord = async (word, difficult) => {
+		if (!isAuth) return;
+
+		if (word.userWord && !difficult) {
+			await deleteUserWord(word._id);
+		} else if (word.userWord && word.userWord.difficulty !== difficult) {
+			await updateUserWord(word._id, difficult);
+		} else {
+			await createUserWord(word._id, difficult);
 		}
+		loadWords(0);
 	};
 
 	const onPageChangeHandler = pageSide => {
@@ -67,27 +75,32 @@ const Words = () => {
 	);
 
 	return (
-		<div className={classes.words}>
-			{words ? pageControls : 'Загрузка...'}
-			{words &&
-				words.map(word => (
-					<div id="wordContainer" className={classes.wordContainer} key={word._id}>
-						<WordCard word={word} />
-						<div className={classes.btnContainer}>
-							<Button variant="outlined" onClick={() => setDifficultWord(word._id, 'easy')}>
-								Удалить
-							</Button>
-							<Button
-								variant={word?.userWord?.difficulty === 'hard' ? 'contained' : 'outlined'}
-								color="secondary"
-								onClick={() => setDifficultWord(word._id, 'hard')}>
-								Сложно
-							</Button>
+		<Fragment>
+			<Header title={'Учебник'} />
+			<div className={classes.words}>
+				{words ? pageControls : 'Загрузка...'}
+				{words &&
+					words.map(word => (
+						<div id="wordContainer" className={classes.wordContainer} key={word._id}>
+							<WordCard word={word} />
+							{isAuth && (
+								<div className={classes.btnContainer}>
+									<Button variant="outlined" onClick={() => setDifficultWord(word, 'easy')}>
+										Удалить
+									</Button>
+									<Button
+										variant={word.userWord?.difficulty === 'hard' ? 'contained' : 'outlined'}
+										color="secondary"
+										onClick={() => setDifficultWord(word, word.userWord?.difficulty ? '' : 'hard')}>
+										Сложно
+									</Button>
+								</div>
+							)}
 						</div>
-					</div>
-				))}
-			{words && pageControls}
-		</div>
+					))}
+				{words && pageControls}
+			</div>
+		</Fragment>
 	);
 };
 

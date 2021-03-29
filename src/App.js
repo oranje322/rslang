@@ -8,6 +8,7 @@ import Book from './containers/Book/Book';
 import Learn from './containers/Learn/Learn';
 import Games from './containers/Games/Games';
 import Stats from './containers/Stats/Stats';
+import Words from './containers/Words/Words';
 import Settings from './containers/Settings/Settings';
 import Menu from './components/Menu/Menu';
 import Footer from './components/Footer/Footer';
@@ -17,7 +18,10 @@ const App = () => {
 		<Provider store={store}>
 			<BrowserRouter>
 				<Switch>
-					<Route path={'/book'}>
+					<Route path={'/book/:module'}>
+						<Words />
+					</Route>
+					<Route exact path={'/book'}>
 						<Book />
 					</Route>
 					<Route path={'/learn'}>

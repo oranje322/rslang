@@ -78,7 +78,6 @@ export async function createUserWord(wordId, mode) {
 			Authorization: `Bearer ${token}`
 		}
 	});
-	console.log(res.data);
 	return res.data;
 }
 
@@ -92,9 +91,9 @@ export async function getWordById(wordId) {
 	return res.data;
 }
 
-export async function updateUserWord(wordId) {
+export async function updateUserWord(wordId, mode) {
 	const body = {
-		difficulty: 'hard'
+		difficulty: mode
 	};
 	const { token, userId } = JSON.parse(localStorage.getItem('userData'));
 	const res = await instance.put(`/users/${userId}/words/${wordId}`, body, {
