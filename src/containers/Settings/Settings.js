@@ -5,12 +5,12 @@ import { Checkbox, FormControlLabel } from '@material-ui/core';
 import styles from './Settings.module.scss';
 const Settings = () => {
 
-	const settingsCheck = [
-		['del', 'Показывать кнопку Удалить'],
-		['diff', 'Показывать кнопку Удалить'],
-		['trWord', 'Показывать перевод слов'],
-		['trSentence', 'Показывать перевод предложений']
-	]
+	// const settingsCheck = [
+	// 	['del', 'Показывать кнопку Удалить'],
+	// 	['diff', 'Показывать кнопку Удалить'],
+	// 	['trWord', 'Показывать перевод слов'],
+	// 	['trSentence', 'Показывать перевод предложений']
+	// ]
 	const [state, setState] = React.useState({
 		del: true,
 		diff: true,
