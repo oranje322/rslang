@@ -9,26 +9,29 @@ const Settings = () => {
 		{
 			text: 'Показывать кнопку Удалить',
 			id: 'del',
+			checked: true
 		},
 		{
 			text: 'Показывать кнопку Cложно',
 			id: 'diff',
+			checked: true
 		},
 		{
 			text: 'Показывать перевод слов',
 			id: 'trWord',
+			checked: true
 		},
 		{
 			text: 'Показывать перевод предложений',
 			id: 'trSent',
+			checked: true
 		}
 	];
+	let response = {}
+	settingsCheck.forEach(item => { response[item.id] = item.checked });
 
 	const [state, setState] = React.useState({
-		del: true,
-		diff: true,
-		trWord: true,
-		trSentence: true
+		...response
 	});
 
 	const handleChange = (event) => {
@@ -46,7 +49,7 @@ const Settings = () => {
 						}}
 						key={variant.id}
 						value={variant.id}
-						control={<Checkbox checked={state.del} onChange={handleChange} name={variant.id} color="primary" />}
+						control={<Checkbox checked={state[variant.id]} onChange={handleChange} name={variant.id} color="primary" />}
 						label={variant.text}
 					/>
 				))}
