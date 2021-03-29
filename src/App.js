@@ -9,7 +9,6 @@ import Learn from './containers/Learn/Learn';
 import Games from './containers/Games/Games';
 import Stats from './containers/Stats/Stats';
 import Settings from './containers/Settings/Settings';
-import Words from './containers/Words/Words';
 import Menu from './components/Menu/Menu';
 import Footer from './components/Footer/Footer';
 
@@ -32,9 +31,6 @@ const App = () => {
 					</Route>
 					<Route path={'/settings'}>
 						<Settings />
-					</Route>
-					<Route path={'/words'}>
-						<Words />
 					</Route>
 					<Route exact path="/" component={Main} />
 				</Switch>
