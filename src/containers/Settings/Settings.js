@@ -44,7 +44,6 @@ const Settings = () => {
 	return (
 		<div>
 			<Header title={'Настройки'} />
-			<Menu />
 			<div className={styles.wrapper}>
 				{settingsCheck.map(variant => (
 					<FormControlLabel

@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import './styles/app.global.scss'; // global styles
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import Main from './containers/Main/Main';
 import Book from './containers/Book/Book';
 import Learn from './containers/Learn/Learn';
 import Games from './containers/Games/Games';
 import Stats from './containers/Stats/Stats';
-import Settings from './containers/Settings/Settings';
 import Words from './containers/Words/Words';
+import Audiocall from './containers/Audiocall/Audiocall';
+import Savannah from './containers/Savannah/Savannah';
+import Sprint from './containers/Sprint/Sprint';
+import Mygame from './containers/Mygame/Mygame';
+import Settings from './containers/Settings/Settings';
 import Menu from './components/Menu/Menu';
 import Footer from './components/Footer/Footer';
 import { useLocation } from 'react-router';
@@ -25,33 +31,42 @@ const App = () => {
 	}, [location, menuVisible]);
 
 	return (
-		<>
-			<Switch>
-				<Route path={'/book'}>
-					<Book/>
-				</Route>
-				<Route path={'/learn'}>
-					<Learn/>
-				</Route>
-				<Route path={'/games'}>
-					<Games/>
-				</Route>
-				<Route path={'/stats'}>
-					<Stats/>
-				</Route>
-				<Route path={'/settings'}>
-					<Settings/>
-				</Route>
-				<Route path={'/words'}>
-					<Words/>
-				</Route>
-				<Route exact path="/" component={Main}/>
-			</Switch>
-			{
-				menuVisible && <Menu/>
-			}
-			{location.pathname !== '/games' ? <Footer/> : null}
-		</>
+		<Provider store={store}>
+			<BrowserRouter>
+				<Switch>
+					<Route path={'/book/:module'}>
+						<Words />
+					</Route>
+					<Route exact path={'/book'}>
+						<Book />
+					</Route>
+					<Route path={'/learn'}>
+						<Learn />
+					</Route>
+					<Route path='/games/mygame' component={Mygame} />
+					<Route path='/games/savannah' component={Savannah} />
+					<Route path='/games/audiocall' component={Audiocall} />
+					<Route path='/games/sprint' component={Sprint} />
+					<Route path={'/games'}>
+						<Games />
+					</Route>
+					<Route path={'/stats'}>
+						<Stats />
+					</Route>
+					<Route path={'/settings'}>
+						<Settings />
+					</Route>
+					<Route path={'/words'}>
+						<Words />
+					</Route>
+					<Route exact path="/" component={Main} />
+				</Switch>
+				{
+					menuVisible && <Menu />
+				}
+				{window.location.pathname !== '/game' ? <Footer /> : null}
+			</BrowserRouter>
+		</Provider>
 	);
 };
 
