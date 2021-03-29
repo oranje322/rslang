@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header/Header';
-import Menu from '../../components/Menu/Menu';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import styles from './Settings.module.scss';
 import { deleteButton, difficultButton, wordTranslation, sentenceTranslation } from '../../redux/actions/settingsActions';
