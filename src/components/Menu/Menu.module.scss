@@ -21,7 +21,9 @@
         }
 	}
 	.item {
-		&_active{
+		&_active{  
+        margin: -0.6rem;    
+        padding: 0.6rem;      
 		border-radius: 50%;
     	background: rgba(245, 137, 120, 0.43);
 		}
