@@ -5,12 +5,25 @@ import { Checkbox, FormControlLabel } from '@material-ui/core';
 import styles from './Settings.module.scss';
 const Settings = () => {
 
-	// const settingsCheck = [
-	// 	['del', 'Показывать кнопку Удалить'],
-	// 	['diff', 'Показывать кнопку Удалить'],
-	// 	['trWord', 'Показывать перевод слов'],
-	// 	['trSentence', 'Показывать перевод предложений']
-	// ]
+	const settingsCheck = [
+		{
+			text: 'Показывать кнопку Удалить',
+			id: 'del',
+		},
+		{
+			text: 'Показывать кнопку Cложно',
+			id: 'diff',
+		},
+		{
+			text: 'Показывать перевод слов',
+			id: 'trWord',
+		},
+		{
+			text: 'Показывать перевод предложений',
+			id: 'trSent',
+		}
+	];
+
 	const [state, setState] = React.useState({
 		del: true,
 		diff: true,
@@ -26,28 +39,17 @@ const Settings = () => {
 			<Header title={'Настройки'} />
 			<Menu />
 			<div className={styles.wrapper}>
-				<FormControlLabel
-					classes={{
-						label: styles.label,
-					}}
-					control={<Checkbox checked={state.diff} onChange={handleChange} name="diff" color="primary" />}
-					label="Показывать кнопку Сложные"
-				/>
-				<FormControlLabel
-					classes={{
-						label: styles.label,
-					}}
-					control={<Checkbox checked={state.del} onChange={handleChange} name="del" color="primary" />}
-					label="Показывать кнопку Удалить"
-				/>
-				<FormControlLabel
-					control={<Checkbox checked={state.trWord} onChange={handleChange} name="trWord" color="primary" />}
-					label="Показывать перевод слов"
-				/>
-				<FormControlLabel
-					control={<Checkbox checked={state.trSentence} onChange={handleChange} name="trSentence" color="primary" />}
-					label="Показывать перевод предложений"
-				/>
+				{settingsCheck.map(variant => (
+					<FormControlLabel
+						classes={{
+							label: styles.label,
+						}}
+						key={variant.id}
+						value={variant.id}
+						control={<Checkbox checked={state.del} onChange={handleChange} name={variant.id} color="primary" />}
+						label={variant.text}
+					/>
+				))}
 			</div>
 		</div>
 	);
