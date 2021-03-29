@@ -4,6 +4,7 @@ import WordCard from '../../components/WordCard/WordCard';
 import { createUserWord, getAllAggregatedWords, getWords } from '../../api/api';
 import { Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
+import Header from '../../components/Header/Header';
 
 const Dictionary = () => {
 	const [words, setWords] = useState();
@@ -15,7 +16,7 @@ const Dictionary = () => {
 	useEffect(async () => {
 		loadWords(group, page);
 	}, []);
-	console.log(words)
+	console.log(words);
 
 	const loadWords = async () => {
 		// getWords or getUserWords
@@ -36,7 +37,7 @@ const Dictionary = () => {
 	};
 
 	const setDifficultWord = (wordId, index, difficult, wordElem) => {
-		console.log(wordElem)
+		console.log(wordElem);
 		// const difficultWordIndex = words.findIndex(word => word.id === wordId);
 		// console.log(difficultWordIndex);
 
@@ -52,20 +53,23 @@ const Dictionary = () => {
 	};
 
 	return (
-		<div className={classes.words}>
-			{words && words.map((wordElem, index) => (
-				<div id="wordContainer" className={classes.wordContainer} key={wordElem.id}>
-					<WordCard word={wordElem} />
-					<div className={classes.btnContainer}>
-						<Button variant="outlined"
-							onClick={() => setDifficultWord(wordElem.id, index, 'easy', wordElem)}>Удалить</Button>
-						<Button variant={wordElem?.userWord?.difficulty === 'hard' ? 'contained' : 'outlined'} color="secondary"
-							onClick={() => setDifficultWord(wordElem.id, 'hard')}>Сложно</Button>
+		<>
+			<Header title={'Учебник'}/>
+			<div className={classes.words}>
+				{words && words.map((wordElem, index) => (
+					<div id="wordContainer" className={classes.wordContainer} key={wordElem.id}>
+						<WordCard word={wordElem}/>
+						<div className={classes.btnContainer}>
+							<Button variant="outlined"
+							        onClick={() => setDifficultWord(wordElem.id, index, 'easy', wordElem)}>Удалить</Button>
+							<Button variant={wordElem?.userWord?.difficulty === 'hard' ? 'contained' : 'outlined'} color="secondary"
+							        onClick={() => setDifficultWord(wordElem.id, 'hard')}>Сложно</Button>
+						</div>
 					</div>
-				</div>
-			))}
-			{words && <Button className={classes.nextBtn} variant="outlined" onClick={loadWords}>Следующие слова</Button>}
-		</div>
+				))}
+				{words && <Button className={classes.nextBtn} variant="outlined" onClick={loadWords}>Следующие слова</Button>}
+			</div>
+		</>
 	);
 };
 
