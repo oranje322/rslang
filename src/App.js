@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles/app.global.scss'; // global styles
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Main from './containers/Main/Main';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import Main from './containers/Main/Main';
 import Book from './containers/Book/Book';
 import Learn from './containers/Learn/Learn';
 import Games from './containers/Games/Games';
@@ -12,8 +12,20 @@ import Words from './containers/Words/Words';
 import Settings from './containers/Settings/Settings';
 import Menu from './components/Menu/Menu';
 import Footer from './components/Footer/Footer';
+import { useLocation } from 'react-router';
 
 const App = () => {
+	const [menuVisible, setMenuVisible] = useState(false);
+	const location = useLocation();
+
+	useEffect(() => {
+		if (location.pathname === '/') {
+			setMenuVisible(false);
+		} else {
+			setMenuVisible(true);
+		}
+	}, [location, menuVisible]);
+
 	return (
 		<Provider store={store}>
 			<BrowserRouter>

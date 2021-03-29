@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Menu.module.scss';
 import book from '@assets/img/book.png';
 import list from '@assets/img/list.png';
 import game from '@assets/img/game.png';
 import stat from '@assets/img/stat.png';
 import settings from '@assets/img/settings.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const Menu = () => {
 
