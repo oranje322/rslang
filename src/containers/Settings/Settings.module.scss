@@ -1,0 +1,9 @@
+@import '../../styles/config.scss';
+
+.wrapper{
+	margin: 3rem 12rem;
+	@include display(column, space-between, start);
+	span{
+		@include fonts(Montserrat, 1.2rem, 500)
+	}
+}
