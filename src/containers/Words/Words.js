@@ -89,22 +89,26 @@ const Words = () => {
 							<WordCard word={word} />
 							{isAuth && (
 								<div className={classes.btnContainer}>
-									<Button variant="outlined" onClick={() => setDifficultWord(word, 'easy')}>
-										Удалить
+									{state.deleteButton &&
+										<Button variant="outlined" onClick={() => setDifficultWord(word, 'easy')}>
+											Удалить
+										</Button>
+									}
+									{state.difficultButton &&
+										<Button
+											variant={word.userWord?.difficulty === 'hard' ? 'contained' : 'outlined'}
+											color="secondary"
+											onClick={() => setDifficultWord(word, word.userWord?.difficulty ? '' : 'hard')}>
+											Сложно
 									</Button>
-									<Button
-										variant={word.userWord?.difficulty === 'hard' ? 'contained' : 'outlined'}
-										color="secondary"
-										onClick={() => setDifficultWord(word, word.userWord?.difficulty ? '' : 'hard')}>
-										Сложно
-									</Button>
+									}
 								</div>
 							)}
 						</div>
 					))}
 				{words && pageControls}
 			</div>
-		</Fragment>
+		</Fragment >
 	);
 };
 
