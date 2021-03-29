@@ -16,7 +16,7 @@ export const settingsReducer = (state = initialState, action) => {
         case DEL_BUTTON:
             return {
                 ...state,
-                deleteButton: !s.deleteButton
+                deleteButton: !state.deleteButton
             };
         case DIFF_BUTTON:
             return {
