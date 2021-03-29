@@ -21,6 +21,8 @@ const Words = () => {
 		loadWords(group, page);
 	}, []);
 
+	const state = useSelector(state => state.settings);
+
 	const loadWords = async pageSide => {
 		if (isAuth) {
 			const res = await getAllAggregatedWords(
