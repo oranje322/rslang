@@ -28,7 +28,6 @@ const Settings = () => {
 
 	const dispatch = useDispatch();
 	const state = useSelector(state => state.settings);
-	console.log('state: ', state);
 
 	const handleChange = (event) => {
 		let target = event.target.name;

@@ -5,36 +5,33 @@ export const SENTENCE_TRANSLATION = 'SENTENCE_TRANSLATION';
 
 
 const initialState = {
-    set: {
-        difficultButton: true,
-        deleteButton: true,
-        wordTranslation: true,
-        sentenceTranslation: true,
-    }
+    difficultButton: true,
+    deleteButton: true,
+    wordTranslation: true,
+    sentenceTranslation: true
 };
 
-console.log('initialState: ', initialState);
 export const settingsReducer = (state = initialState, action) => {
     switch (action.type) {
         case DEL_BUTTON:
             return {
                 ...state,
-                deleteButton: !state.set.deleteButton
+                deleteButton: !s.deleteButton
             };
         case DIFF_BUTTON:
             return {
                 ...state,
-                difficultButton: !state.set.difficultButton
+                difficultButton: !state.difficultButton
             };
         case WORD_TRANSLATION:
             return {
                 ...state,
-                wordTranslation: !state.set.wordTranslation
+                wordTranslation: !state.wordTranslation
             };
         case SENTENCE_TRANSLATION:
             return {
                 ...state,
-                sentenceTranslation: !state.set.wordTranslation
+                sentenceTranslation: !state.sentenceTranslation
             };
         default:
             return state;
