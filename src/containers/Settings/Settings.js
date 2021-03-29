@@ -1,43 +1,48 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header/Header';
-import Menu from '../../components/Menu/Menu';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import styles from './Settings.module.scss';
+import { deleteButton, difficultButton, wordTranslation, sentenceTranslation } from '../../redux/actions/settingsActions';
 const Settings = () => {
 
 	const settingsCheck = [
 		{
 			text: 'Показывать кнопку Удалить',
-			id: 'del',
+			id: 'deleteButton'
 		},
 		{
 			text: 'Показывать кнопку Cложно',
-			id: 'diff',
+			id: 'difficultButton',
 		},
 		{
 			text: 'Показывать перевод слов',
-			id: 'trWord',
+			id: 'wordTranslation'
 		},
 		{
 			text: 'Показывать перевод предложений',
-			id: 'trSent',
+			id: 'sentenceTranslation'
 		}
 	];
 
-	const [state, setState] = React.useState({
-		del: true,
-		diff: true,
-		trWord: true,
-		trSentence: true
-	});
+	const dispatch = useDispatch();
+	const state = useSelector(state => state.settings);
 
 	const handleChange = (event) => {
-		setState({ ...state, [event.target.name]: event.target.checked });
+		let target = event.target.name;
+		if (target === 'deleteButton') {
+			dispatch(deleteButton());
+		} else if (target === 'difficultButton') {
+			dispatch(difficultButton());
+		} else if (target === 'wordTranslation') {
+			dispatch(wordTranslation());
+		} else if (target === 'sentenceTranslation') {
+			dispatch(sentenceTranslation());
+		}
 	};
 	return (
 		<div>
 			<Header title={'Настройки'} />
-			<Menu />
 			<div className={styles.wrapper}>
 				{settingsCheck.map(variant => (
 					<FormControlLabel
@@ -45,8 +50,8 @@ const Settings = () => {
 							label: styles.label,
 						}}
 						key={variant.id}
-						value={variant.id}
-						control={<Checkbox checked={state.del} onChange={handleChange} name={variant.id} color="primary" />}
+
+						control={<Checkbox checked={state[variant.id]} onChange={handleChange} name={variant.id} color="primary" />}
 						label={variant.text}
 					/>
 				))}

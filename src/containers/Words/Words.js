@@ -1,6 +1,8 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import classes from './Words.module.scss';
 import WordCard from '../../components/WordCard/WordCard';
+import Preloader from '../../components/Preloader/Preloader';
+
 import { createUserWord, getAllAggregatedWords, getWords, deleteUserWord, updateUserWord } from '../../api/api';
 import { Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
@@ -18,6 +20,8 @@ const Words = () => {
 	useEffect(async () => {
 		loadWords(group, page);
 	}, []);
+
+	const state = useSelector(state => state.settings);
 
 	const loadWords = async pageSide => {
 		if (isAuth) {
@@ -78,7 +82,7 @@ const Words = () => {
 		<Fragment>
 			<Header title={'Учебник'} />
 			<div className={classes.words}>
-				{words ? pageControls : 'Загрузка...'}
+				{words ? pageControls : <Preloader />}
 				{words &&
 					words.map(word => (
 						<div id="wordContainer" className={classes.wordContainer} key={word._id}>

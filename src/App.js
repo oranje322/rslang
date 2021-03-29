@@ -61,7 +61,9 @@ const App = () => {
 					</Route>
 					<Route exact path="/" component={Main} />
 				</Switch>
-				<Menu />
+				{
+					menuVisible && <Menu />
+				}
 				{window.location.pathname !== '/game' ? <Footer /> : null}
 			</BrowserRouter>
 		</Provider>
