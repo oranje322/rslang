@@ -5,9 +5,10 @@ import Preloader from '../../components/Preloader/Preloader';
 
 import { createUserWord, getAllAggregatedWords, getWords, deleteUserWord, updateUserWord } from '../../api/api';
 import { Button } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header/Header';
+import { setWordsAC } from '../../redux/actions/WordsActions';
 
 const Words = () => {
 	const history = useHistory();
@@ -17,9 +18,17 @@ const Words = () => {
 	const isAuth = useSelector(state => state.auth.isAuth);
 	const group = Number(window.location.pathname.replace('/book/', '')) - 1;
 
+	const dispatch = useDispatch()
+
 	useEffect(async () => {
 		loadWords(group, page);
 	}, []);
+
+	useEffect(() => {
+		if(words?.length > 0) {
+			dispatch(setWordsAC(words))
+		}
+	}, [words])
 
 	const state = useSelector(state => state.settings);
 

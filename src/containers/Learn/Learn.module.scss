@@ -37,7 +37,7 @@
             }
             button {
                 @include button(white, $dark-violet, 4.1rem, 11.6rem )
-            }   
+            }
         }
         :last-child {
             background-color: grey;
