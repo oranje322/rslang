@@ -35,16 +35,15 @@
             h3 {
                 min-height: 6rem;
             }
-            button {
+            .button {
                 @include button(white, $dark-violet, 4.1rem, 11.6rem )
             }
         }
         :last-child {
             background-color: grey;
             color: white;
-            button {
-                background: white;
-                color: black;
+            .buttonDel {
+                @include button(black, white, 4.1rem, 11.6rem );
                 &:hover {
                     color: white;
                 } 
