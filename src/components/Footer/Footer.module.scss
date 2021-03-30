@@ -4,9 +4,10 @@
     justify-content: space-between;
     background-color: transparent;
     bottom: 0;
-    width: 100%;
+	width: 100%;
+    height: calc(100vh-3px);
     z-index: 2;
-    position: absolute;
+    position: fixed;
 	padding: 0.4rem 4.5rem;
     .git {
         font-size: 0.9rem;
