@@ -25,7 +25,7 @@ const WordCard = ({ word }) => {
 	const cardClass = cx({
 		card: true,
 		['color' + word.group]: true,
-		difficult: word?.userWord?.difficulty
+		difficult: word?.userWord?.difficulty === 'hard'
 	});
 
 	const listen = () => {

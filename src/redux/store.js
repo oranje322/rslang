@@ -2,6 +2,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { authReducer } from './reducers/authReducer';
 import { settingsReducer } from './reducers/settingsReducer';
+import { wordsReducer } from './reducers/wordsReducer';
 
 
 
@@ -10,7 +11,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducers = combineReducers({
 	auth: authReducer,
-	settings: settingsReducer
+	settings: settingsReducer,
+	words: wordsReducer,
 });
 
 const configureStore = () => (
