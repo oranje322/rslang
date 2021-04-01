@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import styles from './Settings.module.scss';
 import { deleteButton, difficultButton, wordTranslation, sentenceTranslation } from '../../redux/actions/settingsActions';
+
 const Settings = () => {
 
 	const settingsCheck = [
