@@ -7,6 +7,7 @@ import GamePlay from './GamePlay/GamePlay';
 import classes from './Mygame.module.scss';
 const Mygame = () => {
 	const [game, setGame] = useState(true);
+
 	return (
 		<div>
 			<Header title={'Поговорим'} />
