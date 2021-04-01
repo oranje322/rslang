@@ -11,7 +11,7 @@ const GamePlay = ({ comingWords }) => {
 
     const [newWord, setNewWord] = useState(someWord);
 
-    const { transcript, resetTranscript, listening } = useSpeechRecognition();
+    const { finalTranscript, resetTranscript, listening } = useSpeechRecognition();
 
     if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
         return <h2>Распознавание речи не поддерживается в Вашем бразуере :(</h2>
@@ -21,10 +21,6 @@ const GamePlay = ({ comingWords }) => {
         SpeechRecognition.startListening();
     }
 
-    // useEffect(() => {
-    //     chooseWord();
-    // }, [transcript])
-
     return (
         <div className={classes.cardContainer}>
             {
@@ -33,11 +29,11 @@ const GamePlay = ({ comingWords }) => {
                 </>
             }
             <div className={classes.recognitionBlock}>
-                {!transcript && <button onClick={startRecognition}>Начать</button>}
-                {transcript ?
+                {!finalTranscript && <button onClick={startRecognition}>Начать</button>}
+                {finalTranscript ?
                     <>
-                        <p>{transcript}</p>
-                        {transcript === newWord ?
+                        <p>{finalTranscript}</p>
+                        {finalTranscript === newWord ?
                             <>
                                 <p>Правильно!</p>
                                 <button onClick={() => {
