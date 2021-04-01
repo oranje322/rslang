@@ -1,0 +1,22 @@
+@import '../../../styles/config';
+
+.cardContainer{
+        background: white;
+        padding: 3rem;
+        @include display(column, center, center);
+        border-radius: 18px;
+        box-shadow: 2px 2px 6px 2px #4d4b4b;
+        width: 19rem;
+        height: 20rem;
+        .recognitionBlock{
+        button{
+            @include button(black, $light-text, 3rem, 10rem );
+            margin: 1rem;
+        }
+        p{
+            text-align: center;
+            color: black;
+            text-shadow: none;
+        }
+    }
+} 
