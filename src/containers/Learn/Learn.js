@@ -14,19 +14,19 @@ const Learn = () => {
 				<div className={style.learnMain}>
 					<div className={style.learnCard}>
 						<h3>Активные слова</h3>
-						<Link to={'/learn/active'}>
+						<Link to={'/learn/active/page1'}>
 							<button>Проверить</button>
 						</Link>
 					</div>
 					<div className={style.learnCard}>
 						<h3>Сложные слова</h3>
-						<Link to={'/learn/hard'}>
+						<Link to={'/learn/hard/page1'}>
 							<button>Проверить</button>
 						</Link>
 					</div>
 					<div className={style.learnCard}>
 						<h3>Удаленные слова</h3>
-						<Link to={'/learn/delete'}>
+						<Link to={'/learn/delete/page1'}>
 							<button>Проверить</button>
 						</Link>
 					</div>
