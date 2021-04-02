@@ -33,7 +33,7 @@ const App = () => {
 
 	return (<>
 			<Switch>
-				<Route path={'/book/:module'}>
+				<Route path={'/book/module:module/page:page'}>
 					<Words/>
 				</Route>
 				<Route exact path={'/book'}>
@@ -42,9 +42,9 @@ const App = () => {
 				<Route exact path={'/learn'}>
 					<Learn/>
 				</Route>
-				<Route path={'/learn/active'} component={Vocabulary}/>
-				<Route path={'/learn/hard'} component={Vocabulary}/>
-				<Route path={'/learn/delete'} component={Vocabulary}/>
+				<Route path={'/learn/:active/page:page'} component={Vocabulary}/>
+				<Route path={'/learn/:hard/page:page'} component={Vocabulary}/>
+				<Route path={'/learn/:delete/page:page'} component={Vocabulary}/>
 				<Route path='/games/mygame' component={Mygame}/>
 				<Route path='/games/savannah' component={Savannah}/>
 				<Route path='/games/audiocall' component={Audiocall}/>
