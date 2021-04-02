@@ -1,0 +1,10 @@
+@import '../../styles/config.scss';
+
+.hearts {
+  position: fixed;
+  top: 7%;
+  left: auto;
+  right: 0;
+  font-size: 3rem;
+  color: $danger;
+}

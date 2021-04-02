@@ -1,0 +1,15 @@
+.words {
+  position: fixed;
+  top: 70%;
+  width: 60vw;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  transition: top 0.2s ease-in-out;
+}
+
+.word {
+  width: 20%;
+}

@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Learn = () => {
 	return (
 		<div>
-			<Header title={'Изучение'}/>
+			<Header title={'Изучение'} />
 			<div className={style.learnBox}>
 				<h2>Здесь Вы можете выбрать категорию слов для изучения и просмотреть слова, которые Вы решили удалить.</h2>
 				<div className={style.learnMain}>
@@ -32,7 +32,7 @@ const Learn = () => {
 					</div>
 				</div>
 			</div>
-			<FooterBackground/>
+			<FooterBackground />
 		</div>
 	);
 };
