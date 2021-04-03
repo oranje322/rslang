@@ -1,0 +1,7 @@
+@import '../../styles/config.scss';
+
+.gameContainer{
+    width: 10rem;
+    background-color: white;
+    @include display(column, center, center)
+}
