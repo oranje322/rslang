@@ -14,6 +14,8 @@ const WordCard = ({ word }) => {
 	const audio = new Audio(link + word.audio);
 	const audioExample = new Audio(link + word.audioExample);
 	const audioMeaning = new Audio(link + word.audioMeaning);
+	const allAudio = [audio, audioMeaning, audioExample]
+	let playing = false;
 
 	const state = useSelector(state => state.settings);
 
@@ -29,7 +31,19 @@ const WordCard = ({ word }) => {
 	});
 
 	const listen = () => {
-		audio.play();
+		if (!playing) {
+			for (let i = 0; i < allAudio.length; i++) {
+				playing = true;
+				if (i === 0) {
+					allAudio[i].play()
+				} else {
+					allAudio[i - 1].onended = () => {
+						allAudio[i].play()
+						allAudio.slice(1)
+					};
+				}
+			}
+		}
 	};
 
 	return (

@@ -8,7 +8,7 @@ import { getAllAggregatedWords } from '../../../api/api';
 const GamePlay = () => {
     // const words = useSelector(state => state.words);
     const link = 'https://rslang-db.herokuapp.com/';
-    const { finalTranscript, resetTranscript, listening } = useSpeechRecognition()
+    const { transcript, finalTranscript, resetTranscript, listening } = useSpeechRecognition()
     const [levelWords, setLevelWords] = useState([]);
     const [tries, setTries] = useState(2);
     const [isGamePlayed, setIsGamePlayed] = useState(false);
@@ -67,6 +67,9 @@ const GamePlay = () => {
     }, [oneWord])
 
 
+    // todo костыли для нескольких слов
+
+
     const handleTries = () => {
         if (tries === 0) {
             if (levelWords.length > 0) {
@@ -74,15 +77,14 @@ const GamePlay = () => {
                 SpeechRecognition.abortListening();
                 setStatistics(() => { statistics - 1 })
                 setIsGamePlayed(false);
-            }
+            } else setIsGamePlayed(true);
         }
     }
 
-    const reGame = (allWords) => {
-        console.log(levelWords);
-        // newLevelWords(allWords);
-        // console.log(levelWords);
-        // newOneWord(levelWords);
+    const reGame = () => {
+        newLevelWords(allWords);
+        newOneWord(levelWords);
+        setIsGamePlayed(false);
     }
 
     useEffect(async () => {
@@ -117,7 +119,7 @@ const GamePlay = () => {
                                     {!listening && !finalTranscript &&
                                         <button className={classes.button} onClick={SpeechRecognition.startListening}>Начать</button>
                                     }
-                                    {listening && !finalTranscript && <p>Слушаю</p>}
+                                    {listening && !finalTranscript && <p>Слушаю...</p>}
 
                                     {finalTranscript && (finalTranscript.toLowerCase() === oneWord.word ?
                                         <>
