@@ -4,7 +4,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import classes from './GamePlay.module.scss';
 import Preloader from '../../../components/Preloader/Preloader'
 import { getAllAggregatedWords } from '../../../api/api';
-import FinishGame from './FinishGame';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -37,8 +37,9 @@ const GamePlay = () => {
 
     const newLevelWords = (allWords) => {
         let random;
-        while (levelWords.length < 3) {
+        while (levelWords.length < 10) {
             random = allWords[randomiser(allWords)];
+            levelWords.push(random);
             if (levelWords.some(word => word._id === random._id)) continue;
             levelWords.push(random);
         }
@@ -56,8 +57,8 @@ const GamePlay = () => {
         setLevelWords(levelWords);
     }
     const handleMessage = () => {
-        if (levelWords.length < 0) {
-            setMessage('Конец игры!')
+        if (levelWords.length === 0) {
+            setMessage('Последнее слово!')
         } else {
             setMessage(`Осталось ${levelWords.length + 1}`)
         }
@@ -69,17 +70,24 @@ const GamePlay = () => {
     }, [oneWord])
 
 
-
     const handleTries = () => {
         if (tries === 0) {
             if (levelWords.length > 0) {
                 newOneWord(levelWords);
                 SpeechRecognition.abortListening();
                 setStatistics(() => { statistics - 1 })
-                setIsGamePlayed(true);
+                setIsGamePlayed(false);
             }
         }
     }
+
+    // const reGame = (allWords) => {
+    //     console.log(levelWords);
+    //     newLevelWords(allWords);
+    //     console.log(levelWords);
+    //     newOneWord(levelWords);
+    // }
+
     useEffect(async () => {
         try {
             const mus = new Audio(link + oneWord.audio);
@@ -98,7 +106,7 @@ const GamePlay = () => {
                 <>
                     {!isGamePlayed ? (
                         <>
-                            <p>{message}</p>
+                            <p className={classes.message}>{message}</p>
                             <div className={classes.Container}>
                                 <div className={classes.gameContainer}>
                                     <img onClick={listen} className={classes.img} src={link + oneWord.image} />
@@ -135,9 +143,15 @@ const GamePlay = () => {
                                     )}
                                 </div>
                             </div>
-                        </>) : <FinishGame statistics={statistics} newLevelWords={newLevelWords} />}
+                        </>) :
+                        <div className={classes.gameContainer}>
+                            <p> Вы освоили {statistics} cлов!</p>
+                            <p>Ура!</p>
+                            <button onClick={reGame} className={classes.button}>Играть еще раз</button>
+                        </div>}
                 </>
-            )}
+            )
+            }
         </>
     )
 };

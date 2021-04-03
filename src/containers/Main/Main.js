@@ -16,8 +16,6 @@ const Main = () => {
 		setIsAuthModal(prev => !prev)
 	}
 
-
-
 	return (<>
 		<div className={styles.container}>
 			<header className={styles.header}>
