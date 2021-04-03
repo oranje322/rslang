@@ -35,7 +35,7 @@
             h3 {
                 min-height: 6rem;
             }
-            .button {
+            button {
                 @include button(white, $dark-violet, 4.1rem, 11.6rem )
             }
         }

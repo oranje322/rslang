@@ -17,6 +17,9 @@
     &:first-child{
         left: 4rem;
     }
+    h3{
+        @include fonts(Montserrat, 1.5rem, 600);
+    }
     .button{
         @include button(black, white, 4.1rem, 11.6rem );
             &:hover {
@@ -28,10 +31,19 @@
         text-shadow: 3px 3px 2px #000;
         font-size: 4.5rem;
     }
+}
     p{
         font-size: 1.5rem;
-        color: white;
-        text-shadow: 3px 3px 2px #000;
-         margin-top: 1rem;
+        color: black;
+        margin-top: 1rem;
+        font-weight: 700;
+        text-shadow: 2px 1px 4px white
     }
-}
+    .back{
+        position: absolute;
+        top: 3rem;
+        left: 3rem;
+        font-size: 3rem;
+        text-decoration: none;
+        color:black;
+    }
