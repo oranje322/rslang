@@ -4,6 +4,8 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import classes from './GamePlay.module.scss';
 import Preloader from '../../../components/Preloader/Preloader'
 import { getAllAggregatedWords } from '../../../api/api';
+import useWindowSize from 'react-use/lib/useWindowSize'
+import Confetti from 'react-confetti'
 
 const GamePlay = () => {
     // const words = useSelector(state => state.words);
@@ -17,6 +19,7 @@ const GamePlay = () => {
     const [sound, setSound] = useState();
     const [message, setMessage] = useState();
     const [statistics, setStatistics] = useState(10);
+    const { width, height } = useWindowSize();
 
 
     useEffect(async () => {
@@ -75,7 +78,7 @@ const GamePlay = () => {
             if (levelWords.length > 0) {
                 newOneWord(levelWords);
                 SpeechRecognition.abortListening();
-                setStatistics(() => { statistics - 1 })
+                setStatistics(statistics - 1)
                 setIsGamePlayed(false);
             } else setIsGamePlayed(true);
         }
@@ -144,6 +147,10 @@ const GamePlay = () => {
                             </div>
                         </>) :
                         <div className={classes.gameContainer}>
+                            <Confetti
+                                width={width}
+                                height={height}
+                            />
                             <p> Вы освоили {statistics} cлов!</p>
                             <p>Ура!</p>
                             <button onClick={reGame} className={classes.button}>Играть еще раз</button>
