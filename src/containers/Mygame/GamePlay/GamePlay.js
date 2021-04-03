@@ -4,9 +4,6 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import classes from './GamePlay.module.scss';
 import Preloader from '../../../components/Preloader/Preloader'
 import { getAllAggregatedWords } from '../../../api/api';
-import { NavLink } from 'react-router-dom';
-
-
 
 const GamePlay = () => {
     // const words = useSelector(state => state.words);
@@ -81,12 +78,12 @@ const GamePlay = () => {
         }
     }
 
-    // const reGame = (allWords) => {
-    //     console.log(levelWords);
-    //     newLevelWords(allWords);
-    //     console.log(levelWords);
-    //     newOneWord(levelWords);
-    // }
+    const reGame = (allWords) => {
+        console.log(levelWords);
+        // newLevelWords(allWords);
+        // console.log(levelWords);
+        // newOneWord(levelWords);
+    }
 
     useEffect(async () => {
         try {
