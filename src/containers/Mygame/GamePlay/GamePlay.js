@@ -139,9 +139,7 @@ const GamePlay = () => {
                 </>
             )}
         </>
-
-
-    );
+    )
 };
 
 export default GamePlay;

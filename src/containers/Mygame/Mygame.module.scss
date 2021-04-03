@@ -17,6 +17,9 @@
     &:first-child{
         left: 4rem;
     }
+    h3{
+        @include fonts(Montserrat, 1.5rem, 600);
+    }
     .button{
         @include button(black, white, 4.1rem, 11.6rem );
             &:hover {

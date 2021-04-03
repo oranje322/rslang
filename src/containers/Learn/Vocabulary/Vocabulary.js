@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import classes from './Vocabulary.module.scss';
 import WordCard from '../../../components/WordCard/WordCard';
 import Preloader from '../../../components/Preloader/Preloader';
-
+import { NavLink } from 'react-router-dom';
 import { createUserWord, deleteUserWord, getAllAggregatedWords, getWords, updateUserWord } from '../../../api/api';
 import { Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,7 +30,7 @@ const Vocabulary = () => {
 	}, [page]);
 
 	useEffect(() => {
-		if(words?.length > 0) {
+		if (words?.length > 0) {
 			dispatch(setWordsAC(words))
 		}
 	}, [words])
@@ -38,8 +38,8 @@ const Vocabulary = () => {
 
 	//велосипед зарефакторить)
 	useEffect(() => {
-		if(words?.length === 0 && page !== 0) {
-			setPage(prev => prev -1)
+		if (words?.length === 0 && page !== 0) {
+			setPage(prev => prev - 1)
 		}
 	}, [words])
 
@@ -122,34 +122,37 @@ const Vocabulary = () => {
 
 	return (
 		<Fragment>
-			<Header title={'Учебник'}/>
+			<Header title={'Учебник'} />
+			<NavLink to={'/games'}>
+				<button className={classes.toGames}>играть</button>
+			</NavLink>
 			<div className={classes.words}>
-				{words ? pageControls : <Preloader/>}
+				{words ? pageControls : <Preloader />}
 				{words &&
-				words.map(word => (
-					<div id="wordContainer" className={classes.wordContainer} key={word._id}>
-						<WordCard word={word}/>
-						{isAuth && (
-							<div className={classes.btnContainer}>
-								{route.path === '/learn/delete' ?
-									<Button variant="outlined" onClick={() => setDifficultWord(word)}>
-										Восстановить
+					words.map(word => (
+						<div id="wordContainer" className={classes.wordContainer} key={word._id}>
+							<WordCard word={word} />
+							{isAuth && (
+								<div className={classes.btnContainer}>
+									{route.path === '/learn/delete' ?
+										<Button variant="outlined" onClick={() => setDifficultWord(word)}>
+											Восстановить
 									</Button> :
-									<Button variant="outlined" onClick={() => setDifficultWord(word, 'easy')}>
-										Удалить
+										<Button variant="outlined" onClick={() => setDifficultWord(word, 'easy')}>
+											Удалить
 									</Button>
-								}
-								<Button
-									variant={word.userWord?.difficulty === 'hard' ? 'contained' : 'outlined'}
-									color="secondary"
-									onClick={() => setDifficultWord(word, word.userWord?.difficulty ? '' : 'hard')}>
-									Сложно
+									}
+									<Button
+										variant={word.userWord?.difficulty === 'hard' ? 'contained' : 'outlined'}
+										color="secondary"
+										onClick={() => setDifficultWord(word, word.userWord?.difficulty ? '' : 'hard')}>
+										Сложно
 								</Button>
 
-							</div>
-						)}
-					</div>
-				))}
+								</div>
+							)}
+						</div>
+					))}
 				{words && pageControls}
 			</div>
 		</Fragment>

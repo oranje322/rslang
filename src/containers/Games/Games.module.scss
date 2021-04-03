@@ -7,31 +7,40 @@
 
     .gameField {
         z-index: 1;
-        margin: 5rem;
+        margin: 8rem 0 0 10rem;
         position: absolute;
-        display: flex;
-        justify-content: center;
+        @include display(row, center, center);
         flex-wrap: wrap;
         .gameNavLink {
             text-decoration: none;
         }
-        .itemGame {  
-            padding: 2rem;          
+        .itemGame {          
             width: 20rem;
             height: 20rem;
             background-color: white;
             border-radius: 1rem;
             margin: 1rem;
             text-align: center; 
+            @include display(column, space-around, center);
             img {
-                width: 65%;
-                height: 65%;
-            }           
+                width: 55%;
+                height: 55%;
+            }         
+            h3{
+                color:black;
+                font-size: 1.7rem;
+                font-weight: 500;
+                span{
+                    color:orange;
+                    font-weight: 700;
+                }
+            }  
         }
     } 
     .footerBackground {
         position: absolute;
-           bottom: 0;
-   } 
+        bottom: 0;
+    }
+
 }
 
