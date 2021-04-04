@@ -8,6 +8,7 @@ import GameOver from '../../components/GameOver/GameOver';
 import { getAllAggregatedWords } from '../../api/api';
 import { getRandomNumber } from './functions';
 import Word from './Word/Word';
+import GameWin from '../../components/GameWin/GameWin';
 
 const Savannah = () => {
   const correctSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky1.mp3');
@@ -101,7 +102,7 @@ const Savannah = () => {
 		<div className={classes.screen} tabIndex={0} onKeyPress={handleKeyPress}>
 			<Header title={'Саванна'} />
 			<Menu />
-			{lifes ? (
+			{lifes && statistics !== winStats ? (
 				<div>
 					<div className={classes.statistics}>Слов угадано: {statistics} / {winStats}</div>
 					<Hearts hearts={lifes} />
@@ -118,7 +119,7 @@ const Savannah = () => {
 			) : (
 				<GameOver tryAgainHandler={startGame} />
 			)}
-			{statistics === winStats && <p>Вы выиграли</p> /* todo: game win screen */}
+			{statistics === winStats && <GameWin playAgainHandler={startGame} score={lifes} />}
 		</div>
 	);
 };
