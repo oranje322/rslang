@@ -5,6 +5,7 @@ import Menu from '../../components/Menu/Menu';
 import WordsList from '../../components/WordsList/WordsList';
 import Hearts from '../../components/Hearts/Hearts';
 import GameOver from '../../components/GameOver/GameOver';
+import GameCountdown from '../../components/GameCountdown/GameCountdown';
 import { getAllAggregatedWords } from '../../api/api';
 import { getRandomNumber } from './functions';
 import Word from './Word/Word';
@@ -13,17 +14,19 @@ import GameWin from '../../components/GameWin/GameWin';
 const Savannah = () => {
   const correctSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky1.mp3');
   const wrongSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky33.mp3');
-	const [lifes, setLifes] = useState(5);
+  const fullLifes = 5;
+  const winStats = 30;
+	const [lifes, setLifes] = useState(fullLifes);
 	const [isGamePlayed, setIsGamePlayed] = useState(false);
 	const [wordsPosition, setWordsPosition] = useState('70%');
 	const [allWords, setAllWords] = useState();
 	const [levelWords, setLevelWords] = useState();
 	const [correctWord, setCorrectWord] = useState();
 	const [statistics, setStatistics] = useState(0);
-	const winStats = 30;
+	
 
 	useEffect(() => {
-    startGame()
+    startGame();
 	}, []);
 
 	// word guessed
@@ -46,9 +49,11 @@ const Savannah = () => {
   const startGame = async () => {
 		const res = await getAllAggregatedWords(0, 0, 34, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
 		const resWords = res[0].paginatedResults;
-		setAllWords(resWords);
-    setLifes(5);
-    setStatistics(0);
+    setTimeout(() => {
+      setAllWords(resWords);
+      setLifes(fullLifes);
+      setStatistics(0);
+    }, 3000);
   }
 
 	const startLevel = () => {
@@ -102,6 +107,7 @@ const Savannah = () => {
 		<div className={classes.screen} tabIndex={0} onKeyPress={handleKeyPress}>
 			<Header title={'Саванна'} />
 			<Menu />
+      {(!isGamePlayed && lifes === fullLifes) && <GameCountdown />}
 			{lifes && statistics !== winStats ? (
 				<div>
 					<div className={classes.statistics}>Слов угадано: {statistics} / {winStats}</div>
