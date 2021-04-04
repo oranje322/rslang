@@ -60,7 +60,7 @@ const Savannah = () => {
 	const startLevel = () => {
 		let newLevelWords = [];
 		while (newLevelWords.length < 4) {
-			const newWord = allWords[getRandomNumber(0, allWords.length)];
+			const newWord = allWords[getRandomNumber(0, allWords.length - 1)];
 			if (newLevelWords.some(word => word._id === newWord._id)) continue;
 			newLevelWords.push(newWord);
 		}
@@ -107,7 +107,6 @@ const Savannah = () => {
 	return (
 		<div className={classes.screen} tabIndex={0} onKeyPress={handleKeyPress}>
 			<Header title={'Саванна'} />
-			<Menu />
       {gameStatus === 'not-started' && <GameCountdown />}
 			{gameStatus === 'started' && (
 				<div>

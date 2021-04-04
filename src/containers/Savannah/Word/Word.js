@@ -29,6 +29,7 @@ const Word = props => {
 
 	const animate = () => {
 		const word = wordRef.current;
+    if (!word) return;
 		reqId = window.requestAnimationFrame(animate);
 		const wordTopPercent = getItemTopPercent(word);
 
