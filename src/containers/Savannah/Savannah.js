@@ -17,7 +17,7 @@ const Savannah = () => {
   const fullLifes = 5;
   const winStats = 30;
 	const [lifes, setLifes] = useState(fullLifes);
-	const [isGamePlayed, setIsGamePlayed] = useState(false);
+	const [gameStatus, setGameStatus] = useState('not-started');
 	const [wordsPosition, setWordsPosition] = useState('70%');
 	const [allWords, setAllWords] = useState();
 	const [levelWords, setLevelWords] = useState();
@@ -33,16 +33,15 @@ const Savannah = () => {
 	useEffect(() => {
 		if (allWords && statistics < winStats) {
 			startLevel();
-			setIsGamePlayed(true);
-		} else {
+		} else if (statistics === winStats) {
 			// todo: game win
-			setIsGamePlayed(false);
+			setGameStatus('win');
 		}
 	}, [allWords, statistics]);
 
 	useEffect(() => {
 		if (!lifes) {
-			setIsGamePlayed(false);
+			setGameStatus('lose');
 		}
 	}, [lifes]);
 
@@ -50,6 +49,8 @@ const Savannah = () => {
 		const res = await getAllAggregatedWords(0, 0, 34, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
 		const resWords = res[0].paginatedResults;
     setTimeout(() => {
+      setGameStatus('started');
+      setWordsPosition('70%');
       setAllWords(resWords);
       setLifes(fullLifes);
       setStatistics(0);
@@ -107,8 +108,8 @@ const Savannah = () => {
 		<div className={classes.screen} tabIndex={0} onKeyPress={handleKeyPress}>
 			<Header title={'Саванна'} />
 			<Menu />
-      {(!isGamePlayed && lifes === fullLifes) && <GameCountdown />}
-			{lifes && statistics !== winStats ? (
+      {gameStatus === 'not-started' && <GameCountdown />}
+			{gameStatus === 'started' && (
 				<div>
 					<div className={classes.statistics}>Слов угадано: {statistics} / {winStats}</div>
 					<Hearts hearts={lifes} />
@@ -116,16 +117,15 @@ const Savannah = () => {
 						<Word
 							word={correctWord}
 							wordFinishPosition={parseInt(wordsPosition)}
-							isWordAnimated={isGamePlayed}
+							isWordAnimated={gameStatus === 'started'}
 							onFinishHandler={onChangeWordStatus}
 						/>
 					)}
 					{levelWords && <WordsList onClick={onChangeWordStatus} words={levelWords} position={wordsPosition} />}
 				</div>
-			) : (
-				<GameOver tryAgainHandler={startGame} />
 			)}
-			{statistics === winStats && <GameWin playAgainHandler={startGame} score={lifes} />}
+			{gameStatus === 'lose' && <GameOver tryAgainHandler={startGame} />}
+			{gameStatus === 'win' && <GameWin playAgainHandler={startGame} score={lifes} />}
 		</div>
 	);
 };
