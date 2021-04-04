@@ -18,7 +18,7 @@
         margin: 2rem;
         height: 70%;
         &_wrapper{
-            margin: 0 10rem;
+            margin: 0 6rem;
             @include display(row, space-around, center);
             flex-wrap: wrap;
             height: 100%;

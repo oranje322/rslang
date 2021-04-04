@@ -7,7 +7,9 @@
 	align-items: center;
 	position: sticky;
 	z-index: 3;
-
+	p{
+		margin: 0;
+	}
 	.wrapper{
 		display: flex;
 		justify-content: center;
