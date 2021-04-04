@@ -114,25 +114,30 @@ const GameField = (props) => {
     const [counter, setCounter] = useState(0);
     const [answerCheck, setAnswerCheck] = useState(null);
     const [isFinished, setIsFinished] = useState(false);
+    const [results, setResults] = useState([])
 
-    const onAnswerClick = (wordsEn) => {
-        const question = state[counter];
-        if (question.word == wordsEn) {
-            setAnswerCheck({[wordsEn]: 'success'})
-            const timeOut = window.setTimeout(()=>{
-                if(isCounretFinished()) {
-                    setIsFinished(true)
-                }else {
-                    setCounter(counter + 1)
-                    setAnswerCheck(null)
-                }
-                window.clearTimeout(timeOut)
-            },1000)              
-        } else {
-            setAnswerCheck({[wordsEn]: 'error'})
-        }
-        
+    const onAnswerClick = (wordId) => {
+        if (!answerCheck) {
+            const question = state[counter]; 
+            if (question.word == wordId) {
+                setResults([...results, {[question.word]: 'right'}]);
+                setAnswerCheck({[wordId]: 'success'})         
+            } else {
+                setResults([...results, {[question.word]: 'wrong'}]);
+                setAnswerCheck({[wordId]: 'error'})
+            }
+        }  
     }
+
+    const nextQuestion = () => {
+            if(isCounretFinished()) {
+                setIsFinished(true)
+            }else {
+                setCounter(counter + 1)
+                setAnswerCheck(null)
+            }
+    }
+
     const isCounretFinished = () => {
         return counter + 1 === state.length
     }
@@ -140,9 +145,11 @@ const GameField = (props) => {
     return (
         <div className={styles.rulesField}>
             {isFinished
-                ? <Scoreboard />
+                ? <Scoreboard results={results}/>
                 : <div>
-                    <img className={styles.gameImg} src={AudiocallImg} alt='AudiocallImg'/>
+                    {answerCheck 
+                    ? <img className={styles.gameImg} src={state.image} alt={state.word}/>
+                    : <img className={styles.gameImg} src={AudiocallImg} alt='AudiocallImg'/>}
                     <p>{state[counter].audio}</p>
                     <div className={styles.gameAnswers}>
                         <ul> 
@@ -156,6 +163,7 @@ const GameField = (props) => {
                             ))}
                         </ul>
                     </div>
+                    {answerCheck &&<button onClick={nextQuestion}>Далее</button>}
                 </div>
             }
 

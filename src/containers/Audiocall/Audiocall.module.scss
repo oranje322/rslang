@@ -4,7 +4,7 @@
     padding-left: 4.5rem;
     padding-top: 10rem ;
     text-align: center;
-    height: 100vh;
+    height: calc(100vh - 80px);
     background: linear-gradient($back-light, $light-caral);
     .gameImg {
         width: 10rem;
