@@ -4,6 +4,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import classes from './GamePlay.module.scss';
 import Preloader from '../../../components/Preloader/Preloader'
 import { getAllAggregatedWords } from '../../../api/api';
+import EndGame from './EndGame/EndGame';
 
 const GamePlay = () => {
     // const words = useSelector(state => state.words);
@@ -17,6 +18,8 @@ const GamePlay = () => {
     const [sound, setSound] = useState();
     const [message, setMessage] = useState();
     const [statistics, setStatistics] = useState(10);
+    const correctSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky1.mp3');
+    const wrongSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky33.mp3');
 
 
     useEffect(async () => {
@@ -30,11 +33,11 @@ const GamePlay = () => {
         newOneWord(levelWords);
     }, [allWords]);
 
-    const randomiser = arr => Math.floor(Math.random() * arr.length);
+    const randomiser = (arr) => Math.floor(Math.random() * arr.length);
 
     const newLevelWords = (allWords) => {
         let random;
-        while (levelWords.length < 10) {
+        while (levelWords.length < 3) {
             random = allWords[randomiser(allWords)];
             levelWords.push(random);
             if (levelWords.some(word => word._id === random._id)) continue;
@@ -66,6 +69,11 @@ const GamePlay = () => {
         handleMessage();
     }, [oneWord])
 
+    useEffect(() => {
+        finalTranscript && finalTranscript.toLowerCase() === oneWord.word ?
+            correctSound.play() : finalTranscript ?
+                wrongSound.play() : null
+    }, [oneWord, finalTranscript])
 
     // todo костыли для нескольких слов
 
@@ -75,7 +83,7 @@ const GamePlay = () => {
             if (levelWords.length > 0) {
                 newOneWord(levelWords);
                 SpeechRecognition.abortListening();
-                setStatistics(() => { statistics - 1 })
+                setStatistics(statistics - 1)
                 setIsGamePlayed(false);
             } else setIsGamePlayed(true);
         }
@@ -97,7 +105,6 @@ const GamePlay = () => {
     const listen = () => {
         sound && sound.play();
     };
-
 
     return (
         <>
@@ -143,11 +150,7 @@ const GamePlay = () => {
                                 </div>
                             </div>
                         </>) :
-                        <div className={classes.gameContainer}>
-                            <p> Вы освоили {statistics} cлов!</p>
-                            <p>Ура!</p>
-                            <button onClick={reGame} className={classes.button}>Играть еще раз</button>
-                        </div>}
+                        <EndGame reGame={reGame} statistics={statistics} />}
                 </>
             )
             }

@@ -1,7 +1,7 @@
-@import '../../styles/config.scss';
+@import '../../../styles/config';
 
 .wrapper{
-    @include wrapper(url('../../assets/img/forest.png'));
+    @include wrapper(url('../../../assets/img/savannah.jpg'));
 }
 p{
     font-size: 1.5rem;

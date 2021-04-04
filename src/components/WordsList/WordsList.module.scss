@@ -1,15 +1,22 @@
 .words {
   position: fixed;
   top: 70%;
-  width: 60vw;
+  width: 75vw;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   display: flex;
   justify-content: space-between;
   transition: top 0.2s ease-in-out;
+    span{
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
 }
 
 .word {
-  width: 20%;
+  width: 22%;
+  background-color: white;
+  border-radius: 0.8rem;
+  padding: 1rem;
 }

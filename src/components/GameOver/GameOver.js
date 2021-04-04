@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './GameOver.module.scss';
-import { Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 const GameOver = (props) => {
@@ -12,10 +11,10 @@ const GameOver = (props) => {
 
   return (
     <div className={classes.screen}>
-      <h3>К сожалению, вы проиграли</h3>
+      <p>К сожалению, вы проиграли</p>
       <div className={classes.btnContainer}>
-        <Button variant="outlined" onClick={backToGamesHandler}>Назад к играм</Button>
-        <Button variant="outlined" onClick={props.tryAgainHandler}>Попробовать снова</Button>
+        <button onClick={backToGamesHandler}>Назад к играм</button>
+        <button onClick={props.tryAgainHandler}>Попробовать снова</button>
       </div>
     </div>
   )
