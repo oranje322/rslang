@@ -8,13 +8,13 @@ import Savannah from '../Savannah'
 
 
 const SavannahMain = () => {
-    const [game, setGame] = useState(true);
+    const [game, setGame] = useState(false);
     return (
         <>
             <Header title={'Саванна'} />
             <Menu />
             <div className={classes.wrapper}>
-                {game ? <>
+                {!game ? <>
                     <NavLink to={'/games'}><h4 className={classes.back} onClick={() => setGame(!game)}>&#9664;</h4></NavLink>
                     <h2>Игра: Саванна</h2>
                     <p>Выберите перевод падающего слова</p>

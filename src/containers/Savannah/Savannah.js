@@ -103,8 +103,6 @@ const Savannah = () => {
 
 	return (
 		<div className={classes.screen} tabIndex={0} onKeyPress={handleKeyPress}>
-			<Header title={'Саванна'} />
-			<Menu />
 			{(!isGamePlayed && lifes === fullLifes) && <GameCountdown />}
 			{lifes && statistics !== winStats ? (
 				<div>
