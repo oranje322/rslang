@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import AudiocallImg from '@assets/img/Audiocall.png';
+import RightSound from '@assets/right.mp3';
+import WrongSound from '@assets/wrong.mp3';
 import styles from './Audiocall.module.scss';
 import {connect} from 'react-redux';
 import AnswerItem from './AnswerItem/AnswerItem';
 import Scoreboard from './Scoreboard/scoreboard';
-import { getAllAggregatedWords } from '../../api/api';
 
-const GameField = () => { 
-    const [allWords, setAllWords] = useState();
-    useEffect(async () => {
-        const res = await getAllAggregatedWords(0, 0, 34, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
-        const resWords = res[0].paginatedResults;
-        setAllWords(resWords);
-    }, []);
+const GameField = (props) => { 
+    const link = 'https://rslang-db.herokuapp.com/';
+    const [counter, setCounter] = useState(0);
+    const [answerCheck, setAnswerCheck] = useState(null);
+    const [isFinished, setIsFinished] = useState(false);
+    const [results, setResults] = useState([]) ;
+    const allWords = props.allWords;
     console.log(allWords);
-    
+
     // {
     //     audio: '',  //вопрос
     //     wordTranslate: '',  //ответ
@@ -120,18 +121,17 @@ const GameField = () => {
         }
     ]);
 
-    const [counter, setCounter] = useState(0);
-    const [answerCheck, setAnswerCheck] = useState(null);
-    const [isFinished, setIsFinished] = useState(false);
-    const [results, setResults] = useState([])
+
 
     const onAnswerClick = (wordId) => {
         if (!answerCheck) {
             const question = state[counter]; 
             if (question.word == wordId) {
+                rightSoundPlay.play()
                 setResults([...results, {[question.word]: 'right'}]);
                 setAnswerCheck({[wordId]: 'success'})         
             } else {
+                wrongSoundPlay.play()
                 setResults([...results, {[question.word]: 'wrong'}]);
                 setAnswerCheck({[wordId]: 'error'})
             }
@@ -141,7 +141,7 @@ const GameField = () => {
     const nextQuestion = () => {
             if(isCounretFinished()) {
                 setIsFinished(true)
-            }else {
+            }else {                
                 setCounter(counter + 1)
                 setAnswerCheck(null)
             }
@@ -151,15 +151,26 @@ const GameField = () => {
         return counter + 1 === state.length
     }
 
+    const audio = new Audio(link + state[counter].audio);
+    const rightSoundPlay = new Audio(RightSound);
+    const wrongSoundPlay = new Audio(WrongSound);
+    const listen = () => {
+        audio.play();
+        console.log('play')
+    };
+
     return (
         <div className={styles.rulesField}>
             {isFinished
                 ? <Scoreboard results={results}/>
                 : <div>
                     {answerCheck 
-                    ? <img className={styles.gameImg} src={state.image} alt={state.word}/>
-                    : <img className={styles.gameImg} src={AudiocallImg} alt='AudiocallImg'/>}
-                    <p>{state[counter].audio}</p>
+                    ?<div>
+                        <img className={styles.gameImg} src={link+state[counter].image} alt={link+state.word}/>
+                        <p>{state[counter].word}</p>
+                    </div> 
+                    :<img onClick={()=>listen()} className={styles.gameImg} src={AudiocallImg} alt='AudiocallImg'/>}
+                    <p>{state[counter].transcription}</p>
                     <div className={styles.gameAnswers}>
                         <ul> 
                             {state.map((item, index) => (
