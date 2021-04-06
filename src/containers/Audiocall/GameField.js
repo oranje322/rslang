@@ -74,13 +74,13 @@ const GameField = (props) => {
                         {answerCheck 
                         ?<div>
                             <img className={styles.gameImg} src={link+state[counter].image} alt={link+state.word}/>
-                            <p>{state[counter].word}</p>
+                            <span>{state[counter].word}</span>
                         </div> 
                         :<div>
                             <img onChange={listen()} className={styles.gameImg} src={AudiocallImg} alt='AudiocallImg'/>
-                            <p>Прослушать еще</p>
+                            <span>Прослушать еще</span>
                         </div>}   
-                        <p>{state[counter].transcription}</p>
+                        <span>{state[counter].transcription}</span>
                     </div>    
                     <div className={styles.gameAnswers}>
                         <ul> 
