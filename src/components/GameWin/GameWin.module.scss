@@ -14,7 +14,10 @@
 	display: flex;
 	justify-content: space-between;
   gap: 0.5rem;
-  button{
-    @include button(black, white, 3.1rem, auto);
-  }
+}
+
+.btn {
+  @include button(black, white, 3.1rem, auto);
+  outline: none;
+  padding: 0 0.5rem;
 }
