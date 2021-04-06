@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AudiocallImg from '@assets/img/Audiocall.png';
 import styles from './Audiocall.module.scss';
 import {connect} from 'react-redux';
 import AnswerItem from './AnswerItem/AnswerItem';
 import Scoreboard from './Scoreboard/scoreboard';
+import { getAllAggregatedWords } from '../../api/api';
 
-const GameField = (props) => {       
+const GameField = () => { 
+    const [allWords, setAllWords] = useState();
+    useEffect(async () => {
+        const res = await getAllAggregatedWords(0, 0, 34, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
+        const resWords = res[0].paginatedResults;
+        setAllWords(resWords);
+    }, []);
+    console.log(allWords);
+    
     // {
     //     audio: '',  //вопрос
     //     wordTranslate: '',  //ответ
