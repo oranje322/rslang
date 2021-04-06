@@ -12,7 +12,7 @@ const Audiocall = () => {
 	const link = 'https://rslang-db.herokuapp.com/';
 
 	useEffect(async () => {
-        const res = await getAllAggregatedWords(0, 0, 34, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
+        const res = await getAllAggregatedWords(0, 0, 20, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
         const resWords = res[0].paginatedResults;
         setAllWords(resWords);
     }, []);
