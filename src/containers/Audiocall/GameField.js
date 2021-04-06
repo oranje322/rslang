@@ -151,6 +151,13 @@ const GameField = (props) => {
         return counter + 1 === state.length
     }
 
+    const replayGame = () => {
+        setCounter(0);
+        setIsFinished(false)
+        setAnswerCheck(null)
+        setResults([])
+    }
+
     const audio = new Audio(link + state[counter].audio);
     const rightSoundPlay = new Audio(RightSound);
     const wrongSoundPlay = new Audio(WrongSound);
@@ -162,14 +169,14 @@ const GameField = (props) => {
     return (
         <div className={styles.rulesField}>
             {isFinished
-                ? <Scoreboard results={results}/>
+                ? <Scoreboard replayGame={replayGame} results={results}/>
                 : <div>
                     {answerCheck 
                     ?<div>
                         <img className={styles.gameImg} src={link+state[counter].image} alt={link+state.word}/>
                         <p>{state[counter].word}</p>
                     </div> 
-                    :<img onClick={()=>listen()} className={styles.gameImg} src={AudiocallImg} alt='AudiocallImg'/>}
+                    :<img onClick={()=>listen()} onChange={listen()} className={styles.gameImg} src={AudiocallImg} alt='AudiocallImg'/>}
                     <p>{state[counter].transcription}</p>
                     <div className={styles.gameAnswers}>
                         <ul> 
@@ -183,7 +190,8 @@ const GameField = (props) => {
                             ))}
                         </ul>
                     </div>
-                    {answerCheck &&<button onClick={nextQuestion}>Далее</button>}
+                    <button onClick={()=>props.returnToStart()} >Назад</button>
+                    {answerCheck &&<button onClick={nextQuestion}>Далее</button>}                    
                 </div>
             }
 

@@ -52,6 +52,7 @@ const Scoreboard = (props) => {
                     </ul>
                 </div>                
             </div>
+            <button onClick={()=>props.replayGame()} >Replay</button>
             <NavLink to={'/games'}><h5>Назад к списку игр</h5></NavLink>
         </div>
     )

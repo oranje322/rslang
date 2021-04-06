@@ -16,14 +16,18 @@ const Audiocall = () => {
         const resWords = res[0].paginatedResults;
         setAllWords(resWords);
     }, []);
-    console.log(allWords);
+    // console.log(allWords);
+
+	const returnToStart = () => {
+		setStartGame(false)
+	}
 	
 	return (
 		<div>
 			<Header title={'Аудио вызов'}/>
 			<Menu />
 			{startGame
-			? <GameField allWords={allWords}/>	
+			? <GameField returnToStart={returnToStart} allWords={allWords}/>	
 			: (	<div className={styles.rulesField}>
 				<h1>АУДИОВЫЗОВ</h1>
 				<p>Мини-игра «Аудиовызов» - это тренировка, развивающая навыки речи и перевода.</p>
