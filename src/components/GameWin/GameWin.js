@@ -16,10 +16,10 @@ const GameWin = props => {
 			<Confetti width={width} height={height} />
 			<h3>Ура, вы прошли игру!</h3>
 			<p>Набрано очков: {props.score}</p>
-			{props.learnWords.length && (
+			{props.unknownWords.length && (
 				<div>
 					<p>Слова, которые нужно повторить:</p>
-					{props.learnWords.map(word => (
+					{props.unknownWords.map(word => (
 						<p key={word.word}>{word.word} - {word.wordTranslate}</p>
 					))}
 				</div>

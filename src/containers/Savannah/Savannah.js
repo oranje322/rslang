@@ -33,10 +33,12 @@ const Savannah = () => {
 	useEffect(() => {
 		if (allWords.length === wordsNumber + 4) {
 			startLevel();
+      console.log(allWords);
 		}
 	}, [allWords]);
 
 	useEffect(() => {
+    console.log(guessedWords);
 		if (guessedWords.length + notGuessedWords.length === wordsNumber) {
 			setGameStatus('win');
 		}
@@ -78,7 +80,7 @@ const Savannah = () => {
 		if (isWordGuessed) {
 			sound = correctSound;
 			setWordsPosition(prev => prev - 1);
-      setGuessedWords(prev => [...prev, guessedWord]);
+      setGuessedWords(prev => [...prev, correctWord]);
 		} else {
 			sound = wrongSound;
 			setLifes(prev => (prev > 0 ? prev - 1 : 0));
@@ -125,7 +127,7 @@ const Savannah = () => {
 				</div>
 			)}
 			{gameStatus === 'lose' && <GameOver tryAgainHandler={startGame} />}
-			{gameStatus === 'win' && <GameWin playAgainHandler={startGame} score={lifes} learnWords={notGuessedWords} />}
+			{gameStatus === 'win' && <GameWin playAgainHandler={startGame} score={lifes} unknownWords={notGuessedWords} knownWords={guessedWords} />}
 		</div>
 	);
 };
