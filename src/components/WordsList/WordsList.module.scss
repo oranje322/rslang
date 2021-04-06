@@ -8,15 +8,15 @@
   display: flex;
   justify-content: space-between;
   transition: top 0.2s ease-in-out;
-    span{
-    font-size: 1.4rem;
-    font-weight: 700;
-  }
 }
 
 .word {
+  padding: 1rem;
   width: 22%;
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-style: normal;
   background-color: white;
   border-radius: 0.8rem;
-  padding: 1rem;
+  cursor: pointer;
 }

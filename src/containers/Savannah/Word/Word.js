@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import classes from './Word.module.scss';
-import { getItemTopPercent } from '../functions';
+import { getItemTopPercent } from '../../../utils/functions';
 
 const Word = props => {
-	let reqId;
+	let animationId;
 	const wordRef = useRef();
 	const [isAnimate, setIsAnimate] = useState(false);
 	const initWordTopPosition = '5%';
@@ -12,16 +12,19 @@ const Word = props => {
 		if (wordRef.current) {
 			setIsAnimate(true);
 		}
+    return () => {
+      setIsAnimate(false);
+    }
 	}, [wordRef]);
 
 	useEffect(() => {
-		if (props.isWordAnimated && isAnimate) {
+		if (props.isWordAnimated && isAnimate && props.wordFinishPosition) {
 			animate();
 		}
 		return () => {
-			window.cancelAnimationFrame(reqId);
+			window.cancelAnimationFrame(animationId);
 		};
-	}, [props.isWordAnimated, isAnimate]);
+	}, [props.isWordAnimated, isAnimate, props.wordFinishPosition]);
 
 	useEffect(() => {
 		wordRef.current.style.top = initWordTopPosition;
@@ -30,14 +33,16 @@ const Word = props => {
 	const animate = () => {
 		const word = wordRef.current;
     if (!word) return;
-		reqId = window.requestAnimationFrame(animate);
+		animationId = window.requestAnimationFrame(animate);
 		const wordTopPercent = getItemTopPercent(word);
 
-		if (wordTopPercent < parseInt(props.wordFinishPosition)) {
+		if (wordTopPercent < props.wordFinishPosition) {
 			word.style.top = wordTopPercent + 0.1 + '%';
-		} else {
-			props.onFinishHandler();
-		}
+		} else if (wordTopPercent < 100 ){
+      word.style.top = wordTopPercent + 1.5 + '%';
+    } else {
+      props.onFinishHandler();
+    }
 	};
 
 	return (
