@@ -12,11 +12,10 @@ const Audiocall = () => {
 	const link = 'https://rslang-db.herokuapp.com/';
 
 	useEffect(async () => {
-        const res = await getAllAggregatedWords(0, 0, 20, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
+        const res = await getAllAggregatedWords(0, 0, 10, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
         const resWords = res[0].paginatedResults;
         setAllWords(resWords);
     }, []);
-    // console.log(allWords);
 
 	const returnToStart = () => {
 		setStartGame(false)
@@ -29,11 +28,15 @@ const Audiocall = () => {
 			{startGame
 			? <GameField returnToStart={returnToStart} allWords={allWords}/>	
 			: (	<div className={styles.rulesField}>
-				<h1>АУДИОВЫЗОВ</h1>
-				<p>Мини-игра «Аудиовызов» - это тренировка, развивающая навыки речи и перевода.</p>
-				<p> Вы слышите слово и видите 5 вариантов перевода. Нужно выбрать правильный ответ кликнув по нему мышью.</p> 
-				<button onClick={()=>setStartGame(true)}>Начать</button>
-				<NavLink to={'/games'}><p>Назад</p></NavLink>	
+				<div>
+					<h1>АУДИОВЫЗОВ</h1>
+					<p>Мини-игра «Аудиовызов» - это тренировка, развивающая навыки речи и перевода.</p>
+					<p> Вы слышите слово и видите 5 вариантов перевода. Нужно выбрать правильный ответ кликнув по нему мышью.</p> 
+					<button className={styles.startGameButton} onClick={()=>setStartGame(true)}>Начать</button>
+					<NavLink style={{ textDecoration: 'none' }} to={'/games'}>
+						<button className={styles.closeGame}>X</button>
+					</NavLink>
+				</div>	
 			</div>)}		
 	
 		</div>

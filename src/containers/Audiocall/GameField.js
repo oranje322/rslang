@@ -14,6 +14,9 @@ const GameField = (props) => {
     const [isFinished, setIsFinished] = useState(false);
     const [results, setResults] = useState([]);
     const [state, setState] = useState(props.allWords)
+    const audio = new Audio(link + state[counter].audio);
+    const rightSoundPlay = new Audio(RightSound);
+    const wrongSoundPlay = new Audio(WrongSound);
 
     const onAnswerClick = (wordId) => {
         if (!answerCheck) {
@@ -39,6 +42,14 @@ const GameField = (props) => {
             }
     }
 
+    // useEffect(() => {
+    //     window.addEventListener('click', nextQuestion)
+
+    //     return function cleanup() {
+    //       window.removeEventListener('click', nextQuestion)
+    //     }
+    // })    
+
     const isCounretFinished = () => {
         return counter + 1 === state.length
     }
@@ -50,9 +61,6 @@ const GameField = (props) => {
         setResults([])
     }
 
-    const audio = new Audio(link + state[counter].audio);
-    const rightSoundPlay = new Audio(RightSound);
-    const wrongSoundPlay = new Audio(WrongSound);
     const listen = () => {
         audio.play();
     };
@@ -61,14 +69,19 @@ const GameField = (props) => {
         <div className={styles.rulesField}>
             {isFinished
                 ? <Scoreboard replayGame={replayGame} results={results}/>
-                : <div>
-                    {answerCheck 
-                    ?<div>
-                        <img className={styles.gameImg} src={link+state[counter].image} alt={link+state.word}/>
-                        <p>{state[counter].word}</p>
-                    </div> 
-                    :<img onClick={()=>listen()} onChange={listen()} className={styles.gameImg} src={AudiocallImg} alt='AudiocallImg'/>}
-                    <p>{state[counter].transcription}</p>
+                : <div className={styles.playingField}>
+                    <div onClick={()=>listen()} className={styles.questionCard}>
+                        {answerCheck 
+                        ?<div>
+                            <img className={styles.gameImg} src={link+state[counter].image} alt={link+state.word}/>
+                            <p>{state[counter].word}</p>
+                        </div> 
+                        :<div>
+                            <img onChange={listen()} className={styles.gameImg} src={AudiocallImg} alt='AudiocallImg'/>
+                            <p>Прослушать еще</p>
+                        </div>}   
+                        <p>{state[counter].transcription}</p>
+                    </div>    
                     <div className={styles.gameAnswers}>
                         <ul> 
                             {state.map((item, index) => (
@@ -81,11 +94,13 @@ const GameField = (props) => {
                             ))}
                         </ul>
                     </div>
-                    <button onClick={()=>props.returnToStart()} >Назад</button>
-                    {answerCheck &&<button onClick={nextQuestion}>Далее</button>}                    
+                    <div className={styles.buttonGameField}>
+                        
+                        {answerCheck &&<button onClick={nextQuestion}>Далее</button>}
+                    </div>                    
                 </div>
             }
-
+            <button className={styles.closeGame} onClick={()=>props.returnToStart()} >X</button>
         </div>
     );
 };

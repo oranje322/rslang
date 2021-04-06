@@ -1,5 +1,9 @@
+@import '../../../styles/config.scss';
+
 .scoreboardField {
     background-color: rgba(255,255,255,.3);
+    padding: 2rem;
+    margin: 2rem;
     min-height: 30rem;
     border-radius: 1rem;
     text-align: center;
@@ -25,5 +29,9 @@
                 }
             }
         } 
-    }   
+    } 
+    button {
+        margin: 1rem;
+        @include button(white, $dark-violet, 4.1rem, 11.6rem )        
+    }  
 }

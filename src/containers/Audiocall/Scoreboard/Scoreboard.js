@@ -28,9 +28,9 @@ const Scoreboard = (props) => {
 
 	return (
         <div className={styles.scoreboardField}>
-            {count.wrongAnsw<=2
+            {count.wrongAnsw<=1
             ?<h3>Отличный результат</h3>
-            :count.wrongAnsw>2 && count.wrongAnsw<=4
+            :count.wrongAnsw>1 && count.wrongAnsw<=4
             ?<h3>Хороший результат</h3>
             :<h3>Нужно еще подучить</h3>}
             <p>{count.rightAnsw} слов изучено </p>
@@ -50,10 +50,9 @@ const Scoreboard = (props) => {
                             </li>  
                         )})}                    
                     </ul>
-                </div>                
+                </div>
             </div>
-            <button onClick={()=>props.replayGame()} >Replay</button>
-            <NavLink to={'/games'}><h5>Назад к списку игр</h5></NavLink>
+            <button onClick={()=>props.replayGame()} >Играть заново</button>
         </div>
     )
 };
