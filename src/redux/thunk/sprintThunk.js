@@ -9,6 +9,7 @@ import {
 	setWordsForSprint,
 	setWrongAnswer
 } from '../actions/sprintActions';
+import { correctSound, streakSound, wrongSound } from '../../utils/constants';
 
 export function getRandomNumber(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -85,16 +86,21 @@ export const clickAnswer = (answer) => async (dispatch, getState) => {
 	if (currentPair.status === answer) {
 		dispatch(setWinStreak(winSteak + 1));
 		if (getState().sprint.winStreak === 4 || getState().sprint.winStreak === 7 || getState().sprint.winStreak === 10) {
+			streakSound.play()
 			dispatch(setRate(rate * 2));
 		}
 		dispatch(setScore(score + (10 * getState().sprint.rate)));
 		dispatch(setCorrectAnswer(currentPair));
+		correctSound.currentTime = 0
+		correctSound.play()
 		dispatch(loadPair());
 
 	} else {
 		dispatch(setRate(1));
 		dispatch(setWinStreak(0));
 		dispatch(setWrongAnswer(currentPair));
+		wrongSound.currentTime = 0
+		wrongSound.play()
 		dispatch(loadPair());
 	}
 };

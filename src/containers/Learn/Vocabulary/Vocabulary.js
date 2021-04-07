@@ -91,7 +91,7 @@ const Vocabulary = () => {
 											Удалить
 									</Button>
 									}
-									{state.difficultButton && word.userWord?.difficulty !== 'easy' &&
+									{state.difficultButton && word.userWord?.difficulty !== 'easy' && word.userWord?.difficulty !== 'hard' &&
 										<Button
 											variant={word.userWord?.difficulty === 'hard' ? 'contained' : 'outlined'}
 											color="secondary"
