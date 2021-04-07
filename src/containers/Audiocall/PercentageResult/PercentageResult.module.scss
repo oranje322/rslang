@@ -1,0 +1,32 @@
+.percentageResultField {
+    position: relative;
+    width: 20rem;
+    height: 20rem;
+    .colorScaleField {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 1px solid white;        
+        box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem #0000001f;
+        background-color: rgb(255, 196, 0);
+        overflow: hidden;
+        // .colorScale {
+        //     background-color: white;
+        //     width: 100%;
+            .percentageScale {
+                position: absolute;
+                top: 25%;
+                left: 25%;
+                background-color: white;
+                width: 50%;
+                height: 50%;
+                border-radius: 50%;
+                h2 {
+                    text-align: center;
+                    padding: 25%;
+                }
+            }
+        // }
+    }
+
+}

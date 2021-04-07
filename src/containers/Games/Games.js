@@ -20,36 +20,36 @@ const Games = () => {
 
 	return (
 		<div className={styles.gamePages}>
-			<Header title={'Игры'}/>
-			<Menu/>
+			<Header title={'Игры'} />
+			<Menu />
 			<div className={styles.gameField}>
 				<NavLink to={'/games/savannah'} className={styles.gameNavLink}>
 					<div className={styles.itemGame}>
-						<img src={SavannahImg} alt='Savannah'/>
-						<h3>Игра "Саванна"</h3>
+						<img src={SavannahImg} alt='Savannah' />
+						<h3>Игра <span>"Саванна"</span></h3>
 
 					</div>
 				</NavLink>
 				<NavLink to={'/games/audiocall'} className={styles.gameNavLink}>
 					<div className={styles.itemGame}>
-						<img src={AudiocallImg} alt='Audiocall'/>
-						<h3>Игра "Аудио вызов"</h3>
+						<img src={AudiocallImg} alt='Audiocall' />
+						<h3>Игра <span>"Аудио вызов"</span></h3>
 					</div>
 				</NavLink>
 				<NavLink to={'/games/sprint'} className={styles.gameNavLink}>
 					<div className={styles.itemGame}>
-						<img src={SprintImg} alt='Sprint'/>
-						<h3>Игра "Спринт"</h3>
+						<img src={SprintImg} alt='Sprint' />
+						<h3>Игра <span>"Спринт"</span></h3>
 					</div>
 				</NavLink>
 				<NavLink to={'/games/mygame'} className={styles.gameNavLink}>
 					<div className={styles.itemGame}>
-						<img src={MygameImg} alt='Mygame'/>
-						<h3>"Своя игра"</h3>
+						<img src={MygameImg} alt='Mygame' />
+						<h3>Игра <span>"Поговорим"</span></h3>
 					</div>
 				</NavLink>
 			</div>
-			<FooterBackground/>
+			<FooterBackground />
 		</div>
 	);
 };

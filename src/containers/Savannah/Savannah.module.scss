@@ -1,0 +1,25 @@
+.screen {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  margin-left: 5rem;
+  position: absolute;
+  top: 5%;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.soundBtn {
+  margin-top: 0.5rem;
+  padding: 1rem;
+  font-weight: inherit;
+  background-color: white;
+  border-radius: 0.8rem;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}

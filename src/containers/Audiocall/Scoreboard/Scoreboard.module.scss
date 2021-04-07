@@ -1,0 +1,37 @@
+@import '../../../styles/config.scss';
+
+.scoreboardField {
+    background-color: rgba(255,255,255,.3);
+    padding: 2rem;
+    margin: 2rem;
+    min-height: 30rem;
+    border-radius: 1rem;
+    text-align: center;
+    .scoreboardResults {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        .scoreboardDiagram {
+            margin: 1rem;
+        }
+        .scoreboardAnswers {
+            margin: 1rem;
+            ul {
+                list-style: none;            
+                padding: 2rem;
+                background-color: rgba(255,255,255,.3);
+                border-radius: 1rem;
+                width: 15rem;
+                height: 100%;
+                box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem #0000001f;
+                li {
+                    padding: 0.5rem;
+                }
+            }
+        } 
+    } 
+    button {
+        margin: 1rem;
+        @include button(white, $dark-violet, 4.1rem, 11.6rem )        
+    }  
+}

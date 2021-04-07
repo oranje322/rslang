@@ -1,0 +1,86 @@
+@import '../../styles/config.scss';
+
+.rulesField {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 2rem;
+    padding-left: 4.5rem;
+    text-align: center;
+    height: calc(100vh - 80px);
+    background-image: url('../../assets/img/audiocallimg.jpg');
+    background-size: cover;    
+    h1 {
+        color: white;
+        text-shadow: 1px 1px 2px black;
+    }
+    p {
+        color: white;
+        text-shadow: 1px 1px 2px black;
+    }
+    .startGameButton {
+        margin: 1rem;
+        @include button(white, $dark-violet, 4.1rem, 11.6rem )
+    }
+    // background: linear-gradient($back-light, $light-caral);
+    .playingField{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        .questionCard {
+            padding: 1.5rem;
+            width: 15.5rem;
+            height: 17rem;
+            background-color: rgba(255,255,255,.4);
+            border-radius: 2rem;
+            cursor: pointer;
+            .gameImg {
+                width: 12.5rem;
+                border-radius: 1rem;
+            }
+        }
+        .buttonGameField {
+            width: 40rem;
+            height: 10rem;
+            button {
+                margin: 1rem;
+                @include button(white, $dark-violet, 4.1rem, 11.6rem )
+                
+            }
+        }
+    }   
+
+    .gameAnswers {
+        margin-top: 2rem;
+        text-align: center;
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    }
+    .closeGame {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 1rem;
+        width: 2rem;
+        font-size: large;
+        height: 2rem;
+        border-radius: 50%;
+        background: none;
+        color: white;
+        border: none;
+        text-decoration: none;
+        &:hover {
+            cursor: pointer;
+            border: 1px solid white;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+}

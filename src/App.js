@@ -8,7 +8,6 @@ import Games from './containers/Games/Games';
 import Stats from './containers/Stats/Stats';
 import Words from './containers/Words/Words';
 import Audiocall from './containers/Audiocall/Audiocall';
-import Savannah from './containers/Savannah/Savannah';
 import Sprint from './containers/Sprint/Sprint';
 import Mygame from './containers/Mygame/Mygame';
 import Settings from './containers/Settings/Settings';
@@ -16,6 +15,7 @@ import Menu from './components/Menu/Menu';
 import Footer from './components/Footer/Footer';
 import { useLocation } from 'react-router';
 import Vocabulary from './containers/Learn/Vocabulary/Vocabulary';
+import SavannahMain from './containers/Savannah/SavannahMain/SavannahMain';
 
 const App = () => {
 	const [menuVisible, setMenuVisible] = useState(false);
@@ -28,8 +28,6 @@ const App = () => {
 			setMenuVisible(true);
 		}
 	}, [location, menuVisible]);
-
-	// console.log(location.pathname);
 
 	return (<>
 			<Switch>

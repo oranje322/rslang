@@ -1,89 +1,123 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import classes from './Words.module.scss';
 import WordCard from '../../components/WordCard/WordCard';
 import Preloader from '../../components/Preloader/Preloader';
+
+import { createUserWord, getAllAggregatedWords, getWords, deleteUserWord, updateUserWord } from '../../api/api';
 import { Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header/Header';
-import { loadWordsThunk, setDifficultyWordsThunk } from '../../redux/thunk/wordsThunk';
-import { setGroup, setPage } from '../../redux/actions/WordsActions';
+import { setWordsAC } from '../../redux/actions/WordsActions';
 
 const Words = () => {
-	const { module, page } = useParams();
-	const { group } = useSelector(state => state.words);
-	const words = useSelector(state => state.words.activeWords);
+	const history = useHistory();
+	const searchParams = new URLSearchParams(window.location.search);
+	const [words, setWords] = useState();
+	const [page, setPage] = useState(searchParams.get('page') ? searchParams.get('page') - 1 : 0);
 	const isAuth = useSelector(state => state.auth.isAuth);
-	const dispatch = useDispatch();
+	const group = Number(window.location.pathname.replace('/book/', '')) - 1;
 
+	const dispatch = useDispatch()
+
+	useEffect(async () => {
+		loadWords(group, page);
+	}, []);
 
 	useEffect(() => {
-		dispatch(setGroup(module - 1));
-		dispatch(setPage(+page));
-	}, [module]);
-
-	useEffect(() => {
-		dispatch(loadWordsThunk());
-	}, [page, group]);
+		if(words?.length > 0) {
+			dispatch(setWordsAC(words))
+		}
+	}, [words])
 
 	const state = useSelector(state => state.settings);
 
+	const loadWords = async pageSide => {
+		if (isAuth) {
+			const res = await getAllAggregatedWords(
+				group,
+				page + pageSide,
+				20,
+				'{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}'
+			);
+			setWords(res[0].paginatedResults);
+		} else {
+			const words = await getWords(group, page + pageSide);
+			setWords(words);
+		}
+	};
+
+	const setDifficultWord = async (word, difficult) => {
+		if (!isAuth) return;
+
+		if (word.userWord && !difficult) {
+			await deleteUserWord(word._id);
+		} else if (word.userWord && word.userWord.difficulty !== difficult) {
+			await updateUserWord(word._id, difficult);
+		} else {
+			await createUserWord(word._id, difficult);
+		}
+		loadWords(0);
+	};
+
+	const onPageChangeHandler = pageSide => {
+		searchParams.set('page', page + 1 + pageSide);
+		history.push({ search: searchParams.toString() });
+		setPage(prevPage => prevPage + pageSide);
+		loadWords(pageSide);
+	};
+
 	const pageControls = (
 		<div className={classes.pageControls}>
-			<Link disabled to={`/book/module${module}/page${+page - 1}`}>
-				<Button
-					className={classes.prevBtn}
-					disabled={+page === 1}
-					variant="outlined"
-					onClick={() => dispatch(setPage(+page - 1))}>
-					Назад
-				</Button>
-			</Link>
-
-			<p className={classes.page}>Страница {page}</p>
-			<Link to={`/book/module${module}/page${+page + 1}`}>
-				<Button
-					className={classes.nextBtn}
-					disabled={words && words.length !== 20}
-					variant="outlined"
-					onClick={() => dispatch(setPage(+page + 1))}>
-					Вперед
-				</Button>
-			</Link>
+			<Button
+				className={classes.prevBtn}
+				disabled={page === 0}
+				variant="outlined"
+				onClick={() => onPageChangeHandler(-1)}>
+				Назад
+			</Button>
+			<p className={classes.page}>Страница {page + 1}</p>
+			<Button
+				className={classes.nextBtn}
+				disabled={words && words.length === 0}
+				variant="outlined"
+				onClick={() => onPageChangeHandler(1)}>
+				Вперед
+			</Button>
 		</div>
 	);
 
 	return (
 		<Fragment>
-			<Header title={'Учебник'}/>
+			<Header title={'Учебник'} />
 			<div className={classes.words}>
-				{words ? pageControls : <Preloader/>}
+				{words ? pageControls : <Preloader />}
 				{words &&
-				words.map(word => (
-					<div id="wordContainer" className={classes.wordContainer} key={word._id}>
-						<WordCard word={word}/>
-						{isAuth && (
-							<div className={classes.btnContainer}>
-								{state.deleteButton &&
-								<Button variant="outlined" onClick={() => dispatch(setDifficultyWordsThunk(word, 'easy'))}>
-									Удалить
-								</Button>
-								}
-								{state.difficultButton &&
-								<Button
-									variant={word.userWord?.difficulty === 'hard' ? 'contained' : 'outlined'}
-									color="secondary"
-									onClick={() => dispatch(setDifficultyWordsThunk(word, word.userWord?.difficulty ? null : 'hard'))}>
-									Сложно
-								</Button>
-								}
-							</div>
-						)}
-					</div>
-				))}
+					words.map(word => (
+						<div id="wordContainer" className={classes.wordContainer} key={word._id}>
+							<WordCard word={word} />
+							{isAuth && (
+								<div className={classes.btnContainer}>
+									{state.deleteButton &&
+										<Button variant="outlined" onClick={() => setDifficultWord(word, 'easy')}>
+											Удалить
+										</Button>
+									}
+									{state.difficultButton &&
+										<Button
+											variant={word.userWord?.difficulty === 'hard' ? 'contained' : 'outlined'}
+											color="secondary"
+											onClick={() => setDifficultWord(word, word.userWord?.difficulty ? '' : 'hard')}>
+											Сложно
+									</Button>
+									}
+								</div>
+							)}
+						</div>
+					))}
 				{words && pageControls}
 			</div>
-		</Fragment>
+		</Fragment >
 	);
 };
 

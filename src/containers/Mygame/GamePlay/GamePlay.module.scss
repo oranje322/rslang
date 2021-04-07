@@ -1,0 +1,45 @@
+@import '../../../styles/config';
+
+.Container{
+    display: block;
+    width: 30%;
+    min-height: 27rem;
+}
+.message{
+    font-size: 2rem;
+    padding: 2rem;
+}
+.gameContainer{
+    padding: 1rem;
+    background-color: white;
+    @include display(column, space-around, center);
+    border-radius: 18px;
+    box-shadow: 5px 5px 14px 3px rgba(207, 205, 205, 0.25);
+    .img{
+        width: 70%;
+        height: 50%;
+        cursor: pointer;
+    }
+    .button{
+        @include button(black, white, 3.1rem, 6.4rem );
+        border: #fadbd7 solid 2px;
+        width: auto;
+        padding: 0 0.5rem;
+    }
+}
+.p{
+        @include fonts(Montserrat, 1.3rem, 500);
+        color: black;
+        text-shadow: none;
+}
+
+    span{
+        font-size: 1rem;
+        font-style: italic;
+    }
+.wordContainer{
+    @include display(row, space-around, baseline);
+    span{
+        padding-left: 1rem;
+    }
+}

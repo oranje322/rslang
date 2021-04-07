@@ -1,3 +1,4 @@
+@import '../../../styles/config';
 
 $btnSize: 0.7rem;
 .words {
@@ -36,11 +37,9 @@ $btnSize: 0.7rem;
 	flex: 1;
 	font-size: $btnSize !important;
 }
-
-.disable {
-	pointer-events: none;
-}
-
-a{
-	text-decoration: none;
+.toGames{
+	position: fixed;
+	right: 10rem;
+	top: 5rem;
+	@include button(white, #f0b742, 3.1rem, 9.6rem )
 }

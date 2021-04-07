@@ -31,13 +31,14 @@
         color: blanchedalmond;
         font-size: 2rem;
         padding: 0 0.8rem;
+        text-shadow: none;
     }
     .box {
         text-align: center;
         display: flex; 
         align-items: center;
         position: relative;
-        padding:  1rem 0.5rem ;
+        padding:  0.2rem 0.5rem ;
         img{
         max-width: 12rem;
         height: auto;
