@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import classes from './GamePlay.module.scss';
@@ -17,7 +17,8 @@ const GamePlay = () => {
     const [oneWord, setOneWord] = useState();
     const [sound, setSound] = useState();
     const [message, setMessage] = useState();
-    const [wrongAnswers, setWrongAnswers] = useState();
+    const [wrongAnswers, setWrongAnswers] = useState([]);
+    const [correctAnswers, setCorrectAnswers] = useState([]);
     const [statistics, setStatistics] = useState(10);
     const correctSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky1.mp3');
     const wrongSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky33.mp3');
@@ -57,6 +58,7 @@ const GamePlay = () => {
         levelWords.splice(index, 1);
         setLevelWords(levelWords);
     }
+
     const handleMessage = () => {
         if (levelWords.length === 0) {
             setMessage('Последнее слово!')
@@ -71,6 +73,10 @@ const GamePlay = () => {
     }, [oneWord])
 
     useEffect(() => {
+        console.log('я тут в мемо');
+    }, [finalTranscript])
+
+    useEffect(() => {
         finalTranscript && finalTranscript.toLowerCase() === oneWord.word ?
             correctSound.play() : finalTranscript ?
                 wrongSound.play() : null
@@ -79,16 +85,19 @@ const GamePlay = () => {
     // todo костыли для нескольких слов
 
 
-    const handleTries = () => {
+    const handleTries = (oneWord) => {
         if (tries === 0) {
             if (levelWords.length > 0) {
                 newOneWord(levelWords);
                 SpeechRecognition.abortListening();
                 setStatistics(statistics - 1)
                 setIsGamePlayed(false);
+                wrongAnswers.push(oneWord);
+                setWrongAnswers(wrongAnswers);
             } else setIsGamePlayed(true);
         }
     }
+    console.log(wrongAnswers);
 
     const reGame = () => {
         newLevelWords(allWords);
@@ -144,14 +153,14 @@ const GamePlay = () => {
                                                 resetTranscript();
                                                 SpeechRecognition.startListening();
                                                 setTries(() => tries - 1);
-                                                handleTries();
+                                                handleTries(oneWord);
                                             }}>{(tries > 0) ? 'Еще раз' : 'Новое слово'}</button>
                                         </>
                                     )}
                                 </div>
                             </div>
                         </>) :
-                        <EndGame reGame={reGame} statistics={statistics} />}
+                        <EndGame reGame={reGame} statistics={statistics} wrongAnswers={wrongAnswers} />}
                 </>
             )
             }

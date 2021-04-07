@@ -3,6 +3,8 @@ import thunk from 'redux-thunk';
 import { authReducer } from './reducers/authReducer';
 import { settingsReducer } from './reducers/settingsReducer';
 import { wordsReducer } from './reducers/wordsReducer';
+import { MyGameReducer } from './reducers/myGameReducer';
+
 
 
 
@@ -13,6 +15,7 @@ const reducers = combineReducers({
 	auth: authReducer,
 	settings: settingsReducer,
 	words: wordsReducer,
+	mygame: MyGameReducer
 });
 
 const configureStore = () => (
