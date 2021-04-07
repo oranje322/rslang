@@ -2,8 +2,7 @@
 
 .wrapper{
     @include wrapper(url('../../../assets/img/savannah.jpg'));
-}
-p{
+    p{
     font-size: 1.5rem;
     color: black;
     margin-top: 1rem;
@@ -17,4 +16,5 @@ p{
     font-size: 3rem;
     text-decoration: none;
     color:black;
+}
 }
