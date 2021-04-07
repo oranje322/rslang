@@ -44,7 +44,7 @@ const App = () => {
 				<Route path={'/learn/:hard/page:page'} component={Vocabulary}/>
 				<Route path={'/learn/:delete/page:page'} component={Vocabulary}/>
 				<Route path='/games/mygame' component={Mygame}/>
-				<Route path='/games/savannah' component={Savannah}/>
+				<Route path='/games/savannah' component={SavannahMain}/>
 				<Route path='/games/audiocall' component={Audiocall}/>
 				<Route path='/games/sprint' component={Sprint}/>
 				<Route path={'/games'}>
