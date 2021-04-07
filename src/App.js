@@ -66,7 +66,7 @@ const App = () => {
 			{
 				menuVisible && <Menu/>
 			}
-			{window.location.pathname !== '/game' ? <Footer/> : null}
+			{/*{window.location.pathname !== '/game' ? <Footer/> : null}*/}
 		</>
 	);
 };
