@@ -29,45 +29,43 @@ const App = () => {
 		}
 	}, [location, menuVisible]);
 
-	// console.log(location.pathname);
-
 	return (<>
-		<Switch>
-			<Route path={'/book/:module'}>
-				<Words />
-			</Route>
-			<Route exact path={'/book'}>
-				<Book />
-			</Route>
-			<Route exact path={'/learn'}>
-				<Learn />
-			</Route>
-			<Route path={'/learn/active'} component={Vocabulary} />
-			<Route path={'/learn/hard'} component={Vocabulary} />
-			<Route path={'/learn/delete'} component={Vocabulary} />
-			<Route path='/games/mygame' component={Mygame} />
-			<Route path='/games/savannah' component={SavannahMain} />
-			<Route path='/games/audiocall' component={Audiocall} />
-			<Route path='/games/sprint' component={Sprint} />
-			<Route path={'/games'}>
-				<Games />
-			</Route>
-			<Route path={'/stats'}>
-				<Stats />
-			</Route>
-			<Route path={'/settings'}>
-				<Settings />
-			</Route>
-			<Route path={'/words'}>
-				<Words />
-			</Route>
-			<Route exact path="/" component={Main} />
-		</Switch>
-		{
-			menuVisible && <Menu />
-		}
-		{window.location.pathname !== '/game' ? <Footer /> : null}
-	</>
+			<Switch>
+				<Route path={'/book/module:module/page:page'}>
+					<Words/>
+				</Route>
+				<Route exact path={'/book'}>
+					<Book/>
+				</Route>
+				<Route exact path={'/learn'}>
+					<Learn/>
+				</Route>
+				<Route path={'/learn/:active/page:page'} component={Vocabulary}/>
+				<Route path={'/learn/:hard/page:page'} component={Vocabulary}/>
+				<Route path={'/learn/:delete/page:page'} component={Vocabulary}/>
+				<Route path='/games/mygame' component={Mygame}/>
+				<Route path='/games/savannah' component={SavannahMain}/>
+				<Route path='/games/audiocall' component={Audiocall}/>
+				<Route path='/games/sprint' component={Sprint}/>
+				<Route path={'/games'}>
+					<Games/>
+				</Route>
+				<Route path={'/stats'}>
+					<Stats/>
+				</Route>
+				<Route path={'/settings'}>
+					<Settings/>
+				</Route>
+				<Route path={'/words'}>
+					<Words/>
+				</Route>
+				<Route exact path="/" component={Main}/>
+			</Switch>
+			{
+				menuVisible && <Menu/>
+			}
+			{/*{window.location.pathname !== '/game' ? <Footer/> : null}*/}
+		</>
 	);
 };
 

@@ -3,8 +3,7 @@ import thunk from 'redux-thunk';
 import { authReducer } from './reducers/authReducer';
 import { settingsReducer } from './reducers/settingsReducer';
 import { wordsReducer } from './reducers/wordsReducer';
-import { MyGameReducer } from './reducers/myGameReducer';
-
+import { sprintReducer } from './reducers/sprintReducer';
 
 
 
@@ -15,7 +14,7 @@ const reducers = combineReducers({
 	auth: authReducer,
 	settings: settingsReducer,
 	words: wordsReducer,
-	mygame: MyGameReducer
+	sprint: sprintReducer
 });
 
 const configureStore = () => (
