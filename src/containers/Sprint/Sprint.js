@@ -1,15 +1,36 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import styles from './Sprint.module.scss';
 import Header from '../../components/Header/Header';
-import Menu from '../../components/Menu/Menu';
+import { useDispatch, useSelector } from 'react-redux';
+import SprintInfo from './SprintInfo';
+import SprintGame from './SprintGame';
+import { loadWordsForSprint } from '../../redux/thunk/sprintThunk';
+import SprintStats from './SprintStats';
+
 
 const Sprint = () => {
+	const { isStarted, isFinished } = useSelector(state => state.sprint);
+	const dispatch = useDispatch()
+
+
+
+
 	return (
-		<div>
+		<>
 			<Header title={'Спринт'}/>
-			<Menu/>
-			<NavLink to={'/games'}><h2>Назад</h2></NavLink>
-		</div>
+			<div className={styles.sprint}>
+				{
+					!isStarted && !isFinished && <SprintInfo/>
+				}
+				{
+					isStarted && <SprintGame/>
+				}
+				{
+					!isStarted && isFinished && <SprintStats/>
+				}
+
+			</div>
+		</>
 	);
 };
 

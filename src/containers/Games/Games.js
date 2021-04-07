@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './Games.module.scss'
+import React, { useEffect } from 'react';
+import styles from './Games.module.scss';
 import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
 import { NavLink } from 'react-router-dom';
@@ -8,8 +8,16 @@ import SavannahImg from '@assets/img/savannah.png';
 import SprintImg from '@assets/img/Sprint.png';
 import AudiocallImg from '@assets/img/Audiocall.png';
 import MygameImg from '@assets/img/Mygame.png';
+import { useDispatch } from 'react-redux';
+import { setFrom } from '../../redux/actions/sprintActions';
 
 const Games = () => {
+	const dispatch = useDispatch();
+
+	useEffect( () => {
+		dispatch(setFrom('menu'))
+	}, [dispatch])
+
 	return (
 		<div className={styles.gamePages}>
 			<Header title={'Игры'} />
