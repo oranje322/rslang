@@ -14,20 +14,20 @@ const Learn = () => {
 				<div className={style.learnMain}>
 					<div className={style.learnCard}>
 						<h3>Активные слова</h3>
-						<Link to={'/learn/active'}>
-							<button className={style.button}>Проверить</button>
+						<Link to={'/learn/active/page1'}>
+							<button>Проверить</button>
 						</Link>
 					</div>
 					<div className={style.learnCard}>
 						<h3>Сложные слова</h3>
-						<Link to={'/learn/hard'}>
-							<button className={style.button}>Проверить</button>
+						<Link to={'/learn/hard/page1'}>
+							<button>Проверить</button>
 						</Link>
 					</div>
 					<div className={style.learnCard}>
 						<h3>Удаленные слова</h3>
-						<Link to={'/learn/delete'}>
-							<button className={style.buttonDel}>Проверить</button>
+						<Link to={'/learn/delete/page1'}>
+							<button>Проверить</button>
 						</Link>
 					</div>
 				</div>

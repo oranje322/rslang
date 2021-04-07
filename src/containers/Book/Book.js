@@ -19,7 +19,7 @@ const Book = () => {
 							<div key={module} className={styles.bookModule}>
 								<h3>Раздел {module}</h3>
 								<button>
-									<Link className={styles.link} to={{ pathname: `/book/${module}`, search: 'page=1' }}>
+									<Link className={styles.link} to={`/book/module${module}/page1`}>
 										Начать
 									</Link>
 								</button>

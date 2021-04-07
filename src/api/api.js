@@ -126,4 +126,15 @@ export async function getAllAggregatedWords(group = 0, page = 0, wordsPerPage = 
 	return res.data
 }
 
+export async function loadWordsForVocabulary(group = 0, page = 0, wordsPerPage = 20, filter) {
+	const encodedFilter = encodeURIComponent(filter)
+	const { token, userId } = JSON.parse(localStorage.getItem('userData'));
+	const res = await instance.get(`/users/${userId}/aggregatedWords?page=${page}&wordsPerPage=${wordsPerPage}&filter=${encodedFilter}`, {
+		headers: {
+			Authorization: `Bearer ${token}`
+		}
+	});
+	return res.data
+}
+
 
