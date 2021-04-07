@@ -27,7 +27,7 @@ const Learn = () => {
 					<div className={style.learnCard}>
 						<h3>Удаленные слова</h3>
 						<Link to={'/learn/delete/page1'}>
-							<button>Проверить</button>
+							<button className={style.buttonDel}>Проверить</button>
 						</Link>
 					</div>
 				</div>
