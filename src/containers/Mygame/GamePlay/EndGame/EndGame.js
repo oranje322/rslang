@@ -1,36 +1,9 @@
 import React from 'react';
-import classes from './EndGame.module.scss';
+import styles from '../../../Sprint/Sprint.module.scss';
 import { useHistory } from 'react-router-dom';
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
-// import { useDispatch, useSelector } from 'react-redux';
-// import { loadWordsForSprint, startSprint } from '../../redux/thunk/sprintThunk';
-// import AudioComponent from './Audio';
 
-// const EndGame = ({ reGame, statistics }) => {
-//     const history = useHistory();
-//     const { width, height } = useWindowSize();
-
-//     const backToGamesHandler = () => {
-//         history.push('/games');
-//     }
-
-//     return (
-//         <div className={classes.gameContainer}>
-//             <Confetti
-//                 width={width}
-//                 height={height}
-//             />
-//             {/* <p> Вы освоили {statistics} cлов!</p>
-//             <p>Ура!</p>
-//             <div>
-//                 <button onClick={reGame} className={classes.button}>Играть еще раз</button>
-//                 <button onClick={backToGamesHandler} className={classes.button}>Назад к играм</button>
-//             </div> */}
-
-//         </div>
-//     )
-// }
 
 
 
@@ -40,6 +13,14 @@ const EndGame = ({ reGame, statistics }) => {
 
     const { score, correctAnswers, wrongAnswers } = useSelector(state => state.sprint);
     const dispatch = useDispatch();
+
+
+    const history = useHistory();
+    const { width, height } = useWindowSize();
+
+    const backToGamesHandler = () => {
+        history.push('/games');
+    }
 
     const onClickRestart = () => {
         dispatch(loadWordsForSprint())
@@ -52,7 +33,7 @@ const EndGame = ({ reGame, statistics }) => {
                 width={width}
                 height={height}
             />
-            <h3>{`Результат игры: ${score} очков.`}</h3>
+            <h3>{`Результат игры: ${statistics} очков.`}</h3>
             <div className={styles.subtitle}>
                 <p>Ошибся:</p>
                 <p className={styles.wrongSprint}>{wrongAnswers.length}</p>

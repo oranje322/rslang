@@ -17,6 +17,7 @@ const GamePlay = () => {
     const [oneWord, setOneWord] = useState();
     const [sound, setSound] = useState();
     const [message, setMessage] = useState();
+    const [wrongAnswers, setWrongAnswers] = useState();
     const [statistics, setStatistics] = useState(10);
     const correctSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky1.mp3');
     const wrongSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky33.mp3');
