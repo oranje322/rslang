@@ -1,106 +1,131 @@
 import React, { useEffect, useState } from 'react';
 import classes from './Savannah.module.scss';
-import Header from '../../components/Header/Header';
-import Menu from '../../components/Menu/Menu';
 import WordsList from '../../components/WordsList/WordsList';
 import Hearts from '../../components/Hearts/Hearts';
+import GameOver from '../../components/GameOver/GameOver';
+import GameWin from '../../components/GameWin/GameWin';
 import { getAllAggregatedWords } from '../../api/api';
-import { getRandomNumber } from './functions';
+import { getRandomNumber, playSound, shuffleList } from '../../utils/functions';
+import { wrongSound, correctSound } from '../../utils/constants';
 import Word from './Word/Word';
 
 const Savannah = () => {
-	const [lifes, setLifes] = useState(5);
-	const [isGamePlayed, setIsGamePlayed] = useState(false);
-	const [wordsPosition, setWordsPosition] = useState('70%');
-	const [allWords, setAllWords] = useState();
+	const fullLifes = 5;
+	const wordsNumber = 30;
+  const initWordTopPosition = 70;
+	const [lifes, setLifes] = useState(fullLifes);
+	const [gameStatus, setGameStatus] = useState('not-started');
+	const [wordsPosition, setWordsPosition] = useState(initWordTopPosition);
+	const [allWords, setAllWords] = useState([]);
 	const [levelWords, setLevelWords] = useState();
 	const [correctWord, setCorrectWord] = useState();
-	const [statistics, setStatistics] = useState(0);
-	const winStats = 30;
+	const [soundsVolume, setSoundsVolume] = useState(1);
+  const [guessedWords, setGuessedWords] = useState([]);
+  const [notGuessedWords, setNotGuessedWords] = useState([]);
 
-	useEffect(async () => {
-		const res = await getAllAggregatedWords(0, 0, 34, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
-		const resWords = res[0].paginatedResults;
-		setAllWords(resWords);
+	useEffect(() => {
+		startGame();
+		return () => {
+			setGameStatus('not-started');
+		};
 	}, []);
 
-	// word guessed
 	useEffect(() => {
-		if (allWords && statistics < winStats) {
+		if (allWords.length === wordsNumber + 4) {
 			startLevel();
-			setIsGamePlayed(true);
-		} else {
-			// todo: game win
-			setIsGamePlayed(false);
 		}
-	}, [allWords, statistics]);
+	}, [allWords]);
+
+	useEffect(() => {
+		if (guessedWords.length + notGuessedWords.length === wordsNumber) {
+			setGameStatus('win');
+		}
+	}, [guessedWords, notGuessedWords]);
 
 	useEffect(() => {
 		if (!lifes) {
-			// todo: game over
-			setIsGamePlayed(false);
+			setGameStatus('lose');
 		}
 	}, [lifes]);
 
+	const startGame = async () => {
+    const res = await getAllAggregatedWords(0, 0, 34, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
+    const resWords = shuffleList(res[0].paginatedResults);
+		setGameStatus('started');
+		setWordsPosition(initWordTopPosition);
+		setAllWords(resWords);
+		setLifes(fullLifes);
+    setGuessedWords([]);
+    setNotGuessedWords([]);
+	};
+
 	const startLevel = () => {
-		let newLevelWords = [];
+    const newCorrectWord = allWords[0];
+		let newLevelWords = [newCorrectWord];
 		while (newLevelWords.length < 4) {
-			const newWord = allWords[getRandomNumber(0, allWords.length)];
+      const newWord = allWords[getRandomNumber(0, allWords.length - 1)];
 			if (newLevelWords.some(word => word._id === newWord._id)) continue;
 			newLevelWords.push(newWord);
 		}
-		setLevelWords(newLevelWords);
-		setCorrectWord(newLevelWords[getRandomNumber(0, 3)]);
+    setCorrectWord(newCorrectWord);
+		setLevelWords(shuffleList(newLevelWords));
+		setAllWords(allWords.slice(1));
 	};
 
-	const onChangeWordStatus = guessedWord => {
+	const changeWordStatus = guessedWord => {
 		const isWordGuessed = guessedWord === correctWord.wordTranslate;
+		let sound;
 		if (isWordGuessed) {
-			guessed();
+			sound = correctSound;
+			setWordsPosition(prev => prev - 1);
+      setGuessedWords(prev => [...prev, guessedWord]);
 		} else {
-			notGuessed();
+			sound = wrongSound;
+			setLifes(prev => (prev > 0 ? prev - 1 : 0));
+      setNotGuessedWords(prev => [...prev, correctWord]);
 		}
-	};
-
-	const notGuessed = () => {
-		// todo: audio sounds
-		setLifes(prev => prev - 1);
+		playSound(sound, soundsVolume);
 		startLevel();
 	};
 
-	const guessed = () => {
-		// todo: audio sounds
-		setWordsPosition(prev => {
-			const prevNumber = parseInt(prev);
-			return prevNumber - 1 + '%';
-		});
-		setStatistics(prev => prev + 1);
-		const newAllWords = allWords.filter(word => word._id !== correctWord._id);
-		setAllWords(newAllWords);
+	const handleKeyPress = event => {
+		const { key } = event;
+		if (key > 0 && key < 5) {
+			const guessedWord = levelWords[event.key - 1].wordTranslate;
+			changeWordStatus(guessedWord);
+		}
+	};
+
+	const onChnageVolumeHandler = () => {
+		setSoundsVolume(prev => (prev ? 0 : 1));
 	};
 
 	return (
-		<div>
-			<Header title={'Саванна'} />
-			<Menu />
-			{lifes ? (
+		<div className={classes.screen} tabIndex={0} onKeyPress={handleKeyPress}>
+			{gameStatus === 'started' && (
 				<div>
-					<div>Слов угадано: {statistics}</div>
+					<div className={classes.sidebar}>
+						<div className={classes.statistics}>
+							Слов угадано: {guessedWords.length} / {wordsNumber}
+						</div>
+						<button className={classes.soundBtn} onClick={onChnageVolumeHandler}>
+							{soundsVolume ? 'выкл' : 'вкл'}. звуки
+						</button>
+					</div>
 					<Hearts hearts={lifes} />
 					{correctWord && (
 						<Word
 							word={correctWord}
-							wordFinishPosition={parseInt(wordsPosition)}
-							isWordAnimated={isGamePlayed}
-							onFinishHandler={onChangeWordStatus}
+							wordFinishPosition={wordsPosition}
+							isWordAnimated={gameStatus === 'started'}
+							onFinishHandler={changeWordStatus}
 						/>
 					)}
-					{levelWords && <WordsList onClick={onChangeWordStatus} words={levelWords} position={wordsPosition} />}
+					{levelWords && <WordsList onClick={changeWordStatus} words={levelWords} position={wordsPosition} />}
 				</div>
-			) : (
-				<p>Вы проиграли</p> // todo: game over screen
 			)}
-			{statistics === winStats && <p>Вы выиграли</p> /* todo: game win screen */}
+			{gameStatus === 'lose' && <GameOver tryAgainHandler={startGame} />}
+			{gameStatus === 'win' && <GameWin playAgainHandler={startGame} score={lifes} learnWords={notGuessedWords} />}
 		</div>
 	);
 };

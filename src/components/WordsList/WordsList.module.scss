@@ -1,7 +1,7 @@
 .words {
   position: fixed;
   top: 70%;
-  width: 60vw;
+  width: 75vw;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -11,5 +11,12 @@
 }
 
 .word {
-  width: 20%;
+  padding: 1rem;
+  width: 22%;
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-style: normal;
+  background-color: white;
+  border-radius: 0.8rem;
+  cursor: pointer;
 }

@@ -1,0 +1,19 @@
+@import '../../../../styles/config';
+
+.gameContainer{
+    padding: 1rem;
+    @include display(column, space-around, center);
+    width: 30%;
+    height: 20rem;
+    .button{
+        @include button(black, white, 3.1rem, 6.4rem );
+        border: #fadbd7 solid 2px;
+        width: auto;
+        padding: 0 0.5rem;
+        margin-left: 1rem;
+    }
+    p{
+    font-size: 2rem;
+    font-weight: 500;
+    }
+}

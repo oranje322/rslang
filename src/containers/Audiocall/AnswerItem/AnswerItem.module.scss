@@ -1,0 +1,18 @@
+.liItem {
+    margin: 1rem;
+    padding: 1rem 2rem;
+    border: 1px solid white;
+    border-radius: 1rem;
+    color: white;
+    cursor: pointer;
+    &:hover {
+        background-color: rgba(152, 120, 227, .3);
+        transition: background .3s ease-in-out;
+    }
+}
+.liItem.success {
+    background-color: rgba(30, 180, 25, 0.2);
+}
+.liItem.error {
+    background-color: rgba(180, 35, 25, 0.2);
+}
