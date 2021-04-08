@@ -101,7 +101,7 @@ const GameField = (props) => {
                     </div>                    
                 </div>
             }
-            <button className={styles.closeGame} onClick={()=>props.returnToStart()}>&#10005;</button>
+            <button className={styles.closeGame} onClick={()=>props.returnToStart()}>&#9664;</button>
         </div>
     );
 };

@@ -44,9 +44,9 @@ const Audiocall = () => {
 					<h1>АУДИОВЫЗОВ</h1>
 					<p>Мини-игра «Аудиовызов» - это тренировка, развивающая навыки речи и перевода.</p>
 					<p> Вы слышите слово и видите 10 вариантов перевода. Нужно выбрать правильный ответ кликнув по нему мышью.</p> 
-					<button className={styles.startGameButton} onClick={()=>setStartGame(true)&&newLevelWords()}>Начать</button>
+					<button className={styles.startGameButton} onClick={()=>setStartGame(true)}>Начать</button>
 					<NavLink style={{ textDecoration: 'none' }} to={'/games'}>
-						<button className={styles.closeGame}>&#10005;</button>
+						<button className={styles.closeGame}>&#9664;</button>
 					</NavLink>
 				</div>	
 			</div>)}		
