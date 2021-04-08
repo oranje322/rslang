@@ -3,7 +3,6 @@ import AudiocallImg from '@assets/img/Audiocall.png';
 import RightSound from '@assets/right.mp3';
 import WrongSound from '@assets/wrong.mp3';
 import styles from './Audiocall.module.scss';
-import {connect} from 'react-redux';
 import AnswerItem from './AnswerItem/AnswerItem';
 import Scoreboard from './Scoreboard/scoreboard';
 
@@ -13,14 +12,15 @@ const GameField = (props) => {
     const [answerCheck, setAnswerCheck] = useState(null);
     const [isFinished, setIsFinished] = useState(false);
     const [results, setResults] = useState([]);
-    const [state, setState] = useState(props.allWords)
-    const audio = new Audio(link + state[counter].audio);
+    const state = props.words;
+    const numArr = props.randomNumArr;
+    const audio = new Audio(link + state[numArr[counter]].audio);
     const rightSoundPlay = new Audio(RightSound);
-    const wrongSoundPlay = new Audio(WrongSound);
+    const wrongSoundPlay = new Audio(WrongSound);   
 
     const onAnswerClick = (wordId) => {
         if (!answerCheck) {
-            const question = state[counter]; 
+            const question = state[numArr[counter]]; 
             if (question.word == wordId) {
                 rightSoundPlay.play()
                 setResults([...results, {[question.word]: 'right'}]);
@@ -32,26 +32,27 @@ const GameField = (props) => {
             }
         }  
     }
+    
+    // useEffect(() => {
+    //     window.addEventListener('click', newLevelWords)
+
+    //     return function cleanup() {
+    //       window.removeEventListener('click', newLevelWords)
+    //     }
+    // })  
+    // setCounter([...counter, random]) 
 
     const nextQuestion = () => {
             if(isCounretFinished()) {
                 setIsFinished(true)
-            }else {                
+            }else {             
                 setCounter(counter + 1)
                 setAnswerCheck(null)
-            }
+            }           
     }
 
-    // useEffect(() => {
-    //     window.addEventListener('click', nextQuestion)
-
-    //     return function cleanup() {
-    //       window.removeEventListener('click', nextQuestion)
-    //     }
-    // })    
-
     const isCounretFinished = () => {
-        return counter + 1 === state.length
+        return counter+1 === state.length
     }
 
     const replayGame = () => {
@@ -73,14 +74,14 @@ const GameField = (props) => {
                     <div onClick={()=>listen()} className={styles.questionCard}>
                         {answerCheck 
                         ?<div>
-                            <img className={styles.gameImg} src={link+state[counter].image} alt={link+state.word}/>
-                            <span>{state[counter].word}</span>
+                            <img className={styles.gameImg} src={link+state[numArr[counter]].image} alt={link+state.word}/>
+                            <span>{state[numArr[counter]].word}</span>
                         </div> 
                         :<div>
                             <img onChange={listen()} className={styles.gameImg} src={AudiocallImg} alt='AudiocallImg'/>
                             <span>Прослушать еще</span>
                         </div>}   
-                        <span>{state[counter].transcription}</span>
+                        <span>{state[numArr[counter]].transcription}</span>
                     </div>    
                     <div className={styles.gameAnswers}>
                         <ul> 
@@ -100,7 +101,7 @@ const GameField = (props) => {
                     </div>                    
                 </div>
             }
-            <button className={styles.closeGame} onClick={()=>props.returnToStart()} >X</button>
+            <button className={styles.closeGame} onClick={()=>props.returnToStart()}>&#10005;</button>
         </div>
     );
 };

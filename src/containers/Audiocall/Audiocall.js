@@ -9,32 +9,44 @@ import { getAllAggregatedWords } from '../../api/api';
 const Audiocall = () => {
 	const [startGame, setStartGame] = useState(false);
     const [allWords, setAllWords] = useState();
+	const [randomNumArr, setRandomNumArr] = useState();
 	const link = 'https://rslang-db.herokuapp.com/';
 
 	useEffect(async () => {
         const res = await getAllAggregatedWords(0, 0, 10, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
         const resWords = res[0].paginatedResults;
         setAllWords(resWords);
+		newLevelWords();
     }, []);
 
 	const returnToStart = () => {
 		setStartGame(false)
 	}
+
+	const newLevelWords = () => { 
+        let numberArr = [];  
+        while(numberArr.length<10) { 
+            let random = Math.floor(Math.random()*10);
+            if (numberArr.some(number => number === random)) continue;        
+            numberArr.push(random)
+        }
+        setRandomNumArr(numberArr)
+    }
 	
 	return (
 		<div>
 			<Header title={'Аудио вызов'}/>
 			<Menu />
 			{startGame
-			? <GameField returnToStart={returnToStart} allWords={allWords}/>	
+			? <GameField returnToStart={returnToStart} words={allWords} randomNumArr={randomNumArr}/>	
 			: (	<div className={styles.rulesField}>
 				<div>
 					<h1>АУДИОВЫЗОВ</h1>
 					<p>Мини-игра «Аудиовызов» - это тренировка, развивающая навыки речи и перевода.</p>
-					<p> Вы слышите слово и видите 5 вариантов перевода. Нужно выбрать правильный ответ кликнув по нему мышью.</p> 
-					<button className={styles.startGameButton} onClick={()=>setStartGame(true)}>Начать</button>
+					<p> Вы слышите слово и видите 10 вариантов перевода. Нужно выбрать правильный ответ кликнув по нему мышью.</p> 
+					<button className={styles.startGameButton} onClick={()=>setStartGame(true)&&newLevelWords()}>Начать</button>
 					<NavLink style={{ textDecoration: 'none' }} to={'/games'}>
-						<button className={styles.closeGame}>X</button>
+						<button className={styles.closeGame}>&#10005;</button>
 					</NavLink>
 				</div>	
 			</div>)}		
