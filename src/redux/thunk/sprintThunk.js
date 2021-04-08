@@ -31,9 +31,7 @@ export const loadWordsForSprint = () => async (dispatch, getState) => {
 		});
 		dispatch(setWordsForSprint(temp));
 	} else {
-		const currentPage = getState().words.currentPage
-		const group = getState().words.group
-		const res = await getWords(group, currentPage)
+		const res = getState().words.activeWords
 		const temp = res.map(word => {
 			return {
 				word: word.word,
@@ -50,6 +48,7 @@ export const loadWordsForSprint = () => async (dispatch, getState) => {
 export const loadPair = () => async (dispatch, getState) => {
 	const words = getState().sprint.words;
 	const index = getRandomNumber(2, words.length - 2);
+	console.log(index)
 	const currentPair = (Math.floor(Math.random() * 2) === 0)
 		? {
 			word: words[index].word,

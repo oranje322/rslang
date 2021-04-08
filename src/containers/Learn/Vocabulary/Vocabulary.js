@@ -9,6 +9,7 @@ import { loadEasyWordsThunk, loadHardWordsThunk, setDifficultyWordsThunk } from 
 import { setGroup, setPage } from '../../../redux/actions/WordsActions';
 import { useHistory, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+import { setFrom } from '../../../redux/actions/sprintActions';
 
 const Vocabulary = () => {
 	const history = useHistory()
@@ -44,6 +45,11 @@ const Vocabulary = () => {
 		}
 	}
 
+	const onClickToSprint = () => {
+		dispatch(setFrom('book'))
+		history.push('/games/sprint')
+	}
+
 	const state = useSelector(state => state.settings);
 
 	const pageControls = (
@@ -73,6 +79,7 @@ const Vocabulary = () => {
 	return (
 		<Fragment>
 			<Header title={'Учебник'} />
+			<button style={{marginLeft: '20%', padding: '10px'}} onClick={onClickToSprint}>К спринту</button>
 			<div className={classes.words}>
 				{words ? pageControls : <Preloader />}
 				{words &&

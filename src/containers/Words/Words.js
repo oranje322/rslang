@@ -4,12 +4,14 @@ import WordCard from '../../components/WordCard/WordCard';
 import Preloader from '../../components/Preloader/Preloader';
 import { Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import { loadWordsThunk, setDifficultyWordsThunk } from '../../redux/thunk/wordsThunk';
 import { setGroup, setPage } from '../../redux/actions/WordsActions';
+import { setFrom } from '../../redux/actions/sprintActions';
 
 const Words = () => {
+	const history = useHistory()
 	const { module, page } = useParams();
 	const { group, totalCount, currentPage } = useSelector(state => state.words);
 	const words = useSelector(state => state.words.activeWords);
@@ -25,9 +27,13 @@ const Words = () => {
 		dispatch(loadWordsThunk());
 	}, [page, group]);
 
-	console.log(page)
 
 	const state = useSelector(state => state.settings);
+
+	const onClickToSprint = () => {
+		dispatch(setFrom('book'))
+		history.push('/games/sprint')
+	}
 
 	const pageControls = (
 		<div className={classes.pageControls}>
@@ -57,6 +63,7 @@ const Words = () => {
 	return (
 		<Fragment>
 			<Header title={'Учебник'} />
+			<button style={{marginLeft: '20%', padding: '10px'}} onClick={onClickToSprint}>К спринту</button>
 			<div className={classes.words}>
 				{words ? pageControls : <Preloader />}
 				{words &&

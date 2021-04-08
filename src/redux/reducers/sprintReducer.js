@@ -40,7 +40,9 @@ export const sprintReducer = (state = initialState, action) => {
 		case SET_FROM:
 			return {
 				...state,
-				from: action.payload
+				from: action.payload,
+				isStarted: false,
+				isFinished: false,
 			}
 		case SET_STARTED_SPRINT:
 			return {

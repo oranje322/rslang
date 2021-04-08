@@ -12,7 +12,7 @@ let cn = classNames.bind(styles);
 const SprintGame = () => {
 	const { score, winStreak, loadPair, rate } = useSelector(state => state.sprint);
 
-	const [timer, setTimer] = useState(30);
+	const [timer, setTimer] = useState(60);
 
 	useEffect(() => {
 		const timerID = setTimeout(() => {
