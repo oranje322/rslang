@@ -47,8 +47,7 @@ export const loadWordsForSprint = () => async (dispatch, getState) => {
 
 export const loadPair = () => async (dispatch, getState) => {
 	const words = getState().sprint.words;
-	const index = getRandomNumber(2, words.length - 2);
-	console.log(index)
+	const index = getRandomNumber(0, words.length - 1);
 	const currentPair = (Math.floor(Math.random() * 2) === 0)
 		? {
 			word: words[index].word,
@@ -61,7 +60,7 @@ export const loadPair = () => async (dispatch, getState) => {
 		}
 		: {
 			word: words[index].word,
-			translate: words[index + 1].translate,
+			translate: words[getRandomNumber(0, words.length - 1)].translate,
 			correctTranslate: words[index].translate,
 			transcription: words[index].transcription,
 			id: words[index].id,
