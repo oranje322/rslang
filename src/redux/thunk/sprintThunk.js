@@ -16,22 +16,39 @@ export function getRandomNumber(min, max) {
 }
 
 export const loadWordsForSprint = () => async (dispatch, getState) => {
+	const isAuth = getState().auth.isAuth;
 
-	if (getState().sprint.from === 'menu') {
-		const level = getState().sprint.level;
-		const res = await getAllAggregatedWords(level, 0, 600, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
-		const temp = res[0].paginatedResults.map(word => {
-			return {
-				word: word.word,
-				translate: word.wordTranslate,
-				transcription: word.transcription,
-				id: word._id,
-				audio: word.audio
-			};
-		});
-		dispatch(setWordsForSprint(temp));
+	if (isAuth) {
+		if (getState().sprint.from === 'menu') {
+			const level = getState().sprint.level;
+			const res = await getAllAggregatedWords(level, 0, 600, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
+			const temp = res[0].paginatedResults.map(word => {
+				return {
+					word: word.word,
+					translate: word.wordTranslate,
+					transcription: word.transcription,
+					id: word._id,
+					audio: word.audio
+				};
+			});
+			dispatch(setWordsForSprint(temp));
+		} else {
+			const res = getState().words.activeWords;
+			const temp = res.map(word => {
+				return {
+					word: word.word,
+					translate: word.wordTranslate,
+					transcription: word.transcription,
+					id: word._id,
+					audio: word.audio
+				};
+			});
+			dispatch(setWordsForSprint(temp));
+		}
 	} else {
-		const res = getState().words.activeWords
+		const currentPage = getState().words.currentPage
+		const level = getState().sprint.level;
+		const res = await getWords(level, currentPage)
 		const temp = res.map(word => {
 			return {
 				word: word.word,
@@ -41,7 +58,7 @@ export const loadWordsForSprint = () => async (dispatch, getState) => {
 				audio: word.audio
 			};
 		})
-		dispatch(setWordsForSprint(temp))
+		dispatch(setWordsForSprint(temp));
 	}
 };
 
@@ -84,21 +101,21 @@ export const clickAnswer = (answer) => async (dispatch, getState) => {
 	if (currentPair.status === answer) {
 		dispatch(setWinStreak(winSteak + 1));
 		if (getState().sprint.winStreak === 4 || getState().sprint.winStreak === 7 || getState().sprint.winStreak === 10) {
-			streakSound.play()
+			streakSound.play();
 			dispatch(setRate(rate * 2));
 		}
 		dispatch(setScore(score + (10 * getState().sprint.rate)));
 		dispatch(setCorrectAnswer(currentPair));
-		correctSound.currentTime = 0
-		correctSound.play()
+		correctSound.currentTime = 0;
+		correctSound.play();
 		dispatch(loadPair());
 
 	} else {
 		dispatch(setRate(1));
 		dispatch(setWinStreak(0));
 		dispatch(setWrongAnswer(currentPair));
-		wrongSound.currentTime = 0
-		wrongSound.play()
+		wrongSound.currentTime = 0;
+		wrongSound.play();
 		dispatch(loadPair());
 	}
 };
