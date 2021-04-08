@@ -16,14 +16,14 @@ const Audiocall = () => {
         const res = await getAllAggregatedWords(0, 0, 10, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
         const resWords = res[0].paginatedResults;
         setAllWords(resWords);
-		newLevelWords();
+		randomNumWords();
     }, []);
 
 	const returnToStart = () => {
 		setStartGame(false)
 	}
 
-	const newLevelWords = () => { 
+	const randomNumWords = () => { 
         let numberArr = [];  
         while(numberArr.length<10) { 
             let random = Math.floor(Math.random()*10);
