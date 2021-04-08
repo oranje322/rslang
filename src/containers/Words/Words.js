@@ -11,15 +11,14 @@ import { setGroup, setPage } from '../../redux/actions/WordsActions';
 
 const Words = () => {
 	const { module, page } = useParams();
-	const { group } = useSelector(state => state.words);
+	const { group, totalCount } = useSelector(state => state.words);
 	const words = useSelector(state => state.words.activeWords);
 	const isAuth = useSelector(state => state.auth.isAuth);
 	const dispatch = useDispatch();
 
-
 	useEffect(() => {
 		dispatch(setGroup(module - 1));
-		dispatch(setPage(+page));
+		dispatch(setPage(page-1));
 	}, [module]);
 
 	useEffect(() => {
@@ -30,7 +29,7 @@ const Words = () => {
 
 	const pageControls = (
 		<div className={classes.pageControls}>
-			<Link disabled to={`/book/module${module}/page${+page - 1}`}>
+			<Link className={+page === 1 ? classes.disable : ''} to={`/book/module${module}/page${+page - 1}`}>
 				<Button
 					className={classes.prevBtn}
 					disabled={+page === 1}
@@ -41,10 +40,10 @@ const Words = () => {
 			</Link>
 
 			<p className={classes.page}>Страница {page}</p>
-			<Link to={`/book/module${module}/page${+page + 1}`}>
+			<Link className={totalCount - (page * 20)  < 20 ? classes.disable : ''} to={`/book/module${module}/page${+page + 1}`}>
 				<Button
 					className={classes.nextBtn}
-					disabled={words && words.length !== 20}
+					disabled={totalCount - (page * 20)  < 20}
 					variant="outlined"
 					onClick={() => dispatch(setPage(+page + 1))}>
 					Вперед
