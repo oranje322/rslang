@@ -53,7 +53,7 @@ const Vocabulary = () => {
 					className={classes.prevBtn}
 					disabled={+page === 1}
 					variant="outlined"
-					onClick={() => dispatch(setPage(+page - 1))}>
+					onClick={() => dispatch(setPage(currentPage-1))}>
 					Назад
 				</Button>
 			</Link>
@@ -63,7 +63,7 @@ const Vocabulary = () => {
 					className={classes.nextBtn}
 					disabled={totalCount - (page * 20) <= 0}
 					variant="outlined"
-					onClick={() => dispatch(setPage(+page + 1))}>
+					onClick={() => dispatch(setPage(currentPage+1))}>
 					Вперед
 				</Button>
 			</Link>

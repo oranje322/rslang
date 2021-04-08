@@ -13,6 +13,8 @@ export const loadWordsThunk = () => async (dispatch, getState) => {
 	const group = getState().words.group;
 	const currentPage = getState().words.currentPage;
 
+	console.log(currentPage)
+
 	if (isAuth) {
 		const res = await getAllAggregatedWords(
 			group,
