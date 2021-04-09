@@ -12,7 +12,8 @@ const GameField = (props) => {
     const [answerCheck, setAnswerCheck] = useState(null);
     const [isFinished, setIsFinished] = useState(false);
     const [results, setResults] = useState([]);
-    const state = props.words;
+    const [state, setState] = useState(props.words);
+    // const state = props.words;
     const numArr = props.randomNumArr;
     const audio = new Audio(link + state[numArr[counter]].audio);
     const rightSoundPlay = new Audio(RightSound);
@@ -32,6 +33,10 @@ const GameField = (props) => {
             }
         }  
     }
+
+    //temp
+
+
     
     // useEffect(() => {
     //     window.addEventListener('click', newLevelWords)

@@ -10,13 +10,13 @@ const Audiocall = () => {
 	const [startGame, setStartGame] = useState(false);
     const [allWords, setAllWords] = useState();
 	const [randomNumArr, setRandomNumArr] = useState();
-	const link = 'https://rslang-db.herokuapp.com/';
+	const [levelWords, setLevelWords] = useState([]);
 
 	useEffect(async () => {
-        const res = await getAllAggregatedWords(0, 0, 10, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
+        const res = await getAllAggregatedWords(0, 0, 34, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
         const resWords = res[0].paginatedResults;
         setAllWords(resWords);
-		randomNumWords();
+		randomNumWords();	
     }, []);
 
 	const returnToStart = () => {
@@ -32,19 +32,36 @@ const Audiocall = () => {
         }
         setRandomNumArr(numberArr)
     }
+
+	useEffect(async () => {
+        newLevelWords(allWords);
+    }, [allWords]);
+
+	const randomiser = (arr) => Math.floor(Math.random() * arr.length);
+
+    const newLevelWords = (Words) => {
+		let random;
+        while (levelWords.length < 10) {
+            random = Words[randomiser(Words)];
+            if (levelWords.some(word => word === random)) continue;			
+			levelWords.push(random);
+        }		
+    }
 	
 	return (
 		<div>
 			<Header title={'Аудио вызов'}/>
 			<Menu />
 			{startGame
-			? <GameField returnToStart={returnToStart} words={allWords} randomNumArr={randomNumArr}/>	
+			? <GameField returnToStart={returnToStart} words={levelWords} randomNumArr={randomNumArr}/>	
 			: (	<div className={styles.rulesField}>
 				<div>
 					<h1>АУДИОВЫЗОВ</h1>
 					<p>Мини-игра «Аудиовызов» - это тренировка, развивающая навыки речи и перевода.</p>
 					<p> Вы слышите слово и видите 10 вариантов перевода. Нужно выбрать правильный ответ кликнув по нему мышью.</p> 
-					<button className={styles.startGameButton} onClick={()=>setStartGame(true)}>Начать</button>
+					{ allWords == undefined
+					? <p>Авторизуйтесь!!!</p>
+					: <button className={styles.startGameButton} onClick={()=>setStartGame(true)}>Начать</button>}						
 					<NavLink style={{ textDecoration: 'none' }} to={'/games'}>
 						<button className={styles.closeGame}>&#9664;</button>
 					</NavLink>
