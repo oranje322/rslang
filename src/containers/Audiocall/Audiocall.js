@@ -10,7 +10,6 @@ const Audiocall = () => {
 	const [startGame, setStartGame] = useState(false);
     const [allWords, setAllWords] = useState();
 	const [randomNumArr, setRandomNumArr] = useState();
-	const [levelWords, setLevelWords] = useState([]);
 
 	useEffect(async () => {
         const res = await getAllAggregatedWords(0, 0, 34, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
@@ -18,6 +17,10 @@ const Audiocall = () => {
         setAllWords(resWords);
 		randomNumWords();	
     }, []);
+
+	// useEffect(async () => {
+    //     newLevelWords(allWords);
+    // }, [allWords]);
 
 	const returnToStart = () => {
 		setStartGame(false)
@@ -32,28 +35,13 @@ const Audiocall = () => {
         }
         setRandomNumArr(numberArr)
     }
-
-	useEffect(async () => {
-        newLevelWords(allWords);
-    }, [allWords]);
-
-	const randomiser = (arr) => Math.floor(Math.random() * arr.length);
-
-    const newLevelWords = (Words) => {
-		let random;
-        while (levelWords.length < 10) {
-            random = Words[randomiser(Words)];
-            if (levelWords.some(word => word === random)) continue;			
-			levelWords.push(random);
-        }		
-    }
 	
 	return (
 		<div>
 			<Header title={'Аудио вызов'}/>
 			<Menu />
 			{startGame
-			? <GameField returnToStart={returnToStart} words={levelWords} randomNumArr={randomNumArr}/>	
+			? <GameField returnToStart={returnToStart} words={allWords} randomNumArr={randomNumArr}/>	
 			: (	<div className={styles.rulesField}>
 				<div>
 					<h1>АУДИОВЫЗОВ</h1>

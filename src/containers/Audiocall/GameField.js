@@ -12,12 +12,32 @@ const GameField = (props) => {
     const [answerCheck, setAnswerCheck] = useState(null);
     const [isFinished, setIsFinished] = useState(false);
     const [results, setResults] = useState([]);
-    const [state, setState] = useState(props.words);
-    // const state = props.words;
+    const [state, setState] = useState([]);
     const numArr = props.randomNumArr;
-    const audio = new Audio(link + state[numArr[counter]].audio);
-    const rightSoundPlay = new Audio(RightSound);
-    const wrongSoundPlay = new Audio(WrongSound);   
+    // const [allWords, setAllWords] = useState(props.words);
+    // const [state, setState] = useState(props.words);
+    // const state = props.words;
+
+	const randomiser = (arr) => Math.floor(Math.random() * arr.length);
+
+    const newLevelWords = (Words) => {
+		let random;
+        while (state.length < 10) {
+            random = Words[randomiser(Words)];
+            if (state.some(word => word === random)) continue;			
+			state.push(random);
+        }		
+    }
+    newLevelWords(props.words);
+        
+    // useEffect(() => {
+    //     window.addEventListener('click', newLevelWords)
+
+    //     return function cleanup() {
+    //       window.removeEventListener('click', newLevelWords)
+    //     }
+    // })  
+    // setCounter([...counter, random]) 
 
     const onAnswerClick = (wordId) => {
         if (!answerCheck) {
@@ -33,19 +53,6 @@ const GameField = (props) => {
             }
         }  
     }
-
-    //temp
-
-
-    
-    // useEffect(() => {
-    //     window.addEventListener('click', newLevelWords)
-
-    //     return function cleanup() {
-    //       window.removeEventListener('click', newLevelWords)
-    //     }
-    // })  
-    // setCounter([...counter, random]) 
 
     const nextQuestion = () => {
             if(isCounretFinished()) {
@@ -66,6 +73,10 @@ const GameField = (props) => {
         setAnswerCheck(null)
         setResults([])
     }
+
+    const audio = new Audio(link + state[numArr[counter]].audio);
+    const rightSoundPlay = new Audio(RightSound);
+    const wrongSoundPlay = new Audio(WrongSound);
 
     const listen = () => {
         audio.play();
