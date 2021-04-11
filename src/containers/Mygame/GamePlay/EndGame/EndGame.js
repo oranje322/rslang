@@ -3,16 +3,9 @@ import styles from '../../../Sprint/Sprint.module.scss';
 import { useHistory } from 'react-router-dom';
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
-import AudioComponent from 'react-confetti'
+import AudioComponent from '../../../Sprint/Audio'
 
-
-
-
-
-
-
-
-const EndGame = ({ reGame, statistics, wrongAnswers }) => {
+const EndGame = ({ reGame, statistics, wrongAnswers, correctAnswers }) => {
 
     const history = useHistory();
     const { width, height } = useWindowSize();
@@ -26,6 +19,7 @@ const EndGame = ({ reGame, statistics, wrongAnswers }) => {
             <Confetti
                 width={width}
                 height={height}
+                numberOfPieces='15'
             />
             <h3>{`Результат игры: ${statistics} очков.`}</h3>
             <div className={styles.subtitle}>
@@ -44,17 +38,17 @@ const EndGame = ({ reGame, statistics, wrongAnswers }) => {
             </div>
             <div className={styles.subtitle}>
                 <p>Ответил верно:</p>
-                {/* <p className={styles.correctSprint}>{correctAnswers.length}</p> */}
+                <p className={styles.correctSprint}>{correctAnswers.length}</p>
             </div>
             <div className={styles.answerBlock}>
-                {/* {
+                {
                     correctAnswers.map((answer, index) => <div key={`correct__${index}`} className={styles.answer}>
                         <AudioComponent audioLink={answer.audio} />
                         <p>{answer.word}</p>
                         <p>{answer.transcription}</p>
                         <p>{answer.correctTranslate}</p>
                     </div>)
-                } */}
+                }
             </div>
             <div className={styles.statsButtons}>
                 <button onClick={reGame}>Новая игра</button>

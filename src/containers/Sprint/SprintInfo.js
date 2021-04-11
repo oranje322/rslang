@@ -28,7 +28,7 @@ const SprintInfo = () => {
 	return (
 		<div className={styles.info}>
 			<div className={styles.titleBlock}>
-				<img className={styles.sprinter} src={sprinter} alt="sprinter"/>
+				<img className={styles.sprinter} src={sprinter} alt="sprinter" />
 				<h3>СПРИНТ</h3>
 			</div>
 			<p className={styles.text}>

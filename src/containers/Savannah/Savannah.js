@@ -12,7 +12,7 @@ import Word from './Word/Word';
 const Savannah = () => {
 	const fullLifes = 5;
 	const wordsNumber = 30;
-  const initWordTopPosition = 70;
+	const initWordTopPosition = 70;
 	const [lifes, setLifes] = useState(fullLifes);
 	const [gameStatus, setGameStatus] = useState('not-started');
 	const [wordsPosition, setWordsPosition] = useState(initWordTopPosition);
@@ -20,8 +20,8 @@ const Savannah = () => {
 	const [levelWords, setLevelWords] = useState();
 	const [correctWord, setCorrectWord] = useState();
 	const [soundsVolume, setSoundsVolume] = useState(1);
-  const [guessedWords, setGuessedWords] = useState([]);
-  const [notGuessedWords, setNotGuessedWords] = useState([]);
+	const [guessedWords, setGuessedWords] = useState([]);
+	const [notGuessedWords, setNotGuessedWords] = useState([]);
 
 	useEffect(() => {
 		startGame();
@@ -49,25 +49,25 @@ const Savannah = () => {
 	}, [lifes]);
 
 	const startGame = async () => {
-    const res = await getAllAggregatedWords(0, 0, 34, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
-    const resWords = shuffleList(res[0].paginatedResults);
+		const res = await getAllAggregatedWords(0, 0, 34, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
+		const resWords = shuffleList(res[0].paginatedResults);
 		setGameStatus('started');
 		setWordsPosition(initWordTopPosition);
 		setAllWords(resWords);
 		setLifes(fullLifes);
-    setGuessedWords([]);
-    setNotGuessedWords([]);
+		setGuessedWords([]);
+		setNotGuessedWords([]);
 	};
 
 	const startLevel = () => {
-    const newCorrectWord = allWords[0];
+		const newCorrectWord = allWords[0];
 		let newLevelWords = [newCorrectWord];
 		while (newLevelWords.length < 4) {
-      const newWord = allWords[getRandomNumber(0, allWords.length - 1)];
+			const newWord = allWords[getRandomNumber(0, allWords.length - 1)];
 			if (newLevelWords.some(word => word._id === newWord._id)) continue;
 			newLevelWords.push(newWord);
 		}
-    setCorrectWord(newCorrectWord);
+		setCorrectWord(newCorrectWord);
 		setLevelWords(shuffleList(newLevelWords));
 		setAllWords(allWords.slice(1));
 	};
@@ -78,11 +78,11 @@ const Savannah = () => {
 		if (isWordGuessed) {
 			sound = correctSound;
 			setWordsPosition(prev => prev - 1);
-      setGuessedWords(prev => [...prev, guessedWord]);
+			setGuessedWords(prev => [...prev, guessedWord]);
 		} else {
 			sound = wrongSound;
 			setLifes(prev => (prev > 0 ? prev - 1 : 0));
-      setNotGuessedWords(prev => [...prev, correctWord]);
+			setNotGuessedWords(prev => [...prev, correctWord]);
 		}
 		playSound(sound, soundsVolume);
 		startLevel();

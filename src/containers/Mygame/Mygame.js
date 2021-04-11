@@ -12,14 +12,6 @@ const Mygame = () => {
 
 	const words = useSelector(state => state.words.activeWords);
 
-	/*
-	активные слова?
-	const [allwords, setAllWoards] = useState();
-	useEffect(() => {
-		words && setAllWoards(words);
-	}, []);
-	*/
-
 
 	return (
 		<div>

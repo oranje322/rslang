@@ -75,6 +75,7 @@ const Vocabulary = () => {
 			<Header title={'Учебник'} />
 			<div className={classes.words}>
 				{words ? pageControls : <Preloader />}
+				<Link to={'/games'}><button className={classes.btnPlay}>играть</button></Link>
 				{words &&
 					words.map(word => (
 						<div id="wordContainer" className={classes.wordContainer} key={word._id}>
@@ -103,7 +104,6 @@ const Vocabulary = () => {
 							)}
 						</div>
 					))}
-				{words && pageControls}
 			</div>
 		</Fragment>
 	)
