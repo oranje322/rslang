@@ -12,7 +12,7 @@ let cn = classNames.bind(styles);
 const SprintGame = () => {
 	const { score, winStreak, loadPair, rate } = useSelector(state => state.sprint);
 
-	const [timer, setTimer] = useState(30);
+	const [timer, setTimer] = useState(60);
 
 	useEffect(() => {
 		const timerID = setTimeout(() => {
@@ -42,17 +42,17 @@ const SprintGame = () => {
 
 	const circleClass1 = cn({
 		circle: true,
-		active: winStreak > 0
+		active: winStreak % 4 >= 1
 	});
 
 	const circleClass2 = cn({
 		circle: true,
-		active: winStreak > 1
+		active: winStreak % 4 >= 2
 	});
 
 	const circleClass3 = cn({
 		circle: true,
-		active: winStreak > 2
+		active: winStreak % 4 >= 3
 	});
 
 

@@ -5,6 +5,7 @@ import classes from './SavannahMain.module.scss';
 import Header from '../../../components/Header/Header';
 import Menu from '../../../components/Menu/Menu';
 import Savannah from '../Savannah'
+import { loadWordsForMyGame } from '../../../redux/thunk/myGameThunk';
 
 
 const SavannahMain = () => {
@@ -12,6 +13,13 @@ const SavannahMain = () => {
     const changeState = useCallback(() => {
         setGame(!game)
     }, [game])
+
+    const dispatch = useDispatch();
+    const { words } = useSelector(state => state.mygame);
+
+    useEffect(() => {
+        dispatch(loadWordsForMyGame());
+    }, []);
 
     return (
         <>
@@ -27,7 +35,7 @@ const SavannahMain = () => {
                     <p> Вы теряете жизнь, если делаете неправильный выбор</p>
                     <button className={classes.button} onClick={changeState}>Старт</button>
                 </> :
-                    <Savannah />
+                    <Savannah words={words} />
                 }
             </div>
         </>

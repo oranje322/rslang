@@ -36,3 +36,7 @@ $btnSize: 0.7rem;
   flex: 1;
 	font-size: $btnSize !important;
 }
+
+.disable {
+	pointer-events: none;
+}

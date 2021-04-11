@@ -20,6 +20,7 @@ export const loadWordsThunk = () => async (dispatch, getState) => {
 			20,
 			'{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}'
 		);
+		dispatch(setTotalCount(res[0].totalCount[0].count))
 		dispatch(setWordsAC(res[0].paginatedResults));
 	} else {
 		const words = await getWords(group, currentPage);
@@ -101,4 +102,6 @@ export const setDifficultyWordsThunk = (word, difficulty, section) => async (dis
 		}
 	}
 };
+
+
 

@@ -48,3 +48,7 @@ $btnSize: 0.7rem;
 	right: 8rem;
 	@include button(black, $back-light, 3.1rem, 6.4rem );
 }
+
+.disable {
+	pointer-events: none;
+}

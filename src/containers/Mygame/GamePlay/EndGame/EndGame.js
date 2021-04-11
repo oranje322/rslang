@@ -19,7 +19,7 @@ const EndGame = ({ reGame, statistics, wrongAnswers, correctAnswers }) => {
             <Confetti
                 width={width}
                 height={height}
-                numberOfPieces='15'
+                numberOfPieces='50'
             />
             <h3>{`Результат игры: ${statistics} очков.`}</h3>
             <div className={styles.subtitle}>

@@ -9,7 +9,7 @@ import { getRandomNumber, playSound, shuffleList } from '../../utils/functions';
 import { wrongSound, correctSound } from '../../utils/constants';
 import Word from './Word/Word';
 
-const Savannah = () => {
+const Savannah = ({ words }) => {
 	const fullLifes = 5;
 	const wordsNumber = 30;
 	const initWordTopPosition = 70;
@@ -31,10 +31,11 @@ const Savannah = () => {
 	}, []);
 
 	useEffect(() => {
-		if (allWords.length === wordsNumber + 4) {
+		if (allWords.length !== wordsNumber + 4) {
 			startLevel();
 		}
 	}, [allWords]);
+
 
 	useEffect(() => {
 		if (guessedWords.length + notGuessedWords.length === wordsNumber) {

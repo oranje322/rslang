@@ -4,49 +4,56 @@ import WordCard from '../../components/WordCard/WordCard';
 import Preloader from '../../components/Preloader/Preloader';
 import { Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import { loadWordsThunk, setDifficultyWordsThunk } from '../../redux/thunk/wordsThunk';
 import { setGroup, setPage } from '../../redux/actions/WordsActions';
+import { setFrom } from '../../redux/actions/sprintActions';
 
 const Words = () => {
+	const history = useHistory()
 	const { module, page } = useParams();
-	const { group } = useSelector(state => state.words);
+	const { group, totalCount, currentPage } = useSelector(state => state.words);
 	const words = useSelector(state => state.words.activeWords);
 	const isAuth = useSelector(state => state.auth.isAuth);
 	const dispatch = useDispatch();
 
-
 	useEffect(() => {
 		dispatch(setGroup(module - 1));
-		dispatch(setPage(+page));
+		dispatch(setPage(page-1));
 	}, [module]);
 
 	useEffect(() => {
 		dispatch(loadWordsThunk());
 	}, [page, group]);
 
+
 	const state = useSelector(state => state.settings);
+
+	const onClickToSprint = () => {
+		dispatch(setFrom('book'))
+		history.push('/games/sprint')
+	}
 
 	const pageControls = (
 		<div className={classes.pageControls}>
-			<Link disabled to={`/book/module${module}/page${+page - 1}`}>
+			<Link className={+page === 1 ? classes.disable : ''} to={`/book/module${module}/page${+page - 1}`}>
 				<Button
 					className={classes.prevBtn}
 					disabled={+page === 1}
 					variant="outlined"
-					onClick={() => dispatch(setPage(+page - 1))}>
+					onClick={() => dispatch(setPage(currentPage -1))}>
 					Назад
 				</Button>
 			</Link>
 
 			<p className={classes.page}>Страница {page}</p>
-			<Link to={`/book/module${module}/page${+page + 1}`}>
+			<Link className={totalCount - (page * 20)  <= 0 ? classes.disable : ''} to={`/book/module${module}/page${+page + 1}`}>
 				<Button
 					className={classes.nextBtn}
-					disabled={words && words.length !== 20}
+					disabled={totalCount - (page * 20)  <= 0}
 					variant="outlined"
-					onClick={() => dispatch(setPage(+page + 1))}>
+					onClick={() => dispatch(setPage(currentPage+1))}>
 					Вперед
 				</Button>
 			</Link>
@@ -56,6 +63,7 @@ const Words = () => {
 	return (
 		<Fragment>
 			<Header title={'Учебник'} />
+			<button style={{marginLeft: '20%', padding: '10px'}} onClick={onClickToSprint}>К спринту</button>
 			<div className={classes.words}>
 				{words ? pageControls : <Preloader />}
 				{words &&

@@ -4,15 +4,12 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import classes from './GamePlay.module.scss';
 import Preloader from '../../../components/Preloader/Preloader'
 import EndGame from './EndGame/EndGame';
-import { loadWordsForMyGame } from '../../../redux/thunk/myGameThunk';
-
-const GamePlay = () => {
+const GamePlay = ({ words }) => {
     const link = 'https://rslang-db.herokuapp.com/';
     const { finalTranscript, resetTranscript, listening } = useSpeechRecognition()
     const [levelWords, setLevelWords] = useState([]);
     const [tries, setTries] = useState(2);
     const [isGamePlayed, setIsGamePlayed] = useState(false);
-    const [allWords, setAllWords] = useState();
     const [oneWord, setOneWord] = useState();
     const [sound, setSound] = useState();
     const [message, setMessage] = useState();
@@ -22,15 +19,7 @@ const GamePlay = () => {
     const correctSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky1.mp3');
     const wrongSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky33.mp3');
 
-    const dispatch = useDispatch();
-    const { words } = useSelector(state => state.mygame);
-
-    useEffect(() => {
-        dispatch(loadWordsForMyGame());
-    }, []);
-
     const randomiser = (arr) => Math.floor(Math.random() * arr.length);
-
     const newLevelWords = (words) => {
         while (levelWords.length < 3) {
             let random = words[randomiser(words)];

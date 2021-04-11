@@ -9,6 +9,7 @@ import { loadEasyWordsThunk, loadHardWordsThunk, setDifficultyWordsThunk } from 
 import { setGroup, setPage } from '../../../redux/actions/WordsActions';
 import { useHistory, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+import { setFrom } from '../../../redux/actions/sprintActions';
 
 const Vocabulary = () => {
 	const history = useHistory()
@@ -44,6 +45,11 @@ const Vocabulary = () => {
 		}
 	}
 
+	const onClickToSprint = () => {
+		dispatch(setFrom('book'))
+		history.push('/games/sprint')
+	}
+
 	const state = useSelector(state => state.settings);
 
 	const pageControls = (
@@ -53,7 +59,7 @@ const Vocabulary = () => {
 					className={classes.prevBtn}
 					disabled={+page === 1}
 					variant="outlined"
-					onClick={() => dispatch(setPage(+page - 1))}>
+					onClick={() => dispatch(setPage(currentPage-1))}>
 					Назад
 				</Button>
 			</Link>
@@ -63,7 +69,7 @@ const Vocabulary = () => {
 					className={classes.nextBtn}
 					disabled={totalCount - (page * 20) <= 0}
 					variant="outlined"
-					onClick={() => dispatch(setPage(+page + 1))}>
+					onClick={() => dispatch(setPage(currentPage+1))}>
 					Вперед
 				</Button>
 			</Link>
@@ -73,6 +79,7 @@ const Vocabulary = () => {
 	return (
 		<Fragment>
 			<Header title={'Учебник'} />
+			<button style={{marginLeft: '20%', padding: '10px'}} onClick={onClickToSprint}>К спринту</button>
 			<div className={classes.words}>
 				{words ? pageControls : <Preloader />}
 				<Link to={'/games'}><button className={classes.btnPlay}>играть</button></Link>
@@ -92,7 +99,7 @@ const Vocabulary = () => {
 											Удалить
 									</Button>
 									}
-									{state.difficultButton && word.userWord?.difficulty !== 'easy' &&
+									{state.difficultButton && word.userWord?.difficulty !== 'easy' && word.userWord?.difficulty !== 'hard' &&
 										<Button
 											variant={word.userWord?.difficulty === 'hard' ? 'contained' : 'outlined'}
 											color="secondary"
