@@ -1,8 +1,10 @@
+@import '../../styles/config';
+
 .sprint {
 	background: url('../../assets/img/sprintBackground.jpg') 0 0/cover no-repeat;
+	opacity: 0.7;
 	height: 100%;
 	width: 100%;
-	opacity: 0.7;
 	position: fixed;
 	display: flex;
 	justify-content: center;
@@ -19,41 +21,7 @@
 			margin-top: 1rem;
 			font-size: 1.5rem;
 		}
-
-		.lvlBlock {
-			margin-top: 1rem;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-
-			.lvlTitle {
-				text-align: center;
-				font-size: 1.5rem;
-			}
-
-			.lvl {
-				margin-top: 0.5rem;
-				display: flex;
-				justify-content: center;
-
-			span {
-				margin: 0 0.5rem 0 0.5rem;
-				font-size: 2rem;
-				cursor: pointer;
-			}
-			}
-		}
-
-		.button {
-			margin-top: 2rem;
-			outline: none;
-			border: none;
-			cursor: pointer;
-			padding: 1rem 2rem;
-			border-radius: 0.5rem;
-			font-size: 1.25rem;
-			border: 1px solid rgba(192,203,204,.65);
-		}
+	}
 
 
 		.titleBlock {
@@ -67,7 +35,7 @@
 			}
 		}
 	}
-}
+
 
 .game {
 	display: flex;
@@ -80,7 +48,7 @@
 	border-radius: 5px;
 	padding: 2%;
 	overflow: hidden;
-
+	margin-bottom: 10rem;
 	.gameHeader {
 		display: flex;
 		justify-content: space-between;
@@ -183,7 +151,7 @@
 	padding: 2%;
 	overflow: auto;
 	max-height: 35rem;
-
+	margin-bottom: 10rem;
 	h3 {
 		font-size: 2rem;
 	}
@@ -254,3 +222,44 @@
 	}
 }
 
+
+.wrapper{
+	@include wrapper(url('../../assets/img/sprintBackground.jpg'));
+	opacity: 1;
+    p{
+    font-size: 1.5rem;
+    color: black;
+    margin-top: 1rem;
+    font-weight: 700;
+	text-shadow: 2px 1px 4px white
+	}
+}
+.back{
+	position: absolute;
+	top: 3rem;
+	left: 5rem;
+	font-size: 3rem;
+	text-decoration: none;
+	color:black;
+}
+
+
+.lvlBlock {
+	margin-top: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	.lvl {
+		margin-top: 0.5rem;
+		display: flex;
+		justify-content: center;
+		.span {
+			cursor: inherit;
+			font-size: 2rem;
+			color: white;
+			margin-left: 0.5rem;
+			margin-right: 0.5rem;
+		}
+	}
+}

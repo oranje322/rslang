@@ -4,14 +4,13 @@ import WordsList from '../../components/WordsList/WordsList';
 import Hearts from '../../components/Hearts/Hearts';
 import GameOver from '../../components/GameOver/GameOver';
 import GameWin from '../../components/GameWin/GameWin';
-import { getAllAggregatedWords } from '../../api/api';
 import { getRandomNumber, playSound, shuffleList } from '../../utils/functions';
 import { wrongSound, correctSound } from '../../utils/constants';
 import Word from './Word/Word';
 
 const Savannah = ({ words }) => {
 	const fullLifes = 5;
-	const wordsNumber = 30;
+	const wordsNumber = 20;
 	const initWordTopPosition = 70;
 	const [lifes, setLifes] = useState(fullLifes);
 	const [gameStatus, setGameStatus] = useState('not-started');
@@ -31,11 +30,10 @@ const Savannah = ({ words }) => {
 	}, []);
 
 	useEffect(() => {
-		if (allWords.length !== wordsNumber + 4) {
+		if (allWords.length === 20) {
 			startLevel();
 		}
 	}, [allWords]);
-
 
 	useEffect(() => {
 		if (guessedWords.length + notGuessedWords.length === wordsNumber) {
@@ -50,8 +48,7 @@ const Savannah = ({ words }) => {
 	}, [lifes]);
 
 	const startGame = async () => {
-		const res = await getAllAggregatedWords(0, 0, 34, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
-		const resWords = shuffleList(res[0].paginatedResults);
+		const resWords = shuffleList(words).slice(0, 20);
 		setGameStatus('started');
 		setWordsPosition(initWordTopPosition);
 		setAllWords(resWords);
@@ -110,7 +107,7 @@ const Savannah = ({ words }) => {
 							Слов угадано: {guessedWords.length} / {wordsNumber}
 						</div>
 						<button className={classes.soundBtn} onClick={onChnageVolumeHandler}>
-							{soundsVolume ? 'выкл' : 'вкл'}. звуки
+							{soundsVolume ? '\u{1F509}' : '\u{1F507}'}
 						</button>
 					</div>
 					<Hearts hearts={lifes} />

@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import classes from './GamePlay.module.scss';
 import Preloader from '../../../components/Preloader/Preloader'
 import EndGame from './EndGame/EndGame';
+import { wrongSound, correctSound } from '../../../utils/constants';
+
 const GamePlay = ({ words }) => {
     const link = 'https://rslang-db.herokuapp.com/';
     const { finalTranscript, resetTranscript, listening } = useSpeechRecognition()
@@ -16,12 +17,12 @@ const GamePlay = ({ words }) => {
     const [wrongAnswers, setWrongAnswers] = useState([]);
     const [correctAnswers, setCorrectAnswers] = useState([]);
     const [statistics, setStatistics] = useState(10);
-    const correctSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky1.mp3');
-    const wrongSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky33.mp3');
+    const [soundsVolume, setSoundsVolume] = useState(1);
 
     const randomiser = (arr) => Math.floor(Math.random() * arr.length);
+
     const newLevelWords = (words) => {
-        while (levelWords.length < 3) {
+        while (levelWords.length < 10) {
             let random = words[randomiser(words)];
             levelWords.push(random);
             if (levelWords.some(word => word._id === random._id)) continue;
@@ -101,13 +102,18 @@ const GamePlay = ({ words }) => {
     const listen = () => {
         sound && sound.play();
     };
-
+    const onChnageVolumeHandler = () => {
+        setSoundsVolume(prev => (prev ? 0 : 1));
+    };
     return (
         <>
             {!oneWord && !isGamePlayed ? <Preloader /> : (
                 <>
                     {!isGamePlayed ? (
                         <>
+                            <button className={classes.soundBtn} onClick={onChnageVolumeHandler}>
+                                {soundsVolume ? '\u{1F509}' : '\u{1F507}'}
+                            </button>
                             <p className={classes.message}>{message}</p>
                             <div className={classes.Container}>
                                 <div className={classes.gameContainer}>

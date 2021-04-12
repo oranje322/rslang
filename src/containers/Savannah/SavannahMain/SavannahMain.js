@@ -5,7 +5,7 @@ import classes from './SavannahMain.module.scss';
 import Header from '../../../components/Header/Header';
 import Menu from '../../../components/Menu/Menu';
 import Savannah from '../Savannah'
-import { loadWordsForMyGame } from '../../../redux/thunk/myGameThunk';
+import { loadWordsForGame } from '../../../redux/thunk/gamesThunk';
 
 
 const SavannahMain = () => {
@@ -15,10 +15,10 @@ const SavannahMain = () => {
     }, [game])
 
     const dispatch = useDispatch();
-    const { words } = useSelector(state => state.mygame);
+    const { words } = useSelector(state => state.games);
 
     useEffect(() => {
-        dispatch(loadWordsForMyGame());
+        dispatch(loadWordsForGame());
     }, []);
 
     return (

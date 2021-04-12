@@ -1,4 +1,4 @@
-export const SET_WORDS_FOR_MYGAME = 'SET_WORDS_FOR_MYGAME';
+export const SET_WORDS_FOR_GAME = 'SET_WORDS_FOR_GAME';
 export const SET_FROM = 'SET_FROM';
 
 const initialState = {
@@ -6,9 +6,9 @@ const initialState = {
     from: 'menu'
 };
 
-export const MyGameReducer = (state = initialState, action) => {
+export const gamesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_WORDS_FOR_MYGAME:
+        case SET_WORDS_FOR_GAME:
             return {
                 ...state,
                 words: action.payload

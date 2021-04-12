@@ -58,9 +58,6 @@
     position: fixed;
     padding-bottom: 5rem;
     z-index: 2;
-        &:first-child{
-        left: 4rem;
-    }
     h3{
         @include fonts(Montserrat, 1.5rem, 600);
     }

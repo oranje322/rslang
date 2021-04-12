@@ -1,8 +1,8 @@
 import { getAllAggregatedWords, getWords } from '../../api/api';
-import { setWordsForMygame } from '../actions/myGameActions';
+import { setWordsForGame } from '../actions/gamesActions';
 
 
-export const loadWordsForMyGame = () => async (dispatch, getState) => {
+export const loadWordsForGame = () => async (dispatch, getState) => {
     const isAuth = getState().auth.isAuth;
     if (isAuth) {
         if (getState().mygame.from === 'menu') {
@@ -12,7 +12,7 @@ export const loadWordsForMyGame = () => async (dispatch, getState) => {
                     ...word
                 };
             });
-            dispatch(setWordsForMygame(temp));
+            dispatch(setWordsForGame(temp));
         } else {
             const res = getState().words.activeWords;
             const temp = res.map(word => {
@@ -20,7 +20,7 @@ export const loadWordsForMyGame = () => async (dispatch, getState) => {
                     ...word
                 };
             })
-            dispatch(setWordsForMygame(temp))
+            dispatch(setWordsForGame(temp))
         }
     } else {
         const currentPage = getState().words.currentPage
@@ -31,6 +31,6 @@ export const loadWordsForMyGame = () => async (dispatch, getState) => {
                 ...word
             };
         })
-        dispatch(setWordsForMygame(temp));
+        dispatch(setWordsForGame(temp));
     };
 }
