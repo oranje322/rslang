@@ -1,46 +1,29 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState, useCallback } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import classes from './GamePlay.module.scss';
 import Preloader from '../../../components/Preloader/Preloader'
-import { getAllAggregatedWords } from '../../../api/api';
 import EndGame from './EndGame/EndGame';
+import { wrongSound, correctSound } from '../../../utils/constants';
 
-const GamePlay = () => {
-    // const words = useSelector(state => state.words);
+const GamePlay = ({ words }) => {
     const link = 'https://rslang-db.herokuapp.com/';
-    const { transcript, finalTranscript, resetTranscript, listening } = useSpeechRecognition()
+    const { finalTranscript, resetTranscript, listening } = useSpeechRecognition()
     const [levelWords, setLevelWords] = useState([]);
     const [tries, setTries] = useState(2);
     const [isGamePlayed, setIsGamePlayed] = useState(false);
-    const [allWords, setAllWords] = useState();
     const [oneWord, setOneWord] = useState();
     const [sound, setSound] = useState();
     const [message, setMessage] = useState();
     const [wrongAnswers, setWrongAnswers] = useState([]);
     const [correctAnswers, setCorrectAnswers] = useState([]);
     const [statistics, setStatistics] = useState(10);
-    const correctSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky1.mp3');
-    const wrongSound = new Audio('http://soundimage.org/wp-content/uploads/2016/04/UI_Quirky33.mp3');
-
-
-    useEffect(async () => {
-        const res = await getAllAggregatedWords(0, 0, 34, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
-        const resWords = res[0].paginatedResults;
-        setAllWords(resWords);
-    }, []);
-
-    useEffect(async () => {
-        newLevelWords(allWords);
-        newOneWord(levelWords);
-    }, [allWords]);
+    const [soundsVolume, setSoundsVolume] = useState(1);
 
     const randomiser = (arr) => Math.floor(Math.random() * arr.length);
 
-    const newLevelWords = (allWords) => {
-        let random;
-        while (levelWords.length < 3) {
-            random = allWords[randomiser(allWords)];
+    const newLevelWords = (words) => {
+        while (levelWords.length < 10) {
+            let random = words[randomiser(words)];
             levelWords.push(random);
             if (levelWords.some(word => word._id === random._id)) continue;
             levelWords.push(random);
@@ -53,6 +36,7 @@ const GamePlay = () => {
             setIsGamePlayed(true);
         }
     }
+
     const changeLength = () => {
         const index = levelWords.indexOf(oneWord);
         levelWords.splice(index, 1);
@@ -66,23 +50,27 @@ const GamePlay = () => {
             setMessage(`Осталось ${levelWords.length + 1}`)
         }
     }
+    useEffect(() => {
+        if (words.length !== 0) {
+            newLevelWords(words);
+            newOneWord(levelWords);
+        }
+    }, [words]);
+
 
     useEffect(() => {
         changeLength();
         handleMessage();
     }, [oneWord])
 
-    useEffect(() => {
-        console.log('я тут в мемо');
-    }, [finalTranscript])
 
     useEffect(() => {
-        finalTranscript && finalTranscript.toLowerCase() === oneWord.word ?
-            correctSound.play() : finalTranscript ?
-                wrongSound.play() : null
+        if (finalTranscript && finalTranscript.toLowerCase() === oneWord.word) {
+            correctSound.play();
+            correctAnswers.push(oneWord);
+            setCorrectAnswers(correctAnswers);
+        } else if (finalTranscript) wrongSound.play();
     }, [oneWord, finalTranscript])
-
-    // todo костыли для нескольких слов
 
 
     const handleTries = (oneWord) => {
@@ -97,10 +85,9 @@ const GamePlay = () => {
             } else setIsGamePlayed(true);
         }
     }
-    console.log(wrongAnswers);
 
     const reGame = () => {
-        newLevelWords(allWords);
+        newLevelWords(words);
         newOneWord(levelWords);
         setIsGamePlayed(false);
     }
@@ -115,13 +102,18 @@ const GamePlay = () => {
     const listen = () => {
         sound && sound.play();
     };
-
+    const onChnageVolumeHandler = () => {
+        setSoundsVolume(prev => (prev ? 0 : 1));
+    };
     return (
         <>
             {!oneWord && !isGamePlayed ? <Preloader /> : (
                 <>
                     {!isGamePlayed ? (
                         <>
+                            <button className={classes.soundBtn} onClick={onChnageVolumeHandler}>
+                                {soundsVolume ? '\u{1F509}' : '\u{1F507}'}
+                            </button>
                             <p className={classes.message}>{message}</p>
                             <div className={classes.Container}>
                                 <div className={classes.gameContainer}>
@@ -160,7 +152,7 @@ const GamePlay = () => {
                                 </div>
                             </div>
                         </>) :
-                        <EndGame reGame={reGame} statistics={statistics} wrongAnswers={wrongAnswers} />}
+                        <EndGame reGame={reGame} statistics={statistics} wrongAnswers={wrongAnswers} correctAnswers={correctAnswers} />}
                 </>
             )
             }

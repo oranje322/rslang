@@ -5,21 +5,17 @@ import Menu from '../../components/Menu/Menu';
 import GamePlay from './GamePlay/GamePlay';
 import { useDispatch, useSelector } from 'react-redux';
 import classes from './Mygame.module.scss';
+import { loadWordsForGame } from '../../redux/thunk/gamesThunk';
 
 const Mygame = () => {
 
 	const [game, setGame] = useState(true);
+	const dispatch = useDispatch();
+	const { words } = useSelector(state => state.games);
 
-	const words = useSelector(state => state.words.activeWords);
-
-	/*
-	активные слова?
-	const [allwords, setAllWoards] = useState();
 	useEffect(() => {
-		words && setAllWoards(words);
+		dispatch(loadWordsForGame());
 	}, []);
-	*/
-
 
 	return (
 		<div>

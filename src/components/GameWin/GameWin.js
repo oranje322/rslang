@@ -13,7 +13,7 @@ const GameWin = props => {
 
 	return (
 		<div className={classes.screen}>
-			<Confetti width={width} height={height} />
+			<Confetti width={width} height={height} numberOfPieces='20' />
 			<h3>Ура, вы прошли игру!</h3>
 			<p>Набрано очков: {props.score}</p>
 			{props.learnWords.length && (

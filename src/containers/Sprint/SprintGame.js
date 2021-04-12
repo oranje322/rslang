@@ -11,7 +11,6 @@ let cn = classNames.bind(styles);
 
 const SprintGame = () => {
 	const { score, winStreak, loadPair, rate } = useSelector(state => state.sprint);
-
 	const [timer, setTimer] = useState(60);
 
 	useEffect(() => {
@@ -55,12 +54,11 @@ const SprintGame = () => {
 		active: winStreak % 4 >= 3
 	});
 
-
 	return (
 		<div className={styles.game}>
 			<div className={styles.gameHeader}>
 				<div className={styles.timer}>
-					<CircularProgressWithLabel value={timer}/>
+					<CircularProgressWithLabel value={timer} />
 				</div>
 				<div className={styles.score}>{score}</div>
 			</div>

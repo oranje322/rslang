@@ -83,13 +83,12 @@ const Words = () => {
 											color="secondary"
 											onClick={() => dispatch(setDifficultyWordsThunk(word, word.userWord?.difficulty ? null : 'hard'))}>
 											Сложно
-								</Button>
+										</Button>
 									}
 								</div>
 							)}
 						</div>
 					))}
-				{words && pageControls}
 			</div>
 		</Fragment>
 	);

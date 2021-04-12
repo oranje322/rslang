@@ -43,6 +43,11 @@ $btnSize: 0.7rem;
 	top: 5rem;
 	@include button(white, #f0b742, 3.1rem, 9.6rem )
 }
+.btnPlay{
+	position: absolute;
+	right: 8rem;
+	@include button(black, $back-light, 3.1rem, 6.4rem );
+}
 
 .disable {
 	pointer-events: none;
