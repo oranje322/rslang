@@ -3,7 +3,6 @@ import AudiocallImg from '@assets/img/Audiocall.png';
 import RightSound from '@assets/right.mp3';
 import WrongSound from '@assets/wrong.mp3';
 import styles from './Audiocall.module.scss';
-import {connect} from 'react-redux';
 import AnswerItem from './AnswerItem/AnswerItem';
 import Scoreboard from './Scoreboard/scoreboard';
 
@@ -13,14 +12,24 @@ const GameField = (props) => {
     const [answerCheck, setAnswerCheck] = useState(null);
     const [isFinished, setIsFinished] = useState(false);
     const [results, setResults] = useState([]);
-    const [state, setState] = useState(props.allWords)
-    const audio = new Audio(link + state[counter].audio);
-    const rightSoundPlay = new Audio(RightSound);
-    const wrongSoundPlay = new Audio(WrongSound);
+    const [state, setState] = useState([]);
+    const numArr = props.randomNumArr;
 
+	const randomiser = (arr) => Math.floor(Math.random() * arr.length);
+
+    const newLevelWords = (Words) => {
+		let random;
+        while (state.length < 10) {
+            random = Words[randomiser(Words)];
+            if (state.some(word => word === random)) continue;			
+			state.push(random);
+        }		
+    }
+    newLevelWords(props.words);
+        
     const onAnswerClick = (wordId) => {
         if (!answerCheck) {
-            const question = state[counter]; 
+            const question = state[numArr[counter]]; 
             if (question.word == wordId) {
                 rightSoundPlay.play()
                 setResults([...results, {[question.word]: 'right'}]);
@@ -36,22 +45,14 @@ const GameField = (props) => {
     const nextQuestion = () => {
             if(isCounretFinished()) {
                 setIsFinished(true)
-            }else {                
+            }else {             
                 setCounter(counter + 1)
                 setAnswerCheck(null)
-            }
+            }           
     }
 
-    // useEffect(() => {
-    //     window.addEventListener('click', nextQuestion)
-
-    //     return function cleanup() {
-    //       window.removeEventListener('click', nextQuestion)
-    //     }
-    // })    
-
     const isCounretFinished = () => {
-        return counter + 1 === state.length
+        return counter+1 === state.length
     }
 
     const replayGame = () => {
@@ -60,6 +61,10 @@ const GameField = (props) => {
         setAnswerCheck(null)
         setResults([])
     }
+
+    const audio = new Audio(link + state[numArr[counter]].audio);
+    const rightSoundPlay = new Audio(RightSound);
+    const wrongSoundPlay = new Audio(WrongSound);
 
     const listen = () => {
         audio.play();
@@ -73,14 +78,14 @@ const GameField = (props) => {
                     <div onClick={()=>listen()} className={styles.questionCard}>
                         {answerCheck 
                         ?<div>
-                            <img className={styles.gameImg} src={link+state[counter].image} alt={link+state.word}/>
-                            <p>{state[counter].word}</p>
+                            <img className={styles.gameImg} src={link+state[numArr[counter]].image} alt={link+state.word}/>
+                            <span>{state[numArr[counter]].word}</span>
                         </div> 
                         :<div>
                             <img onChange={listen()} className={styles.gameImg} src={AudiocallImg} alt='AudiocallImg'/>
-                            <p>Прослушать еще</p>
+                            <span>Прослушать еще</span>
                         </div>}   
-                        <p>{state[counter].transcription}</p>
+                        <span>{state[numArr[counter]].transcription}</span>
                     </div>    
                     <div className={styles.gameAnswers}>
                         <ul> 
@@ -100,7 +105,7 @@ const GameField = (props) => {
                     </div>                    
                 </div>
             }
-            <button className={styles.closeGame} onClick={()=>props.returnToStart()} >X</button>
+            <button className={styles.closeGame} onClick={()=>props.returnToStart()}>&#9664;</button>
         </div>
     );
 };

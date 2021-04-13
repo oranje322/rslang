@@ -5,7 +5,12 @@ import Preloader from '../../../components/Preloader/Preloader';
 import { Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../../components/Header/Header';
-import { loadEasyWordsThunk, loadHardWordsThunk, setDifficultyWordsThunk } from '../../../redux/thunk/wordsThunk';
+import {
+	loadActiveWordsThunk,
+	loadEasyWordsThunk,
+	loadHardWordsThunk,
+	setDifficultyWordsThunk
+} from '../../../redux/thunk/wordsThunk';
 import { setGroup, setPage } from '../../../redux/actions/WordsActions';
 import { useHistory, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -44,6 +49,9 @@ const Vocabulary = () => {
 		}
 		if (active === 'delete') {
 			dispatch(loadEasyWordsThunk());
+		}
+		if(active === 'active') {
+			dispatch(loadActiveWordsThunk())
 		}
 	}
 
@@ -108,11 +116,11 @@ const Vocabulary = () => {
 											Удалить
 									</Button>
 									}
-									{state.difficultButton && word.userWord?.difficulty !== 'easy' && word.userWord?.difficulty !== 'hard' &&
+									{state.difficultButton && word.userWord?.difficulty !== 'easy' &&
 										<Button
 											variant={word.userWord?.difficulty === 'hard' ? 'contained' : 'outlined'}
 											color="secondary"
-											onClick={() => dispatch(setDifficultyWordsThunk(word, word.userWord?.difficulty ? null : 'hard'))}>
+											onClick={() => dispatch(setDifficultyWordsThunk(word, word.userWord?.difficulty === 'hard' ? null : 'hard'))}>
 											Сложно
 								</Button>
 									}

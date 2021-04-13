@@ -68,9 +68,12 @@ export async function getUserWords() {
 	return res.data;
 }
 
-export async function createUserWord(wordId, mode) {
+export async function createUserWord(wordId, mode = 'none') {
 	const body = {
-		difficulty: mode
+		difficulty: mode,
+		optional: {
+			active: true
+		}
 	};
 	const { token, userId } = JSON.parse(localStorage.getItem('userData'));
 	const res = await instance.post(`/users/${userId}/words/${wordId}`, body, {

@@ -9,6 +9,7 @@ import Header from '../../components/Header/Header';
 import { loadWordsThunk, setDifficultyWordsThunk } from '../../redux/thunk/wordsThunk';
 import { setGroup, setPage } from '../../redux/actions/WordsActions';
 import { setFrom } from '../../redux/actions/sprintActions';
+import { wordsToStat } from '../../redux/thunk/wordsToStatThunk';
 
 const Words = () => {
 	const history = useHistory()
