@@ -62,6 +62,23 @@ export const loadEasyWordsThunk = () => async (dispatch, getState) => {
 	}
 };
 
+export const loadActiveWordsThunk = () => async (dispatch, getState) => {
+	const isAuth = getState().auth.isAuth;
+	const group = getState().words.group;
+	const currentPage = getState().words.currentPage;
+	const wordsPerPage = 20;
+
+	if (isAuth) {
+		const res = await loadWordsForVocabulary(group,
+			currentPage,
+			wordsPerPage,
+			'{"userWord.optional.active":true}'
+		);
+		dispatch(setWordsAC(res[0].paginatedResults));
+		dispatch(setTotalCount(res[0].totalCount[0].count))
+	}
+};
+
 export const setDifficultyWordsThunk = (word, difficulty, section) => async (dispatch, getState) => {
 	if (difficulty === null) {
 		try {
@@ -102,6 +119,7 @@ export const setDifficultyWordsThunk = (word, difficulty, section) => async (dis
 		}
 	}
 };
+
 
 
 
