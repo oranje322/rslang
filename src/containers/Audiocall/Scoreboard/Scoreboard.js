@@ -1,16 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Scoreboard.module.scss';
-import { NavLink } from 'react-router-dom';
 import PercentageResult from '../percentageResult/percentageResult';
 
-
-const Scoreboard = (props) => {
-    // const [isStatWordVisible, setIsStatWordVisibl] = useState(true)
-                        // const timeOut = window.setTimeout(()=>{
-                        //     setIsStatWordVisibl(false)
-                        //     window.clearTimeout(timeOut)
-                        // },2000) 
-                        // <button onClick={()=>setIsStatWordVisibl(true)}>Посмотреть ответы</button>                           
+const Scoreboard = (props) => {                          
     const [count, setCount] = useState({
         rightAnsw: 0,
         wrongAnsw: 0

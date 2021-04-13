@@ -1,10 +1,13 @@
 .liItem {
     margin: 1rem;
     padding: 1rem 2rem;
-    border: 1px solid white;
+    // border: 1px solid white;
     border-radius: 1rem;
-    color: white;
+    color: black;
     cursor: pointer;
+    // font-size: medium;
+    font-weight: bold;
+    background-color: rgba(255,255,255,.6);
     &:hover {
         background-color: rgba(152, 120, 227, .3);
         transition: background .3s ease-in-out;
