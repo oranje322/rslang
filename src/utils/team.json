@@ -2,13 +2,13 @@
     "members": [
         {
             "id": "0",
-            "photo": "",
+            "photo": "https://i.ibb.co/rFLWqKd/picture.jpg",
             "name": "Кристина Андреева",
             "position": "Junior Software engineer",
             "activity": "Подключила back-end к проекту, сделала регистрацию пользователей. Реализовала игру 'Саванна', списки слов в разделах учебниках и различия в оформлении каждого.",
             "networks": [
                 {
-                    "link": "",
+                    "link": "https://www.linkedin.com/in/kristinand/",
                     "telegram": "@akristina",
                     "github": "https://github.com/kristinand"
                 }
