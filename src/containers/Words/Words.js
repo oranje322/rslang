@@ -20,7 +20,7 @@ const Words = () => {
 
 	useEffect(() => {
 		dispatch(setGroup(module - 1));
-		dispatch(setPage(page-1));
+		dispatch(setPage(page - 1));
 	}, [module]);
 
 	useEffect(() => {
@@ -34,6 +34,14 @@ const Words = () => {
 		dispatch(setFrom('book'))
 		history.push('/games/sprint')
 	}
+	const onClickToSpeak = () => {
+		dispatch(setFromGames('book'))
+		history.push('/games/mygame')
+	}
+	const onClickToSavannah = () => {
+		dispatch(setFromGames('book'))
+		history.push('/games/savannah')
+	}
 
 	const pageControls = (
 		<div className={classes.pageControls}>
@@ -42,18 +50,18 @@ const Words = () => {
 					className={classes.prevBtn}
 					disabled={+page === 1}
 					variant="outlined"
-					onClick={() => dispatch(setPage(currentPage -1))}>
+					onClick={() => dispatch(setPage(currentPage - 1))}>
 					Назад
 				</Button>
 			</Link>
 
 			<p className={classes.page}>Страница {page}</p>
-			<Link className={totalCount - (page * 20)  <= 0 ? classes.disable : ''} to={`/book/module${module}/page${+page + 1}`}>
+			<Link className={totalCount - (page * 20) <= 0 ? classes.disable : ''} to={`/book/module${module}/page${+page + 1}`}>
 				<Button
 					className={classes.nextBtn}
-					disabled={totalCount - (page * 20)  <= 0}
+					disabled={totalCount - (page * 20) <= 0}
 					variant="outlined"
-					onClick={() => dispatch(setPage(currentPage+1))}>
+					onClick={() => dispatch(setPage(currentPage + 1))}>
 					Вперед
 				</Button>
 			</Link>
@@ -63,7 +71,14 @@ const Words = () => {
 	return (
 		<Fragment>
 			<Header title={'Учебник'} />
-			<button style={{marginLeft: '20%', padding: '10px'}} onClick={onClickToSprint}>К спринту</button>
+			<div className={classes.menuToGames}>
+				<p>Тренировать слова в играх</p>
+				<div className={classes.allBtn}>
+					<button className={classes.toGames} onClick={onClickToSprint}>Спринт</button>
+					<button className={classes.toGames} onClick={onClickToSpeak}>Поговорим</button>
+					<button className={classes.toGames} onClick={onClickToSavannah}>Саванна</button>
+				</div>
+			</div>
 			<div className={classes.words}>
 				{words ? pageControls : <Preloader />}
 				{words &&
