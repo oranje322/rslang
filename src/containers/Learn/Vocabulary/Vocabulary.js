@@ -85,12 +85,12 @@ const Vocabulary = () => {
 			</Link>
 		</div>
 	);
-
 	return (
 		<Fragment>
 			<Header title={'Учебник'} />
-			<button style={{ marginLeft: '20%', padding: '10px' }} className={classes.toGames} onClick={onClickToSprint}>К спринту</button>
+			<button style={{ marginLeft: '20%', padding: '10px' }} className={classes.toGames} onClick={onClickToSprint}>Спринт</button>
 			<button style={{ marginLeft: '20%', padding: '10px' }} className={classes.toGames} onClick={onClickToSpeak}>Поговорим</button>
+			<button style={{ marginLeft: '20%', padding: '10px' }} className={classes.toGames} onClick={onClickToSavannah}>Саванна</button>
 			<div className={classes.words}>
 				{words ? pageControls : <Preloader />}
 				{words &&
@@ -121,6 +121,7 @@ const Vocabulary = () => {
 							)}
 						</div>
 					))}
+				{words.length === 0 && <h4>Cюда еще ничего не пришло :( Зайдите в разделы или сыграйте в игры.</h4>}
 			</div>
 		</Fragment>
 	)
