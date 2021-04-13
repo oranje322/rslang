@@ -48,18 +48,11 @@ const Vocabulary = () => {
 	}
 
 
-	const onClickToSprint = () => {
+	const onClickToGame = (game) => {
 		dispatch(setFrom('book'))
-		history.push('/games/sprint')
+		history.push(`/games/${game}`);
 	}
-	const onClickToSpeak = () => {
-		dispatch(setFromGames('book'))
-		history.push('/games/mygame')
-	}
-	const onClickToSavannah = () => {
-		dispatch(setFromGames('book'))
-		history.push('/games/savannah')
-	}
+
 
 	const state = useSelector(state => state.settings);
 
@@ -92,9 +85,9 @@ const Vocabulary = () => {
 			<div className={classes.menuToGames}>
 				<p>Тренировать слова в играх</p>
 				<div className={classes.allBtn}>
-					<button className={classes.toGames} onClick={onClickToSprint}>Спринт</button>
-					<button className={classes.toGames} onClick={onClickToSpeak}>Поговорим</button>
-					<button className={classes.toGames} onClick={onClickToSavannah}>Саванна</button>
+					<button className={classes.toGames} onClick={() => onClickToGame('sprint')}>Спринт</button>
+					<button className={classes.toGames} onClick={() => onClickToGame('mygame')}>Поговорим</button>
+					<button className={classes.toGames} onClick={() => onClickToGame('savannah')}>Саванна</button>
 				</div>
 			</div>
 			<div className={classes.words}>
