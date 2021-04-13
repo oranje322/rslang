@@ -20,6 +20,8 @@
 .img{
     background-color: $grey;
     max-width: 15rem;
+    border-top-left-radius: 1.3rem;
+    border-bottom-left-radius: 1.3rem;
     height: inherit;
 }
 .info{
@@ -34,6 +36,7 @@
     }
     p{
         padding-top: 0.5rem;
+        line-height: 1.5rem;
     }
     .nets{
         display: flex;
