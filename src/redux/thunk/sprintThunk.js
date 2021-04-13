@@ -34,6 +34,8 @@ export const loadWordsForSprint = () => async (dispatch, getState) => {
 			dispatch(setWordsForSprint(temp));
 		} else {
 			const res = getState().words.activeWords;
+
+			console.log(res);
 			const temp = res.map(word => {
 				return {
 					word: word.word,

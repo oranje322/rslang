@@ -10,6 +10,8 @@ import { setGroup, setPage } from '../../../redux/actions/WordsActions';
 import { useHistory, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { setFrom } from '../../../redux/actions/sprintActions';
+import { setFromGames } from '../../../redux/actions/gamesActions';
+
 
 const Vocabulary = () => {
 	const history = useHistory()
@@ -49,6 +51,14 @@ const Vocabulary = () => {
 		dispatch(setFrom('book'))
 		history.push('/games/sprint')
 	}
+	const onClickToSpeak = () => {
+		dispatch(setFromGames('book'))
+		history.push('/games/mygame')
+	}
+	const onClickToSavannah = () => {
+		dispatch(setFromGames('book'))
+		history.push('/games/savannah')
+	}
 
 	const state = useSelector(state => state.settings);
 
@@ -59,7 +69,7 @@ const Vocabulary = () => {
 					className={classes.prevBtn}
 					disabled={+page === 1}
 					variant="outlined"
-					onClick={() => dispatch(setPage(currentPage-1))}>
+					onClick={() => dispatch(setPage(currentPage - 1))}>
 					Назад
 				</Button>
 			</Link>
@@ -69,7 +79,7 @@ const Vocabulary = () => {
 					className={classes.nextBtn}
 					disabled={totalCount - (page * 20) <= 0}
 					variant="outlined"
-					onClick={() => dispatch(setPage(currentPage+1))}>
+					onClick={() => dispatch(setPage(currentPage + 1))}>
 					Вперед
 				</Button>
 			</Link>
@@ -79,10 +89,10 @@ const Vocabulary = () => {
 	return (
 		<Fragment>
 			<Header title={'Учебник'} />
-			<button style={{marginLeft: '20%', padding: '10px'}} onClick={onClickToSprint}>К спринту</button>
+			<button style={{ marginLeft: '20%', padding: '10px' }} className={classes.toGames} onClick={onClickToSprint}>К спринту</button>
+			<button style={{ marginLeft: '20%', padding: '10px' }} className={classes.toGames} onClick={onClickToSpeak}>Поговорим</button>
 			<div className={classes.words}>
 				{words ? pageControls : <Preloader />}
-				<Link to={'/games'}><button className={classes.btnPlay}>играть</button></Link>
 				{words &&
 					words.map(word => (
 						<div id="wordContainer" className={classes.wordContainer} key={word._id}>

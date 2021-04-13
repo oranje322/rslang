@@ -46,6 +46,28 @@
             color: black;
             cursor: pointer;
         }
+        
+}
+@mixin circle($color) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 0.4rem;
+  color: #3a3a3a;
+  cursor: pointer;
+  border: 1px solid #3a3a3a;
+  border-radius: 25px;
+  &:hover{
+    background-color:$color;
+    border-color: $color;
+  }
+  img{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
 }
 @mixin wrapper($url) {
   @include display(column, center, center);

@@ -37,12 +37,7 @@ $btnSize: 0.7rem;
 	flex: 1;
 	font-size: $btnSize !important;
 }
-.toGames{
-	position: fixed;
-	right: 10rem;
-	top: 5rem;
-	@include button(white, #f0b742, 3.1rem, 9.6rem )
-}
+
 .btnPlay{
 	position: absolute;
 	right: 8rem;
@@ -51,4 +46,9 @@ $btnSize: 0.7rem;
 
 .disable {
 	pointer-events: none;
+}
+
+.toGames{
+@include button(white, #f0b742, 3rem, 7.6rem );
+font-size: 1rem;
 }
