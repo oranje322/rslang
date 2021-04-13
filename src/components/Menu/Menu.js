@@ -4,6 +4,7 @@ import book from '@assets/img/book.png';
 import list from '@assets/img/list.png';
 import game from '@assets/img/game.png';
 import stat from '@assets/img/stat.png';
+import team from '@assets/img/team.png';
 import settings from '@assets/img/settings.png';
 import { NavLink, useLocation } from 'react-router-dom';
 
@@ -34,6 +35,11 @@ const Menu = () => {
 			<NavLink to={'/settings'} activeClassName={styles.item_active}>
 				<div className={styles.item}>
 					<img src={settings} alt="settings" />
+				</div>
+			</NavLink>
+			<NavLink to={'/team'} activeClassName={styles.item_active}>
+				<div className={styles.item}>
+					<img src={team} alt="stat" />
 				</div>
 			</NavLink>
 		</div>

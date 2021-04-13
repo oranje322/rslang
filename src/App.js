@@ -6,6 +6,7 @@ import Book from './containers/Book/Book';
 import Learn from './containers/Learn/Learn';
 import Games from './containers/Games/Games';
 import Stats from './containers/Stats/Stats';
+import Team from './components/Team/Team';
 import Words from './containers/Words/Words';
 import Audiocall from './containers/Audiocall/Audiocall';
 import SavannahMain from './containers/Savannah/SavannahMain/SavannahMain';
@@ -57,6 +58,9 @@ const App = () => {
 			</Route>
 			<Route path={'/settings'}>
 				<Settings />
+			</Route>
+			<Route path={'/team'}>
+				<Team />
 			</Route>
 			<Route path={'/words'}>
 				<Words />

@@ -1,0 +1,60 @@
+{
+    "members": [
+        {
+            "id": "0",
+            "photo": "",
+            "name": "Кристина",
+            "position": "Junior Software engineer",
+            "activity": "Подключила back-end к проекту, сделала регистрацию пользователей. Реализовала игру 'Саванна', списки слов в разделах учебниках и различия в оформлении каждого.",
+            "networks": [
+                {
+                    "link": "",
+                    "telegram": "",
+                    "github": ""
+                }
+            ]
+        },
+        {
+            "id": "1",
+            "name": "Oranje",
+            "photo": "",
+            "position": "Junior Software engineer",
+            "activity": "Занимался логикой Redux. Реализовал игру 'Спринт', дизайн послеигровой статистики. Придумал логику настройки слов в играх в зависимости от точки вдоха, информацию о пользователе в заголовке.",
+            "networks": [
+                {
+                    "link": "",
+                    "telegram": "",
+                    "github": ""
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "name": "Стефания Янович",
+            "photo": "https://c.radikal.ru/c22/2104/7f/8f9e26599c5c.jpg",
+            "position": "Junior Software engineer",
+            "activity": "Разработка пользовательского интерфейса и UX дизайн, занималась вёрсткой. Реализовала игру 'Поговорим', пользовательские настройки, информацию о команде и промо-видео",
+            "networks": [
+                {
+                    "link": "https://www.linkedin.com/in/stefaniya-yanovich-a88956159/",
+                    "telegram": "https://t.me/yaStefaiya",
+                    "github": "https://github.com/ya-stefaniya"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "name": "Yauhen",
+            "photo": "",
+            "position": "Junior Software engineer",
+            "activity": "Занимался вёрсткой, реалиловал боковое меню, маршрутизацию бокового меню, игру 'Аудиовызов' ",
+            "networks": [
+                {
+                    "link": "",
+                    "telegram": "",
+                    "github": ""
+                }
+            ]
+        }
+    ]
+}

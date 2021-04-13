@@ -1,0 +1,52 @@
+@import '../../styles/config.scss';
+
+.wrapper{
+    background-color: $back-light;
+    position: fixed;
+    padding: 2rem 5rem 7rem 10rem;
+    width: 100%;
+    height: 100%;
+    @include display(row, space-around, stretch);
+    flex-wrap: wrap;
+}
+.card{
+        background-color: white;
+        height: 18rem;
+        max-width: 35rem;
+        border-radius: 1.3rem;
+        display: flex;
+        margin: 0.5rem;
+}
+.img{
+    background-color: $grey;
+    max-width: 15rem;
+    height: inherit;
+}
+.info{
+    padding: 1rem 0.5rem;
+    position: relative;
+    h4{
+        @include fonts(Montserrat, 1.3rem, 700)
+    }
+    span{
+        @include fonts(Montserrat, 1rem, 300);
+        color: grey;
+    }
+    p{
+        padding-top: 0.5rem;
+    }
+    .nets{
+        display: flex;
+        position: absolute;
+        bottom:0.5rem;
+        .tg{
+            @include circle(rgb(22, 154, 219));
+        }
+        .link{
+            @include circle(#0e76a8);
+        }
+        .github{
+            @include circle(#313131);
+        }
+    }
+}
