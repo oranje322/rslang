@@ -47,6 +47,7 @@ const Vocabulary = () => {
 		}
 	}
 
+
 	const onClickToSprint = () => {
 		dispatch(setFrom('book'))
 		history.push('/games/sprint')
@@ -88,9 +89,14 @@ const Vocabulary = () => {
 	return (
 		<Fragment>
 			<Header title={'Учебник'} />
-			<button style={{ marginLeft: '20%', padding: '10px' }} className={classes.toGames} onClick={onClickToSprint}>Спринт</button>
-			<button style={{ marginLeft: '20%', padding: '10px' }} className={classes.toGames} onClick={onClickToSpeak}>Поговорим</button>
-			<button style={{ marginLeft: '20%', padding: '10px' }} className={classes.toGames} onClick={onClickToSavannah}>Саванна</button>
+			<div className={classes.menuToGames}>
+				<p>Тренировать слова в играх</p>
+				<div className={classes.allBtn}>
+					<button className={classes.toGames} onClick={onClickToSprint}>Спринт</button>
+					<button className={classes.toGames} onClick={onClickToSpeak}>Поговорим</button>
+					<button className={classes.toGames} onClick={onClickToSavannah}>Саванна</button>
+				</div>
+			</div>
 			<div className={classes.words}>
 				{words ? pageControls : <Preloader />}
 				{words &&
@@ -121,7 +127,6 @@ const Vocabulary = () => {
 							)}
 						</div>
 					))}
-				{words.length === 0 && <h4>Cюда еще ничего не пришло :( Зайдите в разделы или сыграйте в игры.</h4>}
 			</div>
 		</Fragment>
 	)
