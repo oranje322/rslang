@@ -5,11 +5,19 @@ import Menu from '../../components/Menu/Menu';
 import styles from './Audiocall.module.scss';
 import GameField from './GameField';
 import { getAllAggregatedWords } from '../../api/api';
+import { loadWordsForGame } from '../../redux/thunk/gamesThunk';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Audiocall = () => {
 	const [startGame, setStartGame] = useState(false);
     const [allWords, setAllWords] = useState();
 	const [randomNumArr, setRandomNumArr] = useState();
+	const dispatch = useDispatch();
+    const { words } = useSelector(state => state.games);
+
+    useEffect(() => {
+        dispatch(loadWordsForGame());
+    }, []);
 
 	useEffect(async () => {
         const res = await getAllAggregatedWords(0, 0, 34, '{"$or":[{"userWord.difficulty":"hard"},{"userWord":null}]}');
