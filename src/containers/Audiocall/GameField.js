@@ -14,9 +14,6 @@ const GameField = (props) => {
     const [results, setResults] = useState([]);
     const [state, setState] = useState([]);
     const numArr = props.randomNumArr;
-    // const [allWords, setAllWords] = useState(props.words);
-    // const [state, setState] = useState(props.words);
-    // const state = props.words;
 
 	const randomiser = (arr) => Math.floor(Math.random() * arr.length);
 
@@ -30,15 +27,6 @@ const GameField = (props) => {
     }
     newLevelWords(props.words);
         
-    // useEffect(() => {
-    //     window.addEventListener('click', newLevelWords)
-
-    //     return function cleanup() {
-    //       window.removeEventListener('click', newLevelWords)
-    //     }
-    // })  
-    // setCounter([...counter, random]) 
-
     const onAnswerClick = (wordId) => {
         if (!answerCheck) {
             const question = state[numArr[counter]]; 

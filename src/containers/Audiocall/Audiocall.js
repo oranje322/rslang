@@ -18,10 +18,6 @@ const Audiocall = () => {
 		randomNumWords();	
     }, []);
 
-	// useEffect(async () => {
-    //     newLevelWords(allWords);
-    // }, [allWords]);
-
 	const returnToStart = () => {
 		setStartGame(false)
 	}
