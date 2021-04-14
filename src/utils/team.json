@@ -45,13 +45,13 @@
         {
             "id": "3",
             "name": "Евгений Заруба",
-            "photo": "",
+            "photo": "https://d.radikal.ru/d28/2104/20/5e3e84566191.jpg",
             "position": "Junior Software engineer",
             "activity": "Занимался вёрсткой, реализовал боковое меню, маршрутизацию бокового меню, игру 'Аудиовызов'. ",
             "networks": [
                 {
-                    "link": "",
-                    "telegram": "",
+                    "link": "https://www.linkedin.com/in/yauhen-zaruba-8b9615198/",
+                    "telegram": "https://t.me/YauhenZaruba",
                     "github": "https://github.com/zaruba2004"
                 }
             ]
