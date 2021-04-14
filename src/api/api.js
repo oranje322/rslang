@@ -140,4 +140,26 @@ export async function loadWordsForVocabulary(group = 0, page = 0, wordsPerPage =
 	return res.data
 }
 
+export async function getStatistics () {
+	const { userId, token } = JSON.parse(localStorage.getItem('userData'));
+	const res = await  instance.get(`/users/${userId}/statistics`, {
+		headers: {
+			Authorization: `Bearer ${token}`
+		}
+	})
+	console.log(res.data)
+	return res.data
+}
 
+export async function setStatistics (learnedWords) {
+	const body = {
+		learnedWords: learnedWords,
+	}
+	const { userId, token } = JSON.parse(localStorage.getItem('userData'));
+	const res = await  instance.put(`/users/${userId}/statistics`, body, {
+		headers: {
+			Authorization: `Bearer ${token}`
+		}
+	})
+	return res.data
+}

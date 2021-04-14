@@ -5,6 +5,7 @@ import { settingsReducer } from './reducers/settingsReducer';
 import { wordsReducer } from './reducers/wordsReducer';
 import { sprintReducer } from './reducers/sprintReducer';
 import { gamesReducer } from './reducers/gamesReducer';
+import { statsReducer } from './reducers/statsReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -14,7 +15,8 @@ const reducers = combineReducers({
 	settings: settingsReducer,
 	words: wordsReducer,
 	sprint: sprintReducer,
-	games: gamesReducer
+	games: gamesReducer,
+	stats: statsReducer
 });
 
 const configureStore = () => (
