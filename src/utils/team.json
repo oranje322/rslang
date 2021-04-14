@@ -17,13 +17,13 @@
         {
             "id": "1",
             "name": "Александр Зябрев",
-            "photo": "",
+            "photo": "https://sun9-9.userapi.com/impg/relKnEjvvKeVjzJ8GNNaZKZL55c3hpHoKzpnRg/zMek-K5ygdk.jpg?size=659x772&quality=96&sign=31ed8007e14fb3aa6180a4d625517678&type=album",
             "position": "Junior Software engineer",
-            "activity": "Занимался логикой Redux. Реализовал игру 'Спринт', дизайн послеигровой статистики. Придумал логику настройки слов в играх в зависимости от точки вдоха, информацию о пользователе в заголовке.",
+            "activity": "Занимался логикой Redux. JWT токены. Реализовал игру 'Спринт', дизайн послеигровой статистики. Придумал логику настройки слов в играх в зависимости от точки вдоха, информацию о пользователе в заголовке.",
             "networks": [
                 {
-                    "link": "",
-                    "telegram": "@oranje322",
+                    "link": "https://www.linkedin.com/in/oranje322/",
+                    "telegram": "https://t.me/oranje322",
                     "github": "https://github.com/oranje322"
                 }
             ]
