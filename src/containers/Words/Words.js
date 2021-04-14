@@ -36,7 +36,6 @@ const Words = () => {
 		history.push(`/games/${game}`);
 	}
 
-
 	const pageControls = (
 		<div className={classes.pageControls}>
 			<Link className={+page === 1 ? classes.disable : ''} to={`/book/module${module}/page${+page - 1}`}>
@@ -71,6 +70,7 @@ const Words = () => {
 					<button className={classes.toGames} onClick={() => onClickToGame('sprint')}>Спринт</button>
 					<button className={classes.toGames} onClick={() => onClickToGame('mygame')}>Поговорим</button>
 					<button className={classes.toGames} onClick={() => onClickToGame('savannah')}>Саванна</button>
+					<button className={classes.toGames} onClick={() => onClickToGame('audiocall')}>Аудиовызов</button>
 				</div>
 			</div>
 			<div className={classes.words}>

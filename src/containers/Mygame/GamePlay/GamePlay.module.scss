@@ -2,22 +2,18 @@
 
 .Container{
     display: block;
-    width: 30%;
-    min-height: 27rem;
-}
-.message{
-    font-size: 2rem;
-    padding: 2rem;
 }
 .gameContainer{
+    height: 30rem;
+    width: 25rem;
     padding: 1rem;
     background-color: white;
     @include display(column, space-around, center);
     border-radius: 18px;
     box-shadow: 5px 5px 14px 3px rgba(207, 205, 205, 0.25);
     .img{
-        width: 70%;
-        height: 50%;
+        width: 20rem;
+        height: 12rem;
         cursor: pointer;
     }
     .button{
@@ -51,4 +47,13 @@
     &:hover{
         background-color: #aed7db;
     }
+}
+
+.message{
+    font-size: 4.5rem;
+    color: white;
+    text-shadow: none;
+    position: absolute;
+    right: 6rem;
+    top: 4rem;
 }

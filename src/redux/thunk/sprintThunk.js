@@ -1,6 +1,6 @@
 import { getAllAggregatedWords, getWords } from '../../api/api';
 import {
-	setCorrectAnswer,
+	setCorrectAnswer, setFinishedSprint,
 	setLoadPair,
 	setRate,
 	setScore,
@@ -10,6 +10,7 @@ import {
 	setWrongAnswer
 } from '../actions/sprintActions';
 import { correctSound, streakSound, wrongSound } from '../../utils/constants';
+import { setStatsThunk } from './statsThunk';
 
 export function getRandomNumber(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -121,3 +122,9 @@ export const clickAnswer = (answer) => async (dispatch, getState) => {
 		dispatch(loadPair());
 	}
 };
+
+export const finishSprintThunk = () => async (dispatch, getState) => {
+	const {correctAnswers, wrongAnswers} = getState().sprint
+	dispatch(setFinishedSprint())
+	dispatch(setStatsThunk(correctAnswers.length, wrongAnswers.length))
+}

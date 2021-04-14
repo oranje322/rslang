@@ -50,7 +50,7 @@ const Vocabulary = () => {
 		if (active === 'delete') {
 			dispatch(loadEasyWordsThunk());
 		}
-		if(active === 'active') {
+		if (active === 'active') {
 			dispatch(loadActiveWordsThunk())
 		}
 	}
@@ -60,7 +60,6 @@ const Vocabulary = () => {
 		dispatch(setFrom('book'))
 		history.push(`/games/${game}`);
 	}
-
 
 	const state = useSelector(state => state.settings);
 
@@ -96,6 +95,8 @@ const Vocabulary = () => {
 					<button className={classes.toGames} onClick={() => onClickToGame('sprint')}>Спринт</button>
 					<button className={classes.toGames} onClick={() => onClickToGame('mygame')}>Поговорим</button>
 					<button className={classes.toGames} onClick={() => onClickToGame('savannah')}>Саванна</button>
+					<button className={classes.toGames} onClick={() => onClickToGame('audiocall')}>Аудиовызов</button>
+
 				</div>
 			</div>
 			<div className={classes.words}>
