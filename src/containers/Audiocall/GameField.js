@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import AudiocallImg from '@assets/img/Audiocall.png';
-import RightSound from '@assets/right.mp3';
-import WrongSound from '@assets/wrong.mp3';
 import styles from './Audiocall.module.scss';
 import AnswerItem from './AnswerItem/AnswerItem';
 import Scoreboard from './Scoreboard/scoreboard';
+import { wrongSound, correctSound } from '../../utils/constants';
 
 const GameField = (props) => { 
     const link = 'https://rslang-db.herokuapp.com/';
@@ -31,11 +30,11 @@ const GameField = (props) => {
         if (!answerCheck) {
             const question = state[numArr[counter]]; 
             if (question.word == wordId) {
-                rightSoundPlay.play()
+                correctSound.play()
                 setResults([...results, {[question.word]: 'right'}]);
                 setAnswerCheck({[wordId]: 'success'})         
             } else {
-                wrongSoundPlay.play()
+                wrongSound.play()
                 setResults([...results, {[question.word]: 'wrong'}]);
                 setAnswerCheck({[wordId]: 'error'})
             }
@@ -63,9 +62,6 @@ const GameField = (props) => {
     }
 
     const audio = new Audio(link + state[numArr[counter]].audio);
-    const rightSoundPlay = new Audio(RightSound);
-    const wrongSoundPlay = new Audio(WrongSound);
-
     const listen = () => {
         audio.play();
     };
