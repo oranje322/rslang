@@ -13,6 +13,8 @@ const SprintStats = () => {
 		dispatch(startSprint())
 	}
 
+
+
 	return (
 		<div className={styles.stats}>
 			<h3>{`Результат игры: ${score} очков.`}</h3>

@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styles from './Sprint.module.scss';
 import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
-import { clickAnswer } from '../../redux/thunk/sprintThunk';
+import { clickAnswer, finishSprintThunk } from '../../redux/thunk/sprintThunk';
 import { CircularProgressWithLabel } from './Spinner';
-import { setFinishedSprint } from '../../redux/actions/sprintActions';
 
 
 let cn = classNames.bind(styles);
@@ -21,7 +20,7 @@ const SprintGame = () => {
 	}, [timer]);
 
 	useEffect(() => {
-		if (timer === 0) dispatch(setFinishedSprint());
+		if (timer === 0) dispatch(finishSprintThunk());
 	}, [timer]);
 
 	const dispatch = useDispatch();

@@ -7,6 +7,7 @@ import {
 	updateUserWord
 } from '../../api/api';
 import { deleteWordAC, setDifficulty, setTotalCount, setWordsAC } from '../actions/WordsActions';
+import { setStatsThunk } from './statsThunk';
 
 export const loadWordsThunk = () => async (dispatch, getState) => {
 	const isAuth = getState().auth.isAuth;
@@ -76,6 +77,7 @@ export const loadActiveWordsThunk = () => async (dispatch, getState) => {
 		);
 		dispatch(setWordsAC(res[0].paginatedResults));
 		dispatch(setTotalCount(res[0].totalCount[0].count))
+		dispatch(setStatsThunk())
 	}
 };
 

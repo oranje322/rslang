@@ -147,13 +147,16 @@ export async function getStatistics () {
 			Authorization: `Bearer ${token}`
 		}
 	})
-	console.log(res.data)
 	return res.data
 }
 
-export async function setStatistics (learnedWords) {
+export async function setStatistics (learnedWords, correctAnswers, wrongAnswers) {
 	const body = {
 		learnedWords: learnedWords,
+		optional: {
+			correctAnswers: correctAnswers,
+			wrongAnswers: wrongAnswers
+		}
 	}
 	const { userId, token } = JSON.parse(localStorage.getItem('userData'));
 	const res = await  instance.put(`/users/${userId}/statistics`, body, {

@@ -17,10 +17,14 @@ import Menu from './components/Menu/Menu';
 import Footer from './components/Footer/Footer';
 import { useLocation } from 'react-router';
 import Vocabulary from './containers/Learn/Vocabulary/Vocabulary';
+import { useDispatch } from 'react-redux';
+import { statsThunk } from './redux/thunk/statsThunk';
 
 const App = () => {
 	const [menuVisible, setMenuVisible] = useState(false);
 	const location = useLocation();
+
+	const dispatch = useDispatch()
 
 	useEffect(() => {
 		if (location.pathname === '/') {
@@ -30,7 +34,10 @@ const App = () => {
 		}
 	}, [location, menuVisible]);
 
-	// console.log(location.pathname);
+	useEffect(() => {
+		dispatch(statsThunk())
+	}, [])
+
 
 	return (<>
 		<Switch>

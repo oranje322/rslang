@@ -1,8 +1,9 @@
 export const SET_STATS = 'SET_STATS'
 
 const initialState = {
-	sprint: {},
-	learnedWords: 0
+	learnedWords: 0,
+	correctAnswers: 0,
+	wrongAnswers: 0,
 }
 
 export const statsReducer = (state = initialState, action) => {
@@ -10,7 +11,7 @@ export const statsReducer = (state = initialState, action) => {
 		case SET_STATS:
 			return {
 				...state,
-				learnedWords: action.payload
+				...action.payload
 			}
 		default:
 			return state
