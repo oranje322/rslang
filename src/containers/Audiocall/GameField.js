@@ -12,6 +12,9 @@ const GameField = (props) => {
     const [isFinished, setIsFinished] = useState(false);
     const [results, setResults] = useState([]);
     const [state, setState] = useState([]);
+    const [wrongAnswers, setWrongAnswers] = useState([]);
+    const [correctAnswers, setCorrectAnswers] = useState([]);
+    const [statistics, setStatistics] = useState(10);
     const numArr = props.randomNumArr;
 
 	const randomiser = (arr) => Math.floor(Math.random() * arr.length);
@@ -32,11 +35,14 @@ const GameField = (props) => {
             if (question.word == wordId) {
                 correctSound.play()
                 setResults([...results, {[question.word]: 'right'}]);
-                setAnswerCheck({[wordId]: 'success'})         
+                setAnswerCheck({[wordId]: 'success'})  
+                setCorrectAnswers([...correctAnswers, question])       
             } else {
                 wrongSound.play()
                 setResults([...results, {[question.word]: 'wrong'}]);
                 setAnswerCheck({[wordId]: 'error'})
+                setWrongAnswers([...wrongAnswers, question])
+                setStatistics(statistics - 1)
             }
         }  
     }
@@ -69,7 +75,11 @@ const GameField = (props) => {
     return (
         <div className={styles.rulesField}>
             {isFinished
-                ? <Scoreboard replayGame={replayGame} results={results}/>
+                ? <Scoreboard replayGame={replayGame} 
+                results={results} 
+                wrongAnswers={wrongAnswers} 
+                correctAnswers={correctAnswers}
+                statistics={statistics}/>
                 : <div className={styles.playingField}>
                     <div onClick={()=>listen()} className={styles.questionCard}>
                         {answerCheck 
