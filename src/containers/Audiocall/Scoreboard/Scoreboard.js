@@ -7,36 +7,22 @@ import AudioComponent from '../../Sprint/Audio'
 
 const Scoreboard = (props) => {  
     const [otherScoreboard, setOtherScoreboard] = useState(false);
-    const { width, height } = useWindowSize();                        
-    const [count, setCount] = useState({
-        rightAnsw: 0,
-        wrongAnsw: 0
-    });    
-
-    let first = 0;
-    let second = 0;
-
-    useEffect(() => {
-        setCount({
-            rightAnsw: first,
-            wrongAnsw: second
-        });
-    }, []);
+    const { width, height } = useWindowSize(); 
 
 	return (
         <div className={styles.scoreboardField}>
-            {count.wrongAnsw<=1
+            {props.wrongAnswers.length<=1
             ?<div><h3>Отличный результат</h3>
                  <Confetti
                  width={width}
                 height={height}
                 numberOfPieces='50'/>
             </div>
-            :count.wrongAnsw>1 && count.wrongAnsw<=4
+            :props.wrongAnswers.length>1 && props.wrongAnswers.length<=4
             ?<h3>Хороший результат</h3>
             :<h3>Нужно еще подучить</h3>}
-            <p>{count.rightAnsw} слов изучено </p>
-            <p>{count.wrongAnsw} - не изучено</p>
+            <p>{props.correctAnswers.length} слов изучено </p>
+            <p>{props.wrongAnswers.length} - не изучено</p>
             {otherScoreboard
             ?<div>
                 <div>
@@ -85,22 +71,10 @@ const Scoreboard = (props) => {
                 </div> 
                 <div className={styles.scoreboardResults}>
                     <div className={styles.scoreboardDiagram}>
-                        <PercentageResult count={count}/>
+                        <PercentageResult correctAnswers={props.correctAnswers.length} wrongAnswers={props.wrongAnswers.length}/>
                     </div>
-                    <div className={styles.scoreboardAnswers}>                
-                        <ul>
-                            {props.results.map((result,index)=>{ 
-                                Object.values(result).join(' ') === 'right'
-                                ? first += 1
-                                : second += 1
-                                return ( <li key={index} >  
-                                {Object.keys(result).join(' ')} - {Object.values(result).join(' ')}
-                                </li>  
-                            )})}                    
-                        </ul>
-                    </div>                    
-                 </div>
-                 <button className={styles.buttonReplayGame} onClick={()=>props.replayGame()} >Играть заново</button>
+                    <button className={styles.buttonReplayGame} onClick={()=>props.replayGame()} >Играть заново</button>
+                 </div>                 
             </div>} 
         </div>
     )

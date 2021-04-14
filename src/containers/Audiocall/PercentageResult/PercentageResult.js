@@ -3,8 +3,8 @@ import styles from './PercentageResult.module.scss';
 
 
 const PercentageResult = (props) => {
-    const result = Math.floor(100/(props.count.rightAnsw + props.count.wrongAnsw)*props.count.rightAnsw);
-    const wrongResult = Math.floor(100/(props.count.rightAnsw + props.count.wrongAnsw)*props.count.wrongAnsw);
+    const result = Math.floor(100/(props.correctAnswers + props.wrongAnswers)*props.correctAnswers);
+    const wrongResult = Math.floor(100/(props.correctAnswers + props.wrongAnswers)*props.wrongAnswers);
 	return (
         <div className={styles.percentageResultField}>
             <div className={styles.colorScaleField}>

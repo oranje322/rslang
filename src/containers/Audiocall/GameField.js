@@ -65,6 +65,8 @@ const GameField = (props) => {
         setIsFinished(false)
         setAnswerCheck(null)
         setResults([])
+        setWrongAnswers([])
+        setCorrectAnswers([])
     }
 
     const audio = new Audio(link + state[numArr[counter]].audio);

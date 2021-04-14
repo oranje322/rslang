@@ -11,29 +11,16 @@
         border-radius: 0.5rem;
         display: flex;
         justify-content: center;
+        align-items: center;
+        flex-direction: column;
         flex-wrap: wrap;
         .scoreboardDiagram {
             margin: 1rem;
         }
-        .scoreboardAnswers {
-            margin: 1rem;
-            ul {
-                list-style: none;            
-                padding: 2rem;
-                background-color: rgba(255,255,255,.3);
-                border-radius: 1rem;
-                width: 15rem;
-                height: 100%;
-                box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem #0000001f;
-                li {
-                    padding: 0.5rem;
-                }
-            }
-        } 
     } 
     .buttonReplayGame {
         margin: 1rem;
-        @include button(white, $dark-violet, 4.1rem, 11.6rem )        
+        @include button(white, $dark-violet, 4.1rem, 11.6rem )                
     }
     span {
         cursor: pointer;
@@ -53,7 +40,7 @@
 	border-radius: 5px;
 	padding: 2%;
 	overflow: auto;
-	max-height: 35rem;
+	max-height: 30rem;
 	margin-bottom: 10rem;
 	h3 {
 		font-size: 2rem;
@@ -114,13 +101,15 @@
 		justify-content: space-around;
 
 		button {
-			padding: 0.7rem 1rem;
-			box-shadow: 6px 6px 10px #7b8a8b;
-			border: 1px solid #005e8d;
-			color: #fff;
-			background-color: #18bc9c;
-			cursor: pointer;
-			border-radius: 0.2rem;
+            margin: 1rem;
+            @include button(white, $dark-violet, 4.1rem, 11.6rem )  
+			// padding: 0.7rem 1rem;
+			// box-shadow: 6px 6px 10px #7b8a8b;
+			// border: 1px solid #005e8d;
+			// color: #fff;
+			// background-color: #18bc9c;
+			// cursor: pointer;
+			// border-radius: 0.2rem;
 		}
 	}
 }
