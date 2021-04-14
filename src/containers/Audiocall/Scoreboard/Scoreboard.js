@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Scoreboard.module.scss';
 import PercentageResult from '../percentageResult/percentageResult';
-import Confetti from 'react-confetti'
-import useWindowSize from 'react-use/lib/useWindowSize'
-import AudioComponent from '../../Sprint/Audio'
+import Confetti from 'react-confetti';
+import useWindowSize from 'react-use/lib/useWindowSize';
+import AudioComponent from '../../Sprint/Audio';
+import { useDispatch, useSelector } from 'react-redux';
+import { setStatsThunk } from '../../../redux/thunk/statsThunk';
 
 const Scoreboard = (props) => {  
     const [otherScoreboard, setOtherScoreboard] = useState(false);
-    const { width, height } = useWindowSize(); 
+    const { width, height } = useWindowSize();
+    const dispatch = useDispatch();  
+    dispatch(setStatsThunk(props.correctAnswers.length, props.wrongAnswers.length)) 
 
 	return (
         <div className={styles.scoreboardField}>
