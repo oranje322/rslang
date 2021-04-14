@@ -31,10 +31,15 @@ const Words = () => {
 
 	const state = useSelector(state => state.settings);
 
-	const onClickToGame = (game) => {
-		dispatch(setFrom('book'))
+	const onClickToGames = (game) => {
+		dispatch(setFromGames('book'))
 		history.push(`/games/${game}`);
 	}
+	const onClickToSprint = () => {
+		dispatch(setFrom('book'))
+		history.push('/games/sprint')
+	}
+
 
 	const pageControls = (
 		<div className={classes.pageControls}>
@@ -67,10 +72,10 @@ const Words = () => {
 			<div className={classes.menuToGames}>
 				<p>Тренировать слова в играх</p>
 				<div className={classes.allBtn}>
-					<button className={classes.toGames} onClick={() => onClickToGame('sprint')}>Спринт</button>
-					<button className={classes.toGames} onClick={() => onClickToGame('mygame')}>Поговорим</button>
-					<button className={classes.toGames} onClick={() => onClickToGame('savannah')}>Саванна</button>
-					<button className={classes.toGames} onClick={() => onClickToGame('audiocall')}>Аудиовызов</button>
+					<button className={classes.toGames} onClick={onClickToSprint}>Спринт</button>
+					<button className={classes.toGames} onClick={() => onClickToGames('mygame')}>Поговорим</button>
+					<button className={classes.toGames} onClick={() => onClickToGames('savannah')}>Саванна</button>
+					<button className={classes.toGames} onClick={() => onClickToGames('audiocall')}>Аудиовызов</button>
 				</div>
 			</div>
 			<div className={classes.words}>
