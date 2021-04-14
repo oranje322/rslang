@@ -5,15 +5,18 @@ import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
 import AudioComponent from '../../../Sprint/Audio'
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setStatsThunk } from '../../../../redux/thunk/statsThunk'
 const EndGame = ({ reGame, statistics, wrongAnswers, correctAnswers }) => {
 
     const history = useHistory();
     const { width, height } = useWindowSize();
+    const dispatch = useDispatch();
 
     const backToGamesHandler = () => {
         history.push('/games');
     }
-
+    dispatch(setStatsThunk(correctAnswers.length, wrongAnswers.length))
     return (
         <div className={styles.stats}>
             <Confetti

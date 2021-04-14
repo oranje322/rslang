@@ -25,8 +25,8 @@ const Mygame = () => {
 				{game ? <>
 					<NavLink to={'/games'}><h4 className={classes.back} onClick={() => setGame(!game)}>&#9664;</h4></NavLink>
 					<h2>Игра: Поговорим</h2>
-					<p>Проверьте звучание нажав на картинку</p>
-					<p>Кликните Начать и произнесите слово</p>
+					<p className={classes.p}>Проверьте звучание нажав на картинку</p>
+					<p className={classes.p}>Кликните Начать и произнесите слово</p>
 					<button className={classes.button} onClick={() => setGame(!game)}>Старт</button>
 				</> :
 					<GamePlay words={words} />

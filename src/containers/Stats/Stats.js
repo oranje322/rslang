@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './Stats.module.scss';
+import styles from './Stats.module.scss';
 import Header from '../../components/Header/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import { setStats } from '../../redux/actions/statsAction';
@@ -9,7 +9,7 @@ const Stats = () => {
 
 	const dispatch = useDispatch();
 
-	const {learnedWords, correctAnswers, wrongAnswers} = useSelector(state => state.stats)
+	const { learnedWords, correctAnswers, wrongAnswers } = useSelector(state => state.stats)
 
 
 
@@ -20,12 +20,13 @@ const Stats = () => {
 
 	return (
 		<>
-			<Header title={'Статистика'}/>
-			<div style={{marginLeft: "8rem", marginTop: "2rem"}}>
-				<p>{`Всего активных слов: ${learnedWords}`}</p>
-				<p>{`Правильных ответов в играх: ${correctAnswers}`}</p>
-				<p>{`Неправильных ответов в играх: ${wrongAnswers}`}</p>
+			<Header title={'Статистика'} />
+			<div className={styles.wrapper}>
+				<p>Всего активных слов: <span> {learnedWords} </span></p>
+				<p>Правильных ответов в играх: <span>{correctAnswers}</span></p>
+				<p>Неправильных ответов в играх:<span>{wrongAnswers}</span></p>
 			</div>
+			<img className={styles.pic} src={'/src/assets/img/stats.png'}></img>
 
 		</>
 	);

@@ -2,12 +2,12 @@
 
 .wrapper{
     @include wrapper(url('../../assets/img/forest.png'));
-    p{
+    .p{
     font-size: 1.5rem;
     color: black;
     margin-top: 1rem;
     font-weight: 700;
-    text-shadow: 2px 1px 4px white
+    text-shadow: 2px 1px 4px white;
 }
 .back{
     position: absolute;

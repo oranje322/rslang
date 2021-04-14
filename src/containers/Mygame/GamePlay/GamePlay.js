@@ -13,7 +13,6 @@ const GamePlay = ({ words }) => {
     const [isGamePlayed, setIsGamePlayed] = useState(false);
     const [oneWord, setOneWord] = useState();
     const [sound, setSound] = useState();
-    const [message, setMessage] = useState();
     const [wrongAnswers, setWrongAnswers] = useState([]);
     const [correctAnswers, setCorrectAnswers] = useState([]);
     const [statistics, setStatistics] = useState(10);
@@ -22,7 +21,7 @@ const GamePlay = ({ words }) => {
     const randomiser = (arr) => Math.floor(Math.random() * arr.length);
 
     const newLevelWords = (words) => {
-        while (levelWords.length < 10) {
+        while (levelWords.length < 11) {
             let random = words[randomiser(words)];
             levelWords.push(random);
             if (levelWords.some(word => word._id === random._id)) continue;
@@ -43,13 +42,6 @@ const GamePlay = ({ words }) => {
         setLevelWords(levelWords);
     }
 
-    const handleMessage = () => {
-        if (levelWords.length === 0) {
-            setMessage('Последнее слово!')
-        } else {
-            setMessage(`Осталось ${levelWords.length + 1}`)
-        }
-    }
     useEffect(() => {
         if (words.length !== 0) {
             newLevelWords(words);
@@ -60,16 +52,15 @@ const GamePlay = ({ words }) => {
 
     useEffect(() => {
         changeLength();
-        handleMessage();
     }, [oneWord])
 
 
     useEffect(() => {
         if (finalTranscript && finalTranscript.toLowerCase() === oneWord.word) {
-            correctSound.play();
+            if (soundsVolume) correctSound.play();
             correctAnswers.push(oneWord);
             setCorrectAnswers(correctAnswers);
-        } else if (finalTranscript) wrongSound.play();
+        } else if (finalTranscript && soundsVolume) wrongSound.play();
     }, [oneWord, finalTranscript])
 
 
@@ -114,7 +105,7 @@ const GamePlay = ({ words }) => {
                             <button className={classes.soundBtn} onClick={onChnageVolumeHandler}>
                                 {soundsVolume ? '\u{1F509}' : '\u{1F507}'}
                             </button>
-                            <p className={classes.message}>{message}</p>
+                            <p className={classes.message}>{levelWords.length}</p>
                             <div className={classes.Container}>
                                 <div className={classes.gameContainer}>
                                     <img onClick={listen} className={classes.img} src={link + oneWord.image} />
@@ -123,12 +114,13 @@ const GamePlay = ({ words }) => {
                                         <span>{oneWord.wordTranslate}</span>
                                     </div>
 
-                                    {finalTranscript && <span>Вы сказали: <b>{finalTranscript} </b></span>}
+                                    {finalTranscript ? <span>Вы сказали: <b>{finalTranscript} </b></span> : <span></span>}
 
-                                    {!listening && !finalTranscript &&
+                                    {(!listening && !finalTranscript) ?
                                         <button className={classes.button} onClick={SpeechRecognition.startListening}>Начать</button>
+                                        : <span></span>
                                     }
-                                    {listening && !finalTranscript && <p>Слушаю...</p>}
+                                    {(listening && !finalTranscript) ? <p className={classes.p}>Слушаю...</p> : <p></p>}
 
                                     {finalTranscript && (finalTranscript.toLowerCase() === oneWord.word ?
                                         <>
