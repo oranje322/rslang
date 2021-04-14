@@ -1,37 +1,115 @@
 @import '../../../styles/config.scss';
 
 .scoreboardField {
-    background-color: rgba(255,255,255,.3);
     padding: 2rem;
     margin: 2rem;
-    min-height: 30rem;
-    border-radius: 1rem;
+    height: 100%;    
     text-align: center;
     .scoreboardResults {
+        background-color: hsla(0,0%,100%,.6);
+        border: 1px solid #005e8d;
+        border-radius: 0.5rem;
         display: flex;
         justify-content: center;
+        align-items: center;
+        flex-direction: column;
         flex-wrap: wrap;
         .scoreboardDiagram {
             margin: 1rem;
         }
-        .scoreboardAnswers {
-            margin: 1rem;
-            ul {
-                list-style: none;            
-                padding: 2rem;
-                background-color: rgba(255,255,255,.3);
-                border-radius: 1rem;
-                width: 15rem;
-                height: 100%;
-                box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem #0000001f;
-                li {
-                    padding: 0.5rem;
-                }
-            }
-        } 
     } 
-    button {
+    .buttonReplayGame {
         margin: 1rem;
-        @include button(white, $dark-violet, 4.1rem, 11.6rem )        
+        @include button(white, $dark-violet, 4.1rem, 11.6rem )                
+    }
+    span {
+        cursor: pointer;
+        font-size: large;
+        margin-left: 0.5rem;
     }  
+}
+
+.stats {
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	justify-self: center;
+	min-width: 400px;
+	background-color: hsla(0,0%,100%,.6);
+	border: 1px solid #005e8d;
+	border-radius: 5px;
+	padding: 2%;
+	overflow: auto;
+	max-height: 30rem;
+	margin-bottom: 10rem;
+	h3 {
+		font-size: 2rem;
+	}
+
+	.subtitle {
+		margin-top: 1rem;
+		display: flex;
+
+		p{
+			font-size: 1.1rem;
+		}
+	}
+
+	.wrongSprint {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #fff;
+		padding: 0 14px;
+		border-radius: 21px;
+		margin-left: 5px;
+		background-color: #da5b4c;
+	}
+
+	.correctSprint {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #fff;
+		padding: 0 14px;
+		border-radius: 21px;
+		margin-left: 5px;
+		background-color: #01af61;
+	}
+
+	.answerBlock {
+		margin-top: 0.5rem;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.answer {
+
+		display: flex;
+		align-items: center;
+
+		p {
+			margin: 0.5rem 0 0.5rem 1rem;
+			font-size: 0.8rem;
+			text-shadow: none;
+		}
+	}
+
+	.statsButtons {
+		margin-top: 1rem;
+		display: flex;
+		justify-content: space-around;
+
+		button {
+            margin: 1rem;
+            @include button(white, $dark-violet, 4.1rem, 11.6rem )  
+			// padding: 0.7rem 1rem;
+			// box-shadow: 6px 6px 10px #7b8a8b;
+			// border: 1px solid #005e8d;
+			// color: #fff;
+			// background-color: #18bc9c;
+			// cursor: pointer;
+			// border-radius: 0.2rem;
+		}
+	}
 }

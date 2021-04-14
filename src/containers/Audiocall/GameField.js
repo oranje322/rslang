@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import AudiocallImg from '@assets/img/Audiocall.png';
-import RightSound from '@assets/right.mp3';
-import WrongSound from '@assets/wrong.mp3';
 import styles from './Audiocall.module.scss';
 import AnswerItem from './AnswerItem/AnswerItem';
 import Scoreboard from './Scoreboard/scoreboard';
+import { wrongSound, correctSound } from '../../utils/constants';
 
 const GameField = (props) => { 
     const link = 'https://rslang-db.herokuapp.com/';
     const [counter, setCounter] = useState(0);
     const [answerCheck, setAnswerCheck] = useState(null);
     const [isFinished, setIsFinished] = useState(false);
-    const [results, setResults] = useState([]);
     const [state, setState] = useState([]);
+    const [wrongAnswers, setWrongAnswers] = useState([]);
+    const [correctAnswers, setCorrectAnswers] = useState([]);
+    const [statistics, setStatistics] = useState(0);
     const numArr = props.randomNumArr;
 
 	const randomiser = (arr) => Math.floor(Math.random() * arr.length);
@@ -31,13 +32,15 @@ const GameField = (props) => {
         if (!answerCheck) {
             const question = state[numArr[counter]]; 
             if (question.word == wordId) {
-                rightSoundPlay.play()
-                setResults([...results, {[question.word]: 'right'}]);
-                setAnswerCheck({[wordId]: 'success'})         
+                correctSound.play()
+                setAnswerCheck({[wordId]: 'success'})  
+                setCorrectAnswers([...correctAnswers, question])
+                setStatistics(statistics + 1)       
             } else {
-                wrongSoundPlay.play()
-                setResults([...results, {[question.word]: 'wrong'}]);
+                wrongSound.play()
                 setAnswerCheck({[wordId]: 'error'})
+                setWrongAnswers([...wrongAnswers, question])
+                setStatistics(statistics - 1)
             }
         }  
     }
@@ -59,13 +62,11 @@ const GameField = (props) => {
         setCounter(0);
         setIsFinished(false)
         setAnswerCheck(null)
-        setResults([])
+        setWrongAnswers([])
+        setCorrectAnswers([])
     }
 
     const audio = new Audio(link + state[numArr[counter]].audio);
-    const rightSoundPlay = new Audio(RightSound);
-    const wrongSoundPlay = new Audio(WrongSound);
-
     const listen = () => {
         audio.play();
     };
@@ -73,7 +74,10 @@ const GameField = (props) => {
     return (
         <div className={styles.rulesField}>
             {isFinished
-                ? <Scoreboard replayGame={replayGame} results={results}/>
+                ? <Scoreboard replayGame={replayGame} 
+                wrongAnswers={wrongAnswers} 
+                correctAnswers={correctAnswers}
+                statistics={statistics}/>
                 : <div className={styles.playingField}>
                     <div onClick={()=>listen()} className={styles.questionCard}>
                         {answerCheck 

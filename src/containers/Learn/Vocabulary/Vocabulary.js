@@ -68,6 +68,10 @@ const Vocabulary = () => {
 		dispatch(setFromGames('book'))
 		history.push('/games/savannah')
 	}
+	const onClickToAudiocall = () => {
+		dispatch(setFromGames('book'))
+		history.push('/games/audiocall')
+	}
 
 	const state = useSelector(state => state.settings);
 
@@ -103,6 +107,7 @@ const Vocabulary = () => {
 					<button className={classes.toGames} onClick={onClickToSprint}>Спринт</button>
 					<button className={classes.toGames} onClick={onClickToSpeak}>Поговорим</button>
 					<button className={classes.toGames} onClick={onClickToSavannah}>Саванна</button>
+					<button className={classes.toGames} onClick={onClickToAudiocall}>Аудиовызов</button>
 				</div>
 			</div>
 			<div className={classes.words}>
