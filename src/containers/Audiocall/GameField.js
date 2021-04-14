@@ -10,8 +10,10 @@ const GameField = (props) => {
     const [counter, setCounter] = useState(0);
     const [answerCheck, setAnswerCheck] = useState(null);
     const [isFinished, setIsFinished] = useState(false);
-    const [results, setResults] = useState([]);
     const [state, setState] = useState([]);
+    const [wrongAnswers, setWrongAnswers] = useState([]);
+    const [correctAnswers, setCorrectAnswers] = useState([]);
+    const [statistics, setStatistics] = useState(0);
     const numArr = props.randomNumArr;
 
 	const randomiser = (arr) => Math.floor(Math.random() * arr.length);
@@ -31,12 +33,14 @@ const GameField = (props) => {
             const question = state[numArr[counter]]; 
             if (question.word == wordId) {
                 correctSound.play()
-                setResults([...results, {[question.word]: 'right'}]);
-                setAnswerCheck({[wordId]: 'success'})         
+                setAnswerCheck({[wordId]: 'success'})  
+                setCorrectAnswers([...correctAnswers, question])
+                setStatistics(statistics + 1)       
             } else {
                 wrongSound.play()
-                setResults([...results, {[question.word]: 'wrong'}]);
                 setAnswerCheck({[wordId]: 'error'})
+                setWrongAnswers([...wrongAnswers, question])
+                setStatistics(statistics - 1)
             }
         }  
     }
@@ -58,7 +62,8 @@ const GameField = (props) => {
         setCounter(0);
         setIsFinished(false)
         setAnswerCheck(null)
-        setResults([])
+        setWrongAnswers([])
+        setCorrectAnswers([])
     }
 
     const audio = new Audio(link + state[numArr[counter]].audio);
@@ -69,7 +74,10 @@ const GameField = (props) => {
     return (
         <div className={styles.rulesField}>
             {isFinished
-                ? <Scoreboard replayGame={replayGame} results={results}/>
+                ? <Scoreboard replayGame={replayGame} 
+                wrongAnswers={wrongAnswers} 
+                correctAnswers={correctAnswers}
+                statistics={statistics}/>
                 : <div className={styles.playingField}>
                     <div onClick={()=>listen()} className={styles.questionCard}>
                         {answerCheck 
